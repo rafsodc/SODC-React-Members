@@ -1,4 +1,19 @@
-.App {
+:root {
+  --sodc-red: #770800;
+  --sodc-blue: #112244;
+}
+
+.bg-app-primary {
+  background-color: var(--sodc-red) !important;
+  color: #fff !important;
+}
+
+.bg-app-secondary {
+  background-color: var(--sodc-blue) !important;
+  color: #fff !important;
+}
+
+/*.App {
   text-align: center;
 }
 
@@ -35,4 +50,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+}*/
