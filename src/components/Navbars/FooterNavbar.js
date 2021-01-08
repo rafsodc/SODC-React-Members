@@ -1,13 +1,12 @@
 import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import { DisplayRouteNav, footerRoutes } from "../Routes/Routes";
 
 const footerNavbar = ( ) => (
   <Navbar fixed="bottom" bg="app-secondary" variant="dark" expand="lg">
       <Nav className="m-auto">
-        <Nav.Link href="#home">Terms and Conditions</Nav.Link>
-        <Nav.Link href="#link">Privacy Notice</Nav.Link>
-        <Nav.Link href="#link">Members' Area</Nav.Link>
+        { DisplayRouteNav(footerRoutes) }
       </Nav>
   </Navbar>
 );

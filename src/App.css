@@ -13,6 +13,14 @@
   color: #fff !important;
 }
 
+.spinner {
+  color: var(--sodc-red) !important;
+}
+
+.loading {
+  height: 10em;
+}
+
 /*.App {
   text-align: center;
 }

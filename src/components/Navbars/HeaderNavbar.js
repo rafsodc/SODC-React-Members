@@ -2,6 +2,12 @@ import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { NavLink } from "react-router-dom";
+import { DisplayRouteNav, headerRoutes } from "../Routes/Routes";
+
+
+// We can use the 'as' prop to render Nav.Link as a react-router-dom NavLink.
+// See https://stackoverflow.com/questions/54843302/reactjs-bootstrap-navbar-and-routing-not-working-together
 
 const headerNavbar = ( ) => (
   <Navbar bg="app-primary" variant="dark" expand="lg">
@@ -9,15 +15,7 @@ const headerNavbar = ( ) => (
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <NavDropdown title="About Us" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">The Club</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">The Committee</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Past Dinners</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
-        <Nav.Link href="#link">Contact Us</Nav.Link>
+        { DisplayRouteNav(headerRoutes) }
       </Nav>
       <Nav>
         <Nav.Link href="#link">Members' Login</Nav.Link>

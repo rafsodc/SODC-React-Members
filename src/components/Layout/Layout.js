@@ -2,16 +2,18 @@ import React from "react";
 import Aux from "../../hoc/Aux";
 import HeaderNavbar from "../Navbars/HeaderNavbar";
 import FooterNavbar from "../Navbars/FooterNavbar";
-import Banner from "../Banner/Banner"
+import { routes, RenderRoutes, bannerRoutes} from "../Routes/Routes";
 
 const layout = ( props ) => (
   <Aux>
     <header className={"bg-app-primary"}>
     <HeaderNavbar />
-    <Banner />
+    {/* Render the banner by using routes */}
+      <RenderRoutes routes={bannerRoutes} error={false}/>
     </header>
     <main>
-      {props.children}
+      {/* Render the content using routes */}
+      <RenderRoutes routes={routes}/>
     </main>
     <FooterNavbar />
   </Aux>
