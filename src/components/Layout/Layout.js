@@ -4,7 +4,7 @@ import HeaderNavbar from "../Navbars/HeaderNavbar";
 import FooterNavbar from "../Navbars/FooterNavbar";
 import { routes, RenderRoutes, bannerRoutes} from "../Routes/Routes";
 
-const layout = ( props ) => (
+const layout = () => (
   <Aux>
     <header className={"bg-app-primary"}>
     <HeaderNavbar />

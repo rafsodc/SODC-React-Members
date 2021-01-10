@@ -32,8 +32,7 @@ class Page extends Component {
       );
     }
 
-    return (<Loading />
-      );
+    return (<Loading />);
 
 
 

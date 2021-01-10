@@ -2,7 +2,7 @@ import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {Col, Container, Row} from "react-bootstrap";
 
-const loading = () => {
+const loading = React.memo(() => {
   return (
     <Container className={"h-100"}>
       <Row className="justify-content-md-center align-items-center loading">
@@ -14,6 +14,6 @@ const loading = () => {
       </Row>
     </Container>
   );
-}
+});
 
 export default loading;

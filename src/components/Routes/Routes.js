@@ -9,6 +9,78 @@ import Nav from "react-bootstrap/Nav";
  *  Taken from https://medium.com/better-programming/react-router-architecture-thats-simple-scalable-and-protected-da896827f946
  */
 
+const RenderRoutes = React.memo (
+  /**
+   *
+   * @param {PropsWithChildren} props
+   * @returns {JSX.Element}
+   */
+  (props) => {
+
+    let pageNotFound = props.error ? <Route component={() => <h1>Not Found!</h1>} /> : "";
+
+    return (
+      <Switch>
+        {props.routes.map((route, i) => {
+          return <RouteWithSubRoutes key={route.key} {...route} />;
+        })}
+        {pageNotFound}
+
+      </Switch>
+    );
+  }
+);
+
+/**
+ * Render a route with potential sub routes
+ * https://reacttraining.com/react-router/web/example/route-config
+ */
+const RouteWithSubRoutes = React.memo(
+  /**
+   *
+   * @param {PropsWithChildren} route
+   * @returns {JSX.Element}
+   */
+  (route) => {
+    return (
+      <Route
+        path={route.path}
+        exact={route.exact}
+        render={props => <route.component {...props} {...route.props} routes={route.routes}/>}
+      />
+    );
+  }
+);
+
+const DisplayRouteNav = React.memo(
+  /**
+   *
+   * @param {PropsWithChildren} props
+   * @returns {*}
+   */
+  (props) => {
+
+    function renderRoute(route) {
+      if (route.menu_dropdown) {
+        return <NavDropdown title={route.title} id="basic-nav-dropdown"
+                            to={route.path} key={route.key}><DisplayRouteNav routes={route.routes} /></NavDropdown>;
+      }
+      else if (route.menu_child) {
+        return <NavDropdown.Item as={NavLink} to={route.path} {...route.exact} key={route.key}>{route.title}</NavDropdown.Item>
+      }
+      else {
+        return <Nav.Link as={NavLink} to={route.path} {...route.exact} key={route.key}>{route.title}</Nav.Link>
+      }
+    }
+
+    return (
+      props.routes.map(route => {
+        return renderRoute(route);
+      })
+    );
+  }
+);
+
 const headerRoutes = [
   {
     path: "/",
@@ -131,63 +203,6 @@ const bannerRoutes = [
     exact: true,
     component: Banner
   }
-]
-
-/**
- * Render a route with potential sub routes
- * https://reacttraining.com/react-router/web/example/route-config
- */
-function RouteWithSubRoutes(route) {
-  return (
-    <Route
-      path={route.path}
-      exact={route.exact}
-      render={props => <route.component {...props} {...route.props} routes={route.routes}/>}
-    />
-  );
-}
-
-/**
- * Use this component for any new section of routes (any config object that has a "routes" property)
- */
-function RenderRoutes({ routes, error = true }) {
-
-  let pageNotFound = error ? <Route component={() => <h1>Not Found!</h1>} /> : "";
-
-  return (
-    <Switch>
-      {routes.map((route, i) => {
-        return <RouteWithSubRoutes key={route.key} {...route} />;
-      })}
-      {pageNotFound}
-
-    </Switch>
-  );
-}
-
-function DisplayRouteNav(routes) {
-
-  function renderRoute(route) {
-    if (route.menu_dropdown) {
-      return <NavDropdown title={route.title} id="basic-nav-dropdown"
-                          to={route.path} key={route.key}>{DisplayRouteNav(route.routes)}</NavDropdown>;
-    }
-    else if (route.menu_child) {
-      return <NavDropdown.Item as={NavLink} to={route.path} {...route.exact} key={route.key}>{route.title}</NavDropdown.Item>
-    }
-    else {
-      return <Nav.Link as={NavLink} to={route.path} {...route.exact} key={route.key}>{route.title}</Nav.Link>
-    }
-    return null;
-  }
-
-  return (
-    routes.map(route => {
-      return renderRoute(route);
-    })
-  );
-
-}
-
+];
 
 export { routes, bannerRoutes, headerRoutes, footerRoutes, RenderRoutes, DisplayRouteNav };
