@@ -1,7 +1,8 @@
 import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import {DisplayRouteNav, headerRoutes} from "../../containers/Routes/Routes";
+import {DisplayRouteNav} from "../../containers/Routes/Routes";
+import {headerRoutes} from "../../containers/Routes/RouteDefs";
 
 
 // We can use the 'as' prop to render Nav.Link as a react-router-dom NavLink.
