@@ -31,12 +31,12 @@ const RenderRoutes = React.memo (
       return cleanup();
     });
 
+    const page404 = props.handle404 ? <Route render={() => <Page404 />} /> : null;
 
-    let page404 = props.handle404 ? <Route render={ () => <Page404 />} /> : null;
     return (
       <Switch>
         {props.routes.map((route, i) => {
-          return <RouteWithSubRoutes key={route.key} {...route} />;
+          return <RouteWithSubRoutes key={route.key} {...route} handle404={props.handle404} />;
         })}
         {page404}
       </Switch>
@@ -56,6 +56,7 @@ const RouteWithSubRoutes = React.memo(
    */
   (route) => {
 
+    console.log(route.handle404);
     // Return the title and a route to the path, whether it's exact, and render the component specified.
     return (
       <Aux>
@@ -64,7 +65,7 @@ const RouteWithSubRoutes = React.memo(
         <Route
           path={route.path}
           exact={route.exact}
-          render={props => <route.component {...props} {...route.props} routes={route.routes}/>}
+          render={props => <route.component {...props} {...route.props} routes={route.routes} handle404={route.handle404}/>}
         />
       </Aux>
     );
