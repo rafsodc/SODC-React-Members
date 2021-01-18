@@ -1,38 +1,65 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios';
-import Loading from '../../components/Loading/Loading';
-import { Container } from 'react-bootstrap';
+import Loading from '../../UI/Loading/Loading';
 import ReactMarkdown from "react-markdown";
-import { Helmet } from "react-helmet-async";
+import { useSelector, useDispatch } from "react-redux";
+import * as actionTypes from "../../store/actions";
+import withErrorBoundary from "../../helpers/ErrorBoundaries/withErrorBoundary";
 
-//class Page extends Component {
+/**
+ * Page function returns Page container.  Content of the container is generated from an api GET request, using props.api passed via router.
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Page = (props) => {
 
-  const [ data, setData ] = useState({
-    page: null
-  });
+  // Register dispatch as a function to pass data back to the state through the reducer
+  const dispatch = useDispatch();
+  // Get page data from state
+  const page = useSelector(state => state.page);
 
+  // React Hook that runs on render.  The use of dependencies prevents re-running if dependencies don't change.
   useEffect( () => {
+    // Server query based on api URL provided in props
     axios.get(props.api)
-    .then(response => {
-        setData({page: response.data});
-    });
-  }, [props.api]);
-
-  if(data.page !== null) {
-    // This could be its own component
-    return (
-      <Container className={"h-100 mt-2"}>
-        <Helmet>
-          <title>{data.page.title + " | SODC"}</title>
-        </Helmet>
-        <ReactMarkdown source={data.page.contentMd}/>
-      </Container>
+      .then((response) => {
+        // If we get a valid response
+        dispatch({
+          type: actionTypes.PAGE_LOAD,
+          response: response
+        });
+      })
+      .catch((error) => {
+        // If we get an error, raise the error flag in the state
+        dispatch({
+          type: actionTypes.ERROR_FLAG,
+          flag: 'Page',
+          value: true
+        })
+      }
     );
+
+    // cleanup is done on component unmount
+    const cleanup = () => {
+      dispatch({type: actionTypes.PAGE_UNLOAD});
+    };
+    return cleanup;
+
+  }, [props.api, dispatch]);
+
+  // If the state is loading, show the loading screen
+  if(page.loading) {
+    return (<Loading/>);
   }
 
-  return (<Loading />);
+  // Otherwise render content
+  return (
+    <ReactMarkdown source={page.response.data.contentMd}/>
+  );
 
 }
 
-export default Page;
+// Wrap the Page in the withErrorBoundary component.
+export default withErrorBoundary(Page);

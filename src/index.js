@@ -4,19 +4,36 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./store/reducer";
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from "react-helmet-async";
+import ErrorBoundary from "./helpers/ErrorBoundary/ErrorBoundary";
+import AxiosErrorBoundary from "./helpers/ErrorBoundaries/AxiosErrorBoundary";
 
 // Set default base URL for axios
 axios.defaults.baseURL = 'https://localhost:8443';
 // Set default header token
 axios.defaults.headers.common['AUTHORIZATION'] = '';
 // More options here: https://stackoverflow.com/questions/43051291/attach-authorization-header-for-all-axios-requests
+//axios.interceptors.request.use ();
 
-axios.interceptors.request.use ();
+const store = createStore(reducer);
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <AxiosErrorBoundary>
+        <HelmetProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </HelmetProvider>
+      </AxiosErrorBoundary>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
