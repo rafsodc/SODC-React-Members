@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import axios from 'axios';
 import Loading from '../../UI/Loading/Loading';
 import ReactMarkdown from "react-markdown";
-import { useSelector, useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as actionTypes from "../../store/actions";
 import withErrorBoundary from "../../helpers/ErrorBoundaries/withErrorBoundary";
 

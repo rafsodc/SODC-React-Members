@@ -1,6 +1,6 @@
-import { ErrorBoundary, mapDispatchToProps } from "./ErrorBoundary";
+import {ErrorBoundary, mapDispatchToProps} from "./ErrorBoundary";
 import axios from "axios";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 
 class AxiosErrorBoundary extends ErrorBoundary {

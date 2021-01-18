@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import {Helmet} from 'react-helmet-async';
 
 /* Based on https://dev.to/luispa/how-to-add-a-dynamic-title-on-your-react-app----3l0j */
 

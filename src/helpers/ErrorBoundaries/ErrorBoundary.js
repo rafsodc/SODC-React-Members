@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import {Component} from "react";
 import Rollbar from "rollbar";
 import * as actionTypes from "../../store/actions";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import config from "../../config/config";
 
 /**

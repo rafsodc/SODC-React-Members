@@ -4,12 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
-import { createStore } from "redux";
-import { Provider } from "react-redux";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 import reducer from "./store/reducer";
-import { BrowserRouter } from 'react-router-dom';
-import { HelmetProvider } from "react-helmet-async";
-import ErrorBoundary from "./helpers/ErrorBoundary/ErrorBoundary";
+import {BrowserRouter} from 'react-router-dom';
+import {HelmetProvider} from "react-helmet-async";
 import AxiosErrorBoundary from "./helpers/ErrorBoundaries/AxiosErrorBoundary";
 
 // Set default base URL for axios

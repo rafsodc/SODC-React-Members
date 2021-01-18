@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import {NavLink, Route, Switch} from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Nav from "react-bootstrap/Nav";
@@ -6,7 +6,7 @@ import TitleComponent from "../../helpers/TitleComponent/TitleComponent";
 import Aux from "../../helpers/Aux/Aux";
 import Page404 from "../../UI/Page404/Page404";
 import * as actionTypes from "../../store/actions";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 
 /**
  *  Functions to render routers and children

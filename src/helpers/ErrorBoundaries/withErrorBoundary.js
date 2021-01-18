@@ -1,7 +1,7 @@
 import React from "react";
-import { ErrorBoundary, mapDispatchToProps as parentDispatch } from "./ErrorBoundary";
+import {ErrorBoundary, mapDispatchToProps as parentDispatch} from "./ErrorBoundary";
 import * as actionTypes from "../../store/actions"
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 /**
  * This function is used as a hoc to wrap a component on export.  This is also a class factory.

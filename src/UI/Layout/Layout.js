@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Aux from "../../helpers/Aux/Aux";
 import FooterNavbar from "../Navbars/FooterNavbar";
 import {Container} from "react-bootstrap";
