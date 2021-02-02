@@ -1,6 +1,8 @@
 :root {
   --sodc-red: #770800;
   --sodc-blue: #112244;
+  --success-bg: #ddeeff;
+  --success: #112244;
 }
 
 .bg-app-primary {

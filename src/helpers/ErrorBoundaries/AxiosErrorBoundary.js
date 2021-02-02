@@ -1,5 +1,5 @@
 import {ErrorBoundary, mapDispatchToProps} from "./ErrorBoundary";
-import axios from "axios";
+import axios from "../http/http-common";
 import {connect} from "react-redux";
 
 

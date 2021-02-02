@@ -1,5 +1,5 @@
 import React from "react";
-import Aux from "../../helpers/Aux/Aux";
+import Aux from "../../helpers/hoc/Aux";
 import FooterNavbar from "../Navbars/FooterNavbar";
 import {Container} from "react-bootstrap";
 import Header from "../Header/Header";

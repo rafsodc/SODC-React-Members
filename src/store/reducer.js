@@ -7,10 +7,24 @@ const initialState = {
     loading: true,
   },
   error: {
-    Page: false
+    Page: false,
+    captcha: false,
   },
   alerts: [],
-  stickyAlerts: []
+  stickyAlerts: [],
+  forms: {
+    contact: {
+      fields: {
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        captcha: null
+      },
+      locked: false,
+      hidden: false,
+    }
+  }
 }
 
 const reducer = (state = initialState, action) => {
@@ -101,6 +115,42 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         alerts: alerts,
+      }
+    case actionTypes.FORM_SAVE:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [action.form]: {
+            ...state.forms[action.form],
+            fields: {
+              ...state.forms[action.form].fields,
+              ...action.data,
+            }
+          },
+        },
+      }
+    case actionTypes.FORM_LOCK:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [action.form]: {
+            ...state.forms[action.form],
+            locked: true
+          }
+        }
+      }
+    case actionTypes.FORM_HIDE:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [action.form]: {
+            ...state.forms[action.form],
+            hidden: true
+          }
+        }
       }
     default:
       return state;

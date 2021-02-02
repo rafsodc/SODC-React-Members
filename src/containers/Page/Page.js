@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import axios from 'axios';
+import http from "../../helpers/http/http-common";
 import Loading from '../../UI/Loading/Loading';
 import ReactMarkdown from "react-markdown";
 import {useDispatch, useSelector} from "react-redux";
@@ -23,7 +23,7 @@ const Page = (props) => {
   // React Hook that runs on render.  The use of dependencies prevents re-running if dependencies don't change.
   useEffect( () => {
     // Server query based on api URL provided in props
-    axios.get(props.api)
+    http.get(props.apiUrl)
       .then((response) => {
         // If we get a valid response
         dispatch({
@@ -37,17 +37,14 @@ const Page = (props) => {
           type: actionTypes.ERROR_FLAG,
           flag: 'Page',
           value: true
-        })
+        });
       }
     );
 
     // cleanup is done on component unmount
-    const cleanup = () => {
-      dispatch({type: actionTypes.PAGE_UNLOAD});
-    };
-    return cleanup;
+    return () => dispatch({type: actionTypes.PAGE_UNLOAD});
 
-  }, [props.api, dispatch]);
+  }, [props.apiUrl, dispatch]);
 
   // If the state is loading, show the loading screen
   if(page.loading) {

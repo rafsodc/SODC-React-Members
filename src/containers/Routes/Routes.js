@@ -3,7 +3,7 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Nav from "react-bootstrap/Nav";
 import TitleComponent from "../../helpers/TitleComponent/TitleComponent";
-import Aux from "../../helpers/Aux/Aux";
+import Aux from "../../helpers/hoc/Aux";
 import Page404 from "../../UI/Page404/Page404";
 import * as actionTypes from "../../store/actions";
 import {useDispatch} from "react-redux";
@@ -24,7 +24,6 @@ const RenderRoutes = React.memo (
     const dispatch = useDispatch();
 
     useEffect(() => {
-      //return console.log(usePrevious(props.location))
       const cleanup = () => {
         dispatch({type: actionTypes.ALERT_CLOSE_UNSTICKY});
       };
@@ -55,8 +54,6 @@ const RouteWithSubRoutes = React.memo(
    * @returns {JSX.Element}
    */
   (route) => {
-
-    console.log(route.handle404);
     // Return the title and a route to the path, whether it's exact, and render the component specified.
     return (
       <Aux>

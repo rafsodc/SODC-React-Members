@@ -12,9 +12,10 @@ import {HelmetProvider} from "react-helmet-async";
 import AxiosErrorBoundary from "./helpers/ErrorBoundaries/AxiosErrorBoundary";
 
 // Set default base URL for axios
-axios.defaults.baseURL = 'https://localhost:8443';
+//axios.defaults.baseURL = 'https://localhost:8443';
 // Set default header token
-axios.defaults.headers.common['AUTHORIZATION'] = '';
+//axios.defaults.headers.common['AUTHORIZATION'] = '';
+//axios.defaults.headers.common['Content-type'] = 'application/json';
 // More options here: https://stackoverflow.com/questions/43051291/attach-authorization-header-for-all-axios-requests
 //axios.interceptors.request.use ();
 
@@ -23,7 +24,7 @@ const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
+    {/*<React.StrictMode>*/}
       <AxiosErrorBoundary>
         <HelmetProvider>
           <BrowserRouter>
@@ -31,7 +32,7 @@ ReactDOM.render(
           </BrowserRouter>
         </HelmetProvider>
       </AxiosErrorBoundary>
-    </React.StrictMode>
+    {/*</React.StrictMode>*/}
   </Provider>,
   document.getElementById('root')
 );

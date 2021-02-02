@@ -28,7 +28,9 @@ class ErrorBoundary extends Component {
   // Catch an uncaught errors below this ErrorHandler.
   componentDidCatch(error, errorInfo) {
     // If there was an error, log it to Rollbar
+
     this.state.rollbar.error(error);
+    this.state.rollbar.log();
     this.props.raiseAlert(error);
   }
 
@@ -49,16 +51,19 @@ const mapDispatchToProps = dispatch => {
      * @param {Error} error
      * @returns {*}
      */
-    raiseAlert: (error) => dispatch({
-      type: actionTypes.ALERT_OPEN,
-      alert: {
-        variant: 'danger',
-        dismissible: true,
-        heading: "An Error Has Occurred",
-        message: "The following error has occurred: " + error.message
-      },
-      sticky: true,
-    })
+    raiseAlert: (error) => {
+      const message = error.response ? error.message + " - " + error.response.data['hydra:description'] : error.message;
+      dispatch({
+        type: actionTypes.ALERT_OPEN,
+        alert: {
+          variant: 'danger',
+          dismissible: false,
+          heading: "An Error Has Occurred",
+          message: "The following error has occurred: " + message
+        },
+        sticky: false,
+      })
+    }
   }
 }
 

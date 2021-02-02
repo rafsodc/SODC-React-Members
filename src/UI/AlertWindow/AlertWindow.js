@@ -8,7 +8,7 @@ const AlertWindow = () => {
   const alerts = useSelector(state => state.alerts);
   const dispatch = useDispatch();
 
-  const closeAlertHandler = (index) => {
+  const handleClose = (index) => {
     dispatch({
       type: actionTypes.ALERT_CLOSE,
       index: index,
@@ -19,7 +19,7 @@ const AlertWindow = () => {
 
   return (
     alerts.map((alert, index) => (
-      <AlertBox alert={alert} index={index} key={alert.key} closeAlert={closeAlertHandler} />
+      <AlertBox alert={alert} index={index} key={alert.key} handleClose={handleClose} />
     ))
   );
 }
