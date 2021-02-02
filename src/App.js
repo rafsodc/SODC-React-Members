@@ -1,9 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Layout from './UI/Layout/Layout';
+import Layout from './ReactUI/Layout/Layout';
 
-import RenderRoutes from "./helpers/Routes/Routes"
+import RenderRoutes from "./ReactHelpers/Routes/Routes"
 import routes from "./containers/Routes/RouteDefs";
 
 

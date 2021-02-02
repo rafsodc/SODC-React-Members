@@ -4,7 +4,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Nav from "react-bootstrap/Nav";
 import TitleComponent from "../TitleComponent/TitleComponent";
 import Aux from "../hoc/Aux";
-import Page404 from "../../UI/Page404/Page404";
+import Page404 from "../../ReactUI/Page404/Page404";
 import * as actionTypes from "../../store/actions";
 import {useDispatch} from "react-redux";
 

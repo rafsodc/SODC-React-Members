@@ -1,7 +1,7 @@
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Accordion, Card} from "react-bootstrap";
-import Aux from "../../helpers/hoc/Aux";
+import Aux from "../../ReactHelpers/hoc/Aux";
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'

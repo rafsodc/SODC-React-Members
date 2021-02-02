@@ -1,11 +1,11 @@
 import React from 'react';
-import {contactFormSchema} from "../../helpers/Forms/schema";
-import useFormBuilder from "../../helpers/Forms/useFormBuilder";
+import {contactFormSchema} from "../../ReactHelpers/Forms/schema";
+import useFormBuilder from "../../ReactHelpers/Forms/useFormBuilder";
 import ContactForm from "./ContactForm";
 import ContactSub from "./ContactSub";
-import Aux from "../../helpers/hoc/Aux";
-import withErrorBoundary from "../../helpers/ErrorBoundaries/withErrorBoundary";
-import "../../UI/Forms/Form.css"
+import Aux from "../../ReactHelpers/hoc/Aux";
+import withErrorBoundary from "../../ReactHelpers/ErrorBoundaries/withErrorBoundary";
+import "../../ReactUI/Forms/Form.css"
 
 const Contact = () => {
 

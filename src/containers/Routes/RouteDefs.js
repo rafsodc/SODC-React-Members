@@ -1,6 +1,6 @@
 import Page from "../Page/Page";
-import Banner from "../../UI/Banner/Banner";
-import RenderRoutes from "../../helpers/Routes/Routes";
+import Banner from "../../ReactUI/Banner/Banner";
+import RenderRoutes from "../../ReactHelpers/Routes/Routes";
 import Contact from "../Contact/Contact"
 
 /**

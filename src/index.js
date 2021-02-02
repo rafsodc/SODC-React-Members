@@ -8,7 +8,7 @@ import {Provider} from "react-redux";
 import reducer from "./store/reducer";
 import {BrowserRouter} from 'react-router-dom';
 import {HelmetProvider} from "react-helmet-async";
-import AxiosErrorBoundary from "./helpers/ErrorBoundaries/AxiosErrorBoundary";
+import AxiosErrorBoundary from "./ReactHelpers/ErrorBoundaries/AxiosErrorBoundary";
 
 // Set default base URL for axios
 //axios.defaults.baseURL = 'https://localhost:8443';

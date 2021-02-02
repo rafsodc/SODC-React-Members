@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form} from "react-bootstrap";
-import Aux from "../../helpers/hoc/Aux";
+import Aux from "../../ReactHelpers/hoc/Aux";
 
 
 const FormElement = React.forwardRef((props, ref) => (

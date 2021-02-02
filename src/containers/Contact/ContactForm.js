@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Form} from "react-bootstrap";
-import FormElement from "../../UI/Forms/FormElement";
-import FormRecaptcha from "../../UI/Forms/FormRecaptcha";
+import FormElement from "../../ReactUI/Forms/FormElement";
+import FormRecaptcha from "../../ReactUI/Forms/FormRecaptcha";
 
 const ContactForm = (props) => (
 

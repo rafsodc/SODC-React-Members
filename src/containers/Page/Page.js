@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import http from "../../helpers/http/http-common";
-import Loading from '../../UI/Loading/Loading';
+import http from "../../ReactHelpers/http/http-common";
+import Loading from '../../ReactUI/Loading/Loading';
 import ReactMarkdown from "react-markdown";
 import {useDispatch, useSelector} from "react-redux";
 import * as actionTypes from "../../store/actions";
-import withErrorBoundary from "../../helpers/ErrorBoundaries/withErrorBoundary";
+import withErrorBoundary from "../../ReactHelpers/ErrorBoundaries/withErrorBoundary";
 
 /**
  * Page function returns Page container.  Content of the container is generated from an api GET request, using props.api passed via router.
