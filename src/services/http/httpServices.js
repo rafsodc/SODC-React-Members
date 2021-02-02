@@ -1,7 +1,7 @@
-import ContactService from "./ContactService";
+import LoginService from "./LoginService";
 
 const httpServices = {
-  contact: ContactService,
+  contact: LoginService,
 }
 
 export default httpServices;

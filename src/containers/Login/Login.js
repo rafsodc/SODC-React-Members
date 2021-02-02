@@ -1,20 +1,48 @@
 import React from "react";
 import useFormBuilder from "../../ReactHelpers/Forms/useFormBuilder";
-import {loginFormSchema} from "../../ReactHelpers/Forms/schema";
+import {loginFormSchema} from "../../Forms/schema";
 import LoginForm from "./LoginForm";
 import Aux from "../../ReactHelpers/hoc/Aux";
+import * as actionTypes from "../../store/actions";
+import httpServices from "../../services/http/httpServices";
+import {useDispatch} from "react-redux";
 
 const Login = () => {
+
+  const formName = 'login';
+  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     errors,
-    onSubmit,
     onChange,
     onRecaptcha,
     data
-  } = useFormBuilder(loginFormSchema, 'login')
+  } = useFormBuilder(loginFormSchema, formName)
+
+  const httpService = httpServices[formName];
+
+  const onSubmit = () => {
+    httpService.create(JSON.stringify(data.fields))
+    .then(() => {
+      // If we get a valid response
+      dispatch({
+        type: actionTypes.ALERT_OPEN,
+        alert: {
+          variant: 'success',
+          dismissible: false,
+          heading: "Form Submitted",
+          message: "Form successfully submitted."
+        },
+        sticky: false,
+      });
+      dispatch({
+        type: actionTypes.FORM_HIDE,
+        form: formName
+      })
+    });
+  }
 
   const childProps = {
     form: 'login',

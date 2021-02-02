@@ -15,7 +15,7 @@ const initialState = {
   forms: {
     login: {
       fields: {
-        username: "",
+        email: "",
         password: "",
       },
       locked: false,
