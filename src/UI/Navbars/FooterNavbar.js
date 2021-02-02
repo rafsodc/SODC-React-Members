@@ -8,7 +8,7 @@ const footerNavbar = React.memo(() => {
   return (
     <Navbar fixed="bottom" bg="app-secondary" variant="dark" expand="lg">
       <Nav className="m-auto">
-        <DisplayRouteNav routes={footerRoutes} />
+        <DisplayRouteNav routes={footerRoutes}/>
       </Nav>
     </Navbar>
   )

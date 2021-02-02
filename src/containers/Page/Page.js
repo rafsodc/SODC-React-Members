@@ -21,17 +21,17 @@ const Page = (props) => {
   const page = useSelector(state => state.page);
 
   // React Hook that runs on render.  The use of dependencies prevents re-running if dependencies don't change.
-  useEffect( () => {
+  useEffect(() => {
     // Server query based on api URL provided in props
     http.get(props.apiUrl)
-      .then((response) => {
-        // If we get a valid response
-        dispatch({
-          type: actionTypes.PAGE_LOAD,
-          response: response
-        });
-      })
-      .catch((error) => {
+    .then((response) => {
+      // If we get a valid response
+      dispatch({
+        type: actionTypes.PAGE_LOAD,
+        response: response
+      });
+    })
+    .catch(() => {
         // If we get an error, raise the error flag in the state
         dispatch({
           type: actionTypes.ERROR_FLAG,
@@ -47,7 +47,7 @@ const Page = (props) => {
   }, [props.apiUrl, dispatch]);
 
   // If the state is loading, show the loading screen
-  if(page.loading) {
+  if (page.loading) {
     return (<Loading/>);
   }
 

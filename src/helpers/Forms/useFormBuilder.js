@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
-import { useForm } from "react-hook-form";
+import {useEffect} from 'react';
+import {useForm} from "react-hook-form";
 import setYup from "./setYup";
 import {isEmptyObject} from "../funcs/funcs";
 import {useDispatch, useSelector} from "react-redux";
 import * as actionTypes from "../../store/actions";
 import httpServices from "../http/ServiceSelect";
-
 
 
 const useFormBuilder = (schema, formName) => {
@@ -17,9 +16,8 @@ const useFormBuilder = (schema, formName) => {
   const {[formName]: httpService} = httpServices;
 
   const onSubmit = () => {
-    console.log(httpService);
     httpService.create(JSON.stringify(data.fields))
-    .then((response) => {
+    .then(() => {
       // If we get a valid response
       dispatch({
         type: actionTypes.ALERT_OPEN,
@@ -35,11 +33,10 @@ const useFormBuilder = (schema, formName) => {
         type: actionTypes.FORM_HIDE,
         form: formName
       })
-    }).catch((error) => {});
+    });
   }
   const onCaptchaSubmit = () => {
-    console.log(data);
-    if(data.fields.captcha === null) {
+    if (data.fields.captcha === null) {
       dispatch({
         type: actionTypes.ERROR_FLAG,
         flag: 'captcha',
@@ -55,8 +52,7 @@ const useFormBuilder = (schema, formName) => {
         },
         sticky: false,
       });
-    }
-    else {
+    } else {
       return onSubmit();
     }
   }
@@ -82,7 +78,7 @@ const useFormBuilder = (schema, formName) => {
     });
   }
 
-  const myForm =  useForm({
+  const myForm = useForm({
     resolver: (formYupResolver),
     mode: "onBlur",
     reValidateMode: "onBlur"
@@ -119,7 +115,4 @@ const useFormBuilder = (schema, formName) => {
 }
 
 
-
-
 export default useFormBuilder;
-//export {useCaptchaSubmit};

@@ -6,17 +6,17 @@ import Header from "../Header/Header";
 import AlertWindow from "../AlertWindow/AlertWindow";
 
 const Layout = (props) => (
-    <Aux>
-      <Header />
-      <main>
-        <Container className={"h-100 mt-2"}>
-          <AlertWindow />
-          {props.children}
-        </Container>
-      </main>
-      <FooterNavbar />
-    </Aux>
-  );
+  <Aux>
+    <Header/>
+    <main>
+      <Container className={"h-100 mt-2"}>
+        <AlertWindow/>
+        {props.children}
+      </Container>
+    </main>
+    <FooterNavbar/>
+  </Aux>
+);
 
 
 export default Layout;

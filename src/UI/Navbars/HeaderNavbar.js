@@ -15,7 +15,7 @@ const headerNavbar = React.memo(() => {
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <DisplayRouteNav routes={headerRoutes} />
+          <DisplayRouteNav routes={headerRoutes}/>
         </Nav>
         <Nav>
           <Nav.Link href="#link">Members' Login</Nav.Link>

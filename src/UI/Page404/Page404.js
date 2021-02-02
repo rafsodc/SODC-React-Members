@@ -1,6 +1,6 @@
 import React from 'react';
 
-const page404 = React.memo(( ) => {
+const page404 = React.memo(() => {
   return (
     <h1>404</h1>
   );

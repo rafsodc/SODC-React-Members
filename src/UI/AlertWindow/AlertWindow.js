@@ -19,7 +19,7 @@ const AlertWindow = () => {
 
   return (
     alerts.map((alert, index) => (
-      <AlertBox alert={alert} index={index} key={alert.key} handleClose={handleClose} />
+      <AlertBox alert={alert} index={index} key={alert.key} handleClose={handleClose}/>
     ))
   );
 }

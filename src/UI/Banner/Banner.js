@@ -1,6 +1,6 @@
 import React from "react";
 
-const banner = React.memo( () =>{
+const banner = React.memo(() => {
   return (
     <div className="container h-100">
       <div className="row h-100 align-items-center">

@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 /**
  * This function is used as a hoc to wrap a component on export.  This is also a class factory.
  */
-const withErrorBoundary = (WrappedComponent)  => {
+const withErrorBoundary = (WrappedComponent) => {
 
   /**
    * Extend ErrorBoundary

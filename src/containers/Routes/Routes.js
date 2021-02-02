@@ -13,7 +13,7 @@ import {useDispatch} from "react-redux";
  *  Taken from https://medium.com/better-programming/react-router-architecture-thats-simple-scalable-and-protected-da896827f946
  */
 
-const RenderRoutes = React.memo (
+const RenderRoutes = React.memo(
   /**
    *
    * @param {PropsWithChildren} props
@@ -30,12 +30,12 @@ const RenderRoutes = React.memo (
       return cleanup();
     });
 
-    const page404 = props.handle404 ? <Route render={() => <Page404 />} /> : null;
+    const page404 = props.handle404 ? <Route render={() => <Page404/>}/> : null;
 
     return (
       <Switch>
-        {props.routes.map((route, i) => {
-          return <RouteWithSubRoutes key={route.key} {...route} handle404={props.handle404} />;
+        {props.routes.map((route) => {
+          return <RouteWithSubRoutes key={route.key} {...route} handle404={props.handle404}/>;
         })}
         {page404}
       </Switch>
@@ -62,7 +62,8 @@ const RouteWithSubRoutes = React.memo(
         <Route
           path={route.path}
           exact={route.exact}
-          render={props => <route.component {...props} {...route.props} routes={route.routes} handle404={route.handle404}/>}
+          render={props => <route.component {...props} {...route.props} routes={route.routes}
+                                            handle404={route.handle404}/>}
         />
       </Aux>
     );
@@ -80,12 +81,11 @@ const DisplayRouteNav = React.memo(
     function renderRoute(route) {
       if (route.menu_dropdown) {
         return <NavDropdown title={route.title} id="basic-nav-dropdown"
-                            to={route.path} key={route.key}><DisplayRouteNav routes={route.routes} /></NavDropdown>;
-      }
-      else if (route.menu_child) {
-        return <NavDropdown.Item as={NavLink} to={route.path} {...route.exact} key={route.key}>{route.title}</NavDropdown.Item>
-      }
-      else {
+                            to={route.path} key={route.key}><DisplayRouteNav routes={route.routes}/></NavDropdown>;
+      } else if (route.menu_child) {
+        return <NavDropdown.Item as={NavLink} to={route.path} {...route.exact}
+                                 key={route.key}>{route.title}</NavDropdown.Item>
+      } else {
         return <Nav.Link as={NavLink} to={route.path} {...route.exact} key={route.key}>{route.title}</Nav.Link>
       }
     }
@@ -100,4 +100,4 @@ const DisplayRouteNav = React.memo(
 
 
 export default RenderRoutes;
-export { DisplayRouteNav };
+export {DisplayRouteNav};

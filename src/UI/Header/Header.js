@@ -6,9 +6,9 @@ import {bannerRoutes} from "../../containers/Routes/RouteDefs";
 const Header = () => {
   return (
     <header className={"bg-app-primary"}>
-      <HeaderNavbar />
+      <HeaderNavbar/>
       {/* Render the banner by using routes */}
-      <RenderRoutes routes={bannerRoutes} />
+      <RenderRoutes routes={bannerRoutes}/>
     </header>
   );
 }

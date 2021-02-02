@@ -5,17 +5,14 @@ const setYup = (schema) => {
   yup.setLocale({
     mixed: {
       required: 'Field is required',
-      notType: ({ path, type, value, originalValue }) => {
-        let msg = originalValue === "" ? `Field is required`: `Field must be a ${type}`;
-        return msg;
+      notType: ({type, originalValue}) => {
+        return originalValue === "" ? `Field is required` : `Field must be a ${type}`;
       },
     },
     string: {
       email: 'Field needs to be a valid email address'
     },
-    number: {
-
-    }
+    number: {}
   });
 
   return yupResolver(schema());

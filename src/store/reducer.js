@@ -76,7 +76,7 @@ const reducer = (state = initialState, action) => {
 
       // Update sticky alerts array
       stickyAlerts = [...state.stickyAlerts];
-      if(action.sticky) {
+      if (action.sticky) {
         stickyAlerts.push(key);
       }
 

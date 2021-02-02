@@ -128,4 +128,4 @@ const bannerRoutes = [
 ];
 
 export default routes
-export { bannerRoutes, headerRoutes, footerRoutes }
+export {bannerRoutes, headerRoutes, footerRoutes}

@@ -11,7 +11,7 @@
   border-radius: .25rem;
 }
 
-.form-warning-captcha>div>div {
+.form-warning-captcha > div > div {
   /*color: #721c24 !important;*/
   /*background: #f8d7da;*/
   /*background: #E90036;*/
@@ -28,7 +28,7 @@
 
 .form-sub-display {
   padding: 1rem 1.25rem;
-  background: rgba(0,0,0,.125);
+  background: rgba(0, 0, 0, .125);
 
   border-radius: .25rem;
   font-style: italic;
