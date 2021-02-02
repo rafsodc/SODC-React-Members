@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import {DisplayRouteNav} from "../../containers/Routes/Routes";
+import {DisplayRouteNav} from "../../helpers/Routes/Routes";
 import {headerRoutes} from "../../containers/Routes/RouteDefs";
 
 

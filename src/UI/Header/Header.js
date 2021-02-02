@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderNavbar from "../Navbars/HeaderNavbar";
-import RenderRoutes from "../../containers/Routes/Routes";
+import RenderRoutes from "../../helpers/Routes/Routes";
 import {bannerRoutes} from "../../containers/Routes/RouteDefs";
 
 const Header = () => {

@@ -1,6 +1,6 @@
 import Page from "../Page/Page";
 import Banner from "../../UI/Banner/Banner";
-import RenderRoutes from "./Routes";
+import RenderRoutes from "../../helpers/Routes/Routes";
 import Contact from "../Contact/Contact"
 
 /**

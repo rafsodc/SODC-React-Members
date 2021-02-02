@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Layout from './UI/Layout/Layout';
 
-import RenderRoutes from "./containers/Routes/Routes"
+import RenderRoutes from "./helpers/Routes/Routes"
 import routes from "./containers/Routes/RouteDefs";
 
 
