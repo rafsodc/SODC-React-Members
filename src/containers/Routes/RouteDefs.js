@@ -1,7 +1,7 @@
-import Page from "../Page/Page";
 import Banner from "../../ReactUI/Banner/Banner";
 import RenderRoutes from "../../ReactHelpers/Routes/Routes";
-import Contact from "../Contact/Contact"
+import Landing from "../Landing/Landing";
+import Login from "../Login/Login";
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request
@@ -13,100 +13,19 @@ const headerRoutes = [
     key: "APP_HOME",
     title: "Home",
     exact: true,
-    component: Page,
-    props:
-      {
-        apiUrl: "pages/8"
-      },
+    component: Landing
   },
   {
-    path: "/about",
-    key: "APP_ABOUT",
-    title: "About Us",
-    menu_dropdown: true,
-    component: RenderRoutes,
-    routes: [
-      {
-        path: "/about/club",
-        key: "APP_ABOUT_CLUB",
-        title: "The Club",
-        exact: true,
-        menu_child: true,
-        component: Page,
-        props:
-          {
-            apiUrl: "pages/7"
-          },
-      },
-      {
-        path: "/about/committee",
-        key: "APP_ABOUT_COMMITTEE",
-        title: "The Committee",
-        exact: true,
-        menu_child: true,
-        component: Page,
-        props:
-          {
-            apiUrl: "pages/7"
-          },
-      },
-      {
-        path: "/about/dinners",
-        key: "APP_ABOUT_DINNERS",
-        title: "Past Dinners",
-        exact: true,
-        menu_child: true,
-        component: Page,
-        props:
-          {
-            apiUrl: "pages/7"
-          },
-      },
-    ],
-  },
-  {
-    path: "/contact",
-    key: "APP_CONTACT",
-    title: "Contact Us",
+    path: "/login",
+    key: "APP_LOGIN",
+    title: "Login",
     exact: true,
-    component: Contact,
+    component: Login,
   },
 ];
 
 const footerRoutes = [
-  {
-    path: "/terms",
-    key: "APP_TERMS",
-    title: "Terms and Conditions",
-    exact: true,
-    component: Page,
-    props:
-      {
-        apiUrl: "pages/8"
-      },
-  },
-  {
-    path: "/privacy",
-    key: "APP_PRIVACY",
-    title: "Privacy Notice",
-    exact: true,
-    component: Page,
-    props:
-      {
-        apiUrl: "pages/8"
-      },
-  },
-  {
-    path: "/members",
-    key: "APP_MEMBERS",
-    title: "Members' Login",
-    exact: true,
-    component: Page,
-    props:
-      {
-        apiUrl: "pages/8"
-      },
-  },
+
 ];
 
 const routes = [
@@ -119,12 +38,6 @@ const routes = [
 ];
 
 const bannerRoutes = [
-  {
-    path: "/",
-    key: "APP_ROOT",
-    exact: true,
-    component: Banner
-  }
 ];
 
 export default routes

@@ -13,17 +13,17 @@ const initialState = {
   alerts: [],
   stickyAlerts: [],
   forms: {
-    contact: {
+    login: {
       fields: {
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-        captcha: null
+        username: "",
+        password: "",
       },
       locked: false,
       hidden: false,
     }
+  },
+  user: {
+    authenticated: false
   }
 }
 
@@ -31,28 +31,6 @@ const reducer = (state = initialState, action) => {
   let alerts = null;
   let stickyAlerts = null;
   switch (action.type) {
-    case actionTypes.PAGE_LOAD:
-      return {
-        ...state,
-        page: {
-          ...state.page,
-          response: action.response,
-          loading: false,
-        },
-        error: {
-          ...state.error,
-          Page: false,
-        }
-      }
-    case actionTypes.PAGE_UNLOAD:
-      return {
-        ...state,
-        page: {
-          ...state.page,
-          response: null,
-          loading: true,
-        }
-      }
     case actionTypes.ERROR_FLAG:
       return {
         ...state,
