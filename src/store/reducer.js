@@ -24,7 +24,8 @@ const initialState = {
   },
   user: {
     authenticated: false,
-    iri: "/users/1"
+    iri: "/users/1",
+    token: null,
   }
 }
 
@@ -157,7 +158,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: {
           authenticated: true,
-          iri: action.iri
+          iri: action.iri,
+          token: action.token,
         }
       }
     default:

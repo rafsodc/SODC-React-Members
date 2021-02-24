@@ -4,7 +4,7 @@ import {loginFormSchema} from "../../Forms/schema";
 import LoginForm from "./LoginForm";
 import Aux from "../../ReactHelpers/hoc/Aux";
 import * as actionTypes from "../../store/actions";
-import httpServices from "../../services/http/httpServices";
+import httpServiceBuilder from "../../services/http/httpServiceBuilder";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router";
 
@@ -22,7 +22,7 @@ const Login = () => {
     data
   } = useFormBuilder(loginFormSchema, formName)
 
-  const httpService = httpServices[formName];
+  const httpService = httpServiceBuilder(formName, user.token)
 
   const onSubmit = () => {
     dispatch({
@@ -34,7 +34,6 @@ const Login = () => {
     });
     httpService.login(JSON.stringify(data.fields))
     .then((response) => {
-      console.log(response.headers);
       // If we get a valid response
       dispatch({
         type: actionTypes.FORM_CLEAR,
@@ -42,7 +41,8 @@ const Login = () => {
       })
       dispatch({
         type: actionTypes.USER_AUTHENTICATE,
-        iri: response.headers.location
+        iri: response.headers.location,
+        token: response.data.token
       })
     }).catch(() => {})
     .finally(() => {
