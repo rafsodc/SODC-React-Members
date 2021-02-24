@@ -5,10 +5,11 @@ import LoginForm from "./LoginForm";
 import Aux from "../../ReactHelpers/hoc/Aux";
 import * as actionTypes from "../../store/actions";
 import httpServices from "../../services/http/httpServices";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {Redirect} from "react-router";
 
 const Login = () => {
-
+  const user = useSelector(state => state.user)
   const formName = 'login';
   const dispatch = useDispatch();
 
@@ -24,21 +25,29 @@ const Login = () => {
   const httpService = httpServices[formName];
 
   const onSubmit = () => {
-    httpService.create(JSON.stringify(data.fields))
-    .then(() => {
+    dispatch({
+      type:actionTypes.ALERT_CLOSE_UNSTICKY
+    });
+    dispatch({
+      type:actionTypes.FORM_LOCK,
+      form: formName
+    });
+    httpService.login(JSON.stringify(data.fields))
+    .then((response) => {
+      console.log(response.headers);
       // If we get a valid response
       dispatch({
-        type: actionTypes.ALERT_OPEN,
-        alert: {
-          variant: 'success',
-          dismissible: false,
-          heading: "Form Submitted",
-          message: "Form successfully submitted."
-        },
-        sticky: false,
-      });
+        type: actionTypes.FORM_CLEAR,
+        form: formName,
+      })
       dispatch({
-        type: actionTypes.FORM_HIDE,
+        type: actionTypes.USER_AUTHENTICATE,
+        iri: response.headers.location
+      })
+    }).catch(() => {})
+    .finally(() => {
+      dispatch({
+        type: actionTypes.FORM_UNLOCK,
         form: formName
       })
     });
@@ -52,8 +61,8 @@ const Login = () => {
     ref: register
   }
 
-  const content = <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={data.locked}
-                 childProps={childProps} />;
+  const content = user.authenticated ? <Redirect to={"/"} /> : <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={data.locked}
+                 childProps={childProps} /> ;
 
   return <Aux>
     <h1>Login</h1>

@@ -23,7 +23,8 @@ const initialState = {
     }
   },
   user: {
-    authenticated: false
+    authenticated: false,
+    iri: "/users/1"
   }
 }
 
@@ -119,6 +120,17 @@ const reducer = (state = initialState, action) => {
           }
         }
       }
+    case actionTypes.FORM_UNLOCK:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [action.form]: {
+            ...state.forms[action.form],
+            locked: false
+          }
+        }
+      }
     case actionTypes.FORM_HIDE:
       return {
         ...state,
@@ -128,6 +140,24 @@ const reducer = (state = initialState, action) => {
             ...state.forms[action.form],
             hidden: true
           }
+        }
+      }
+    case actionTypes.FORM_CLEAR:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [action.form]: {
+            ...initialState.forms[action.form],
+          }
+        }
+      }
+    case actionTypes.USER_AUTHENTICATE:
+      return {
+        ...state,
+        user: {
+          authenticated: true,
+          iri: action.iri
         }
       }
     default:

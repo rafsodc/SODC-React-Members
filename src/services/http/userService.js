@@ -1,14 +1,14 @@
 import http from "../../ReactHelpers/http/http-common";
 
-/*const getAll = () => {
+const getAll = () => {
   return http.get("/contacts");
 };
 
-const get = id => {
-  return http.get(`/contacts/${id}`);
+const get = iri => {
+  return http.get(iri);
 };
 
-const create = data => {
+/*const create = data => {
   return http.post("/contacts", data);
 };
 
@@ -28,7 +28,11 @@ const findByTitle = title => {
   return http.get(`/contacts?title=${title}`);
 };*/
 
-const LoginService = {
+const login = data => {
+  return http.post("/login", data)
+}
+
+const UserService = {
   /*getAll,
   get,
   create,
@@ -36,6 +40,8 @@ const LoginService = {
   remove,
   removeAll,
   findByTitle*/
+  get,
+  login
 };
 
-export default LoginService
+export default UserService

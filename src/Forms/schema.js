@@ -1,10 +1,8 @@
 import * as yup from "yup";
 
-const contactFormSchema = () => yup.object().shape({
-  name: yup.string().required(),
+const loginFormSchema = () => yup.object().shape({
   email: yup.string().email().required(),
-  subject: yup.string().required(),
-  message: yup.string().required(),
+  password: yup.string().required(),
 })
 
-export {contactFormSchema}
+export {loginFormSchema}

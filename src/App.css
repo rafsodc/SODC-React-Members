@@ -5,6 +5,11 @@
   --success: #112244;
 }
 
+body {
+  background: #363537;
+  color: #FAFAFA;
+}
+
 .bg-app-primary {
   background-color: var(--sodc-red) !important;
   color: #fff !important;
@@ -23,10 +28,11 @@
   height: 10em;
 }
 
-/*.App {
-  text-align: center;
-}
 
+.App {
+
+}
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
