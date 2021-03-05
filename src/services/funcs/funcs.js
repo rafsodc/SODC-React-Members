@@ -1,0 +1,7 @@
+/**
+ * isEmptyObject
+ * Returns true if an object is empty (eg {})
+ * @param obj
+ * @returns {boolean}
+ */
+export const isEmptyObject = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object;

@@ -1,25 +1,18 @@
 import React, {useEffect} from "react";
-import {useSelector} from "react-redux";
-import {Redirect} from "react-router";
-import httpServices from "../../services/http/httpServices";
+import EventList from "../Event/EventList";
+import Aux from "../../hoc/Aux";
+import axios from "../../services/axios/axios";
 
 const Landing = () => {
-  const user = useSelector(state => state.user)
 
-  useEffect(() => {
-    if(user.authenticated) {
-      console.log(user);
-      httpServices.user.get(user.iri).then(response => console.log(response));
-    }
+  axios.get("/users/1").then(response => {
+    console.log(response.data);
   })
 
-  if(!user.authenticated) {
-    return <Redirect to={"/login"} />
-  }
-
-  return <p>Landing Page</p>
-
-
+  return(<Aux>
+    <p>Landing Page - hello!</p>
+    <EventList/>
+  </Aux>);
 }
 
 export default Landing;

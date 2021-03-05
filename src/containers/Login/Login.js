@@ -1,15 +1,16 @@
 import React from "react";
-import useFormBuilder from "../../ReactHelpers/Forms/useFormBuilder";
-import {loginFormSchema} from "../../Forms/schema";
+import useFormBuilder from "../../hooks/Forms/useFormBuilder";
+import {loginFormSchema} from "../../services/forms/schema";
 import LoginForm from "./LoginForm";
-import Aux from "../../ReactHelpers/hoc/Aux";
-import * as actionTypes from "../../store/actions";
-import httpServiceBuilder from "../../services/http/httpServiceBuilder";
+import Aux from "../../hoc/Aux";
 import {useDispatch, useSelector} from "react-redux";
-import {Redirect} from "react-router";
+import {alertCloseUnsticky, formUnlock, formLock, formClear, userLogin, alertOpen} from "../../store/actions/";
+import {LOGIN} from "../../services/axios/paths";
+import axios from '../../services/axios/axios';
+import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes";
 
-const Login = () => {
-  const user = useSelector(state => state.user)
+const Login = (props) => {
+  const alert = useSelector(state => state.alertReducer)
   const formName = 'login';
   const dispatch = useDispatch();
 
@@ -22,34 +23,27 @@ const Login = () => {
     data
   } = useFormBuilder(loginFormSchema, formName)
 
-  const httpService = httpServiceBuilder(formName, user.token)
+  const filterSticky = (arr, stickyArr) => {
+    return arr.filter(el => (stickyArr.includes(el.key)));
+  }
 
   const onSubmit = () => {
-    dispatch({
-      type:actionTypes.ALERT_CLOSE_UNSTICKY
-    });
-    dispatch({
-      type:actionTypes.FORM_LOCK,
-      form: formName
-    });
-    httpService.login(JSON.stringify(data.fields))
+    dispatch(alertCloseUnsticky());
+    dispatch(formLock(formName));
+    axios.post(LOGIN, JSON.stringify(data.fields))
     .then((response) => {
-      // If we get a valid response
-      dispatch({
-        type: actionTypes.FORM_CLEAR,
-        form: formName,
-      })
-      dispatch({
-        type: actionTypes.USER_AUTHENTICATE,
-        iri: response.headers.location,
-        token: response.data.token
-      })
-    }).catch(() => {})
+      dispatch(userLogin(response.data.token));
+      dispatch(formClear(formName));
+    }).catch((error) => {
+      switch(error.response.status) {
+        case 401:
+          dispatch(alertOpen("An error has occurred", error.response.data.message, ALERT_DANGER));
+          break;
+        default:
+      }
+    })
     .finally(() => {
-      dispatch({
-        type: actionTypes.FORM_UNLOCK,
-        form: formName
-      })
+      dispatch(formUnlock(formName))
     });
   }
 
@@ -61,12 +55,10 @@ const Login = () => {
     ref: register
   }
 
-  const content = user.authenticated ? <Redirect to={"/"} /> : <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={data.locked}
-                 childProps={childProps} /> ;
-
   return <Aux>
     <h1>Login</h1>
-    {content}
+    <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={data.locked}
+               childProps={childProps} />
   </Aux>;
 
 };

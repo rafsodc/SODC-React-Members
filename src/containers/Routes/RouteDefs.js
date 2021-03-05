@@ -1,5 +1,5 @@
 import Banner from "../../ReactUI/Banner/Banner";
-import RenderRoutes from "../../ReactHelpers/Routes/Routes";
+import RenderRoutes from "./Routes";
 import Landing from "../Landing/Landing";
 import Login from "../Login/Login";
 

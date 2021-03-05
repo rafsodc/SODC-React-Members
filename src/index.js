@@ -3,34 +3,34 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {Provider} from "react-redux";
-import reducer from "./store/reducer";
+import reducer from "./store/reducers/index";
 import {BrowserRouter} from 'react-router-dom';
 import {HelmetProvider} from "react-helmet-async";
-import AxiosErrorBoundary from "./ReactHelpers/ErrorBoundaries/AxiosErrorBoundary";
+import thunk from "redux-thunk";
+import axios from './services/axios/axios';
+import rollbar from "./services/rollbar/rollbar";
+import ErrorBoundary from "./containers/Errors/ErrorBoundary";
 
-// Set default base URL for axios
-//axios.defaults.baseURL = 'https://localhost:8443';
-// Set default header token
-//axios.defaults.headers.common['AUTHORIZATION'] = '';
-//axios.defaults.headers.common['Content-type'] = 'application/json';
-// More options here: https://stackoverflow.com/questions/43051291/attach-authorization-header-for-all-axios-requests
-//axios.interceptors.request.use ();
+const store = createStore(reducer, applyMiddleware(thunk));
 
-const store = createStore(reducer);
-
+axios.interceptors.response.use(null, error => {
+  //rollbar.error(error);
+  //this.props.raiseAlert(error);
+  return Promise.reject(error);
+})
 
 ReactDOM.render(
   <Provider store={store}>
     {/*<React.StrictMode>*/}
-    <AxiosErrorBoundary>
+    <ErrorBoundary>
       <HelmetProvider>
         <BrowserRouter>
           <App/>
         </BrowserRouter>
       </HelmetProvider>
-    </AxiosErrorBoundary>
+    </ErrorBoundary>
     {/*</React.StrictMode>*/}
   </Provider>,
   document.getElementById('root')

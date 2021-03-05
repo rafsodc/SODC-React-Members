@@ -8,3 +8,6 @@ export const FORM_UNLOCK = 'FORM_UNLOCK';
 export const FORM_HIDE = 'FORM_HIDE';
 export const FORM_CLEAR = 'FORM_CLEAR';
 export const USER_AUTHENTICATE = 'USER_AUTHENTICATE';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const FORM_SHOW = 'FORM_SHOW';
+export const EVENTS_LOAD = 'EVENTS_LOAD';
