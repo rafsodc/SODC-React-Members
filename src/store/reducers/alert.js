@@ -7,15 +7,12 @@ const initialState = {
   stickyAlerts: [],
 };
 
-const alertOpen = (state, action) => {
-  // Set key and add it to alert data
-  const key = uuid();
-  const alert = updateObject(action.alert, {key: key});
+const setAlert = (state, action) => {
 
-  const alerts = addElement(state.alerts, alert);
+  const alerts = addElement(state.alerts, action.alert);
 
   if(action.sticky) {
-    const stickyAlerts = addElement(state.stickyAlerts, key);
+    const stickyAlerts = addElement(state.stickyAlerts, action.key);
     return updateObject(state, {alerts: alerts, stickyAlerts: stickyAlerts});
   }
   else {
@@ -24,13 +21,13 @@ const alertOpen = (state, action) => {
 
 }
 
-const alertClose = (state, action) => {
+const clearAlert = (state, action) => {
   const stickyAlerts = removeElementByValue(state.stickyAlerts, state.alerts[action.index].key)
   const alerts = removeElementByIndex(state.alerts, action.index);
   return updateObject(state, {alerts: alerts, stickyAlerts: stickyAlerts});
 }
 
-const alertCloseUnsticky = (state) => {
+const clearUnstickyAlert = (state) => {
   const filterSticky = (arr, stickyArr) => {
     return arr.filter(el => (stickyArr.includes(el.key)));
   }
@@ -39,9 +36,9 @@ const alertCloseUnsticky = (state) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ALERT_OPEN: return alertOpen(state, action);
-    case actionTypes.ALERT_CLOSE: return alertClose(state, action);
-    case actionTypes.ALERT_CLOSE_UNSTICKY: return alertCloseUnsticky(state);
+    case actionTypes.SET_ALERT: return setAlert(state, action);
+    case actionTypes.CLEAR_ALERT: return clearAlert(state, action);
+    case actionTypes.CLEAR_UNSTICKY_ALERTS: return clearUnstickyAlert(state);
     default:
       return state;
   }

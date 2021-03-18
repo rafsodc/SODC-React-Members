@@ -13,7 +13,6 @@ const Authenticator = (props) => {
   // useLayoutEffect runs synchronously, which allows axios to be updated.
   useLayoutEffect(() => {
     if (user.authenticated) {
-      console.log(user.token);
       axios.interceptors.request.use(
         config => {
           config.headers.authorization = "BEARER " + user.token;

@@ -5,4 +5,11 @@ const loginFormSchema = () => yup.object().shape({
   password: yup.string().required(),
 })
 
-export {loginFormSchema}
+const ticketFormSchema = () => yup.object().shape({
+  email: yup.string().email().required(),
+  rank: yup.string().required(),
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+})
+
+export {loginFormSchema, ticketFormSchema}

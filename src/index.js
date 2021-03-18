@@ -24,13 +24,13 @@ axios.interceptors.response.use(null, error => {
 ReactDOM.render(
   <Provider store={store}>
     {/*<React.StrictMode>*/}
-    <ErrorBoundary>
+    {/*<ErrorBoundary>*/}
       <HelmetProvider>
         <BrowserRouter>
           <App/>
         </BrowserRouter>
       </HelmetProvider>
-    </ErrorBoundary>
+    {/*</ErrorBoundary>*/}
     {/*</React.StrictMode>*/}
   </Provider>,
   document.getElementById('root')

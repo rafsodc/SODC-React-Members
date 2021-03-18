@@ -3,7 +3,7 @@ import Rollbar from "rollbar";
 import * as actionTypes from "../../store/actions/actionsTypes";
 import {connect} from "react-redux";
 import config from "../../config/config";
-import {alertOpen} from "../../store/actions/";
+import {setAlert} from "../../store/actions/";
 import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes";
 import rollbar from "../../services/rollbar/rollbar";
 import axios from '../../services/axios/axios';
@@ -22,9 +22,13 @@ class ErrorBoundary extends Component {
       switch(error.response.status) {
         case 401:
           break;
+        case 404:
+          rollbar.warning(error);
+          this.props.alertOpen("Server Request Failed - " + this.errorMessage(error));
+          break;
         default:
           rollbar.error(error);
-          this.props.alertOpen(error.response.data.message);
+          this.props.alertOpen("Server Request Failed - " + this.errorMessage(error));
       }
       return Promise.reject(error);
     })
@@ -37,13 +41,17 @@ class ErrorBoundary extends Component {
     this.props.alertOpen(error.message);
   }
 
+  getDerivedStateFromError(error){
+   // @todo
+  };
+
   // Default is to render props.  @Todo Render a different screen on error?
   render() {
     // Default render function - show children
     return this.props.children;
   }
 
-/*  // We can receive multiple formats of error messages (@todo why do we get multiple formats?)
+// We can receive multiple formats of error messages
   errorMessage = (error) => {
     const data = error.response.data
     let i = 0;
@@ -60,7 +68,7 @@ class ErrorBoundary extends Component {
     'error',
     'hydra:description',
     'message'
-  ];*/
+  ];
 }
 
 /**
@@ -74,7 +82,7 @@ const mapDispatchToProps = dispatch => {
      * @returns {*}
      */
     alertOpen: (message) => {
-      dispatch(alertOpen("An Error Has Occurred", message, ALERT_DANGER))
+      dispatch(setAlert("An Error Has Occurred", message, ALERT_DANGER))
     },
 
   }

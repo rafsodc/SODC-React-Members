@@ -1,16 +1,13 @@
 import React, {useEffect} from "react";
 import EventList from "../Event/EventList";
 import Aux from "../../hoc/Aux";
-import axios from "../../services/axios/axios";
 
 const Landing = () => {
 
-  axios.get("/users/1").then(response => {
-    console.log(response.data);
-  })
 
   return(<Aux>
-    <p>Landing Page - hello!</p>
+    <h2>SODC Members' Area</h2>
+    <h3>Upcoming Events</h3>
     <EventList/>
   </Aux>);
 }

@@ -18,3 +18,10 @@ export const removeElementByIndex = (oldArray, index) => {
 export const removeElementByValue = (oldArray, value) => {
   return [...oldArray].filter(el => (el !== value));
 }
+
+export const replaceElementByIndex = (oldArray, index, newElement) => {
+  const arr = [...oldArray];
+  arr[index] = newElement;
+  console.log(newElement);
+  return arr;
+}

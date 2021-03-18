@@ -4,60 +4,35 @@ import {loginFormSchema} from "../../services/forms/schema";
 import LoginForm from "./LoginForm";
 import Aux from "../../hoc/Aux";
 import {useDispatch, useSelector} from "react-redux";
-import {alertCloseUnsticky, formUnlock, formLock, formClear, userLogin, alertOpen} from "../../store/actions/";
 import {LOGIN} from "../../services/axios/paths";
-import axios from '../../services/axios/axios';
-import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes";
+import {formLoginSubmit} from "../../store/actions/form";
 
 const Login = (props) => {
-  const alert = useSelector(state => state.alertReducer)
   const formName = 'login';
   const dispatch = useDispatch();
+  const formState = useSelector(state => state.formsReducer.login);
 
   const {
     register,
-    handleSubmit,
     errors,
+    handleSubmit,
     onChange,
-    onRecaptcha,
-    data
-  } = useFormBuilder(loginFormSchema, formName)
+    onRecaptcha
+  } = useFormBuilder(loginFormSchema, formName, formState.fields, LOGIN)
 
-  const filterSticky = (arr, stickyArr) => {
-    return arr.filter(el => (stickyArr.includes(el.key)));
-  }
-
-  const onSubmit = () => {
-    dispatch(alertCloseUnsticky());
-    dispatch(formLock(formName));
-    axios.post(LOGIN, JSON.stringify(data.fields))
-    .then((response) => {
-      dispatch(userLogin(response.data.token));
-      dispatch(formClear(formName));
-    }).catch((error) => {
-      switch(error.response.status) {
-        case 401:
-          dispatch(alertOpen("An error has occurred", error.response.data.message, ALERT_DANGER));
-          break;
-        default:
-      }
-    })
-    .finally(() => {
-      dispatch(formUnlock(formName))
-    });
-  }
+  const onSubmit = () => dispatch(formLoginSubmit(formName, LOGIN, data.fields));
 
   const childProps = {
-    form: 'login',
+    form: formName,
     errors: errors,
-    data: data.fields,
+    data: formState.fields,
     onChange: onChange,
     ref: register
   }
 
   return <Aux>
     <h1>Login</h1>
-    <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={data.locked}
+    <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={formState.locked}
                childProps={childProps} />
   </Aux>;
 

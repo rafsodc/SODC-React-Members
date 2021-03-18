@@ -1,5 +1,24 @@
 import * as actionTypes from "../actions/actionsTypes";
-import {updateObject} from "../utility";
+import {addElement, replaceElementByIndex, updateObject} from "../utility";
+
+// const isFormArray = {
+//   login: false,
+//   ticket: true,
+// }
+
+const initialArrayStates = {
+  ticket: {
+    fields: {
+      email: "",
+      rank: "",
+      firstName: "",
+      lastName: ""
+    },
+    locked: false,
+    hidden: true,
+    formKey: null,
+  },
+}
 
 const initialState = {
   login: {
@@ -9,12 +28,32 @@ const initialState = {
     },
     locked: false,
     hidden: true,
-  }
+    array: false,
+  },
+  ticket: [],
 };
 
 const formSave = (state, action) => {
-  const fields = updateObject(state[action.form].fields, action.data);
-  const form = updateObject(state[action.form], {fields: fields});
+    const fields = updateObject(state[action.form].fields, action.data);
+    const form = updateObject(state[action.form], {fields: fields});
+  return updateObject(state, {[action.form]: form});
+}
+
+const saveMultiForm = (state, action) => {
+    const index = state[action.form].findIndex(el => el.formKey === action.key);
+    const fields = updateObject(state[action.form][index].fields, action.data);
+    const el = updateObject(state[action.form][index], {fields: fields});
+    const form = replaceElementByIndex(state[action.form], index, el);
+
+  return updateObject(state, {[action.form]: form});
+}
+
+const addArrayForm = (state, action) => {
+  // Use initial state and set key
+  const el = updateObject(initialArrayStates[action.form], {formKey: action.key});
+  // Add to existing array
+  const form = addElement(state[action.form], el)
+  // Update state
   return updateObject(state, {[action.form]: form});
 }
 
@@ -50,6 +89,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FORM_HIDE: return formHide(state, action);
     case actionTypes.FORM_SHOW: return formShow(state, action);
     case actionTypes.FORM_CLEAR: return formClear(state, action);
+    case actionTypes.ADD_ARRAY_FORM: return addArrayForm(state, action);
+    case actionTypes.SAVE_MULTI_FORM: return saveMultiForm(state, action);
     default:
       return state;
   }

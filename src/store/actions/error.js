@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionsTypes";
-import { alertOpen } from "./alert";
+import { setAlert } from "./alert";
 import rollbar from "../../services/rollbar/rollbar";
 
 export const errorFlag = (flag, value) => {

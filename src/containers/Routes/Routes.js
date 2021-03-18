@@ -25,7 +25,7 @@ const RenderRoutes = React.memo(
 
     useEffect(() => {
       const cleanup = () => {
-        dispatch({type: actionTypes.ALERT_CLOSE_UNSTICKY});
+        dispatch({type: actionTypes.CLEAR_UNSTICKY_ALERTS});
       };
       return cleanup();
     });

@@ -2,6 +2,8 @@ import Banner from "../../ReactUI/Banner/Banner";
 import RenderRoutes from "./Routes";
 import Landing from "../Landing/Landing";
 import Login from "../Login/Login";
+import EventPage from "../Event/EventPage";
+import Booking from "../Booking/Booking";
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request
@@ -13,14 +15,20 @@ const headerRoutes = [
     key: "APP_HOME",
     title: "Home",
     exact: true,
-    component: Landing
+    component: Landing,
   },
   {
-    path: "/login",
-    key: "APP_LOGIN",
-    title: "Login",
+    path: "/booking",
+    key: "APP_BOOKING",
+    title: "Book Event",
     exact: true,
-    component: Login,
+    component: Booking
+  },
+  {
+    path: "/booking/:id",
+    key: "APP_BOOKING_ID",
+    title: "Home",
+    component: Booking
   },
 ];
 
@@ -28,13 +36,38 @@ const footerRoutes = [
 
 ];
 
+const otherRoutes = [
+  {
+    path: "/events/1",
+    key: "APP_EVENT_1",
+    title: "Event 1",
+    component: EventPage,
+    props:
+    {
+      apiUrl: "/events/1"
+    },
+    routes: [{
+      path: "/events/1/book",
+      key: "APP_EVENT_1_BOOK",
+      title: "Event 1",
+      exact: true,
+      component: Landing,
+      props:
+        {
+          apiUrl: "events/1"
+        },
+    }]
+  }
+]
+
 const routes = [
   {
     path: "/",
     key: "APP_ROOT",
     component: RenderRoutes,
-    routes: headerRoutes.concat(footerRoutes),
-  }
+    routes: headerRoutes.concat(footerRoutes).concat(otherRoutes),
+  },
+
 ];
 
 const bannerRoutes = [
