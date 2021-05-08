@@ -7,7 +7,6 @@ import {setAlert} from "../../store/actions/";
 import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes";
 import rollbar from "../../services/rollbar/rollbar";
 import axios from '../../services/axios/axios';
-import {userLogout} from "../../store/actions/user";
 
 /**
  * ErrorBoundary class that can either be used as a component or as a class that can be extended.

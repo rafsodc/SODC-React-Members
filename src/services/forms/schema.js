@@ -6,10 +6,11 @@ const loginFormSchema = () => yup.object().shape({
 })
 
 const ticketFormSchema = () => yup.object().shape({
-  email: yup.string().email().required(),
+  ticketType: yup.string().required(),
   rank: yup.string().required(),
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
+  firstname: yup.string().required(),
+  lastname: yup.string().required(),
+  dietary: yup.string().required()
 })
 
 export {loginFormSchema, ticketFormSchema}

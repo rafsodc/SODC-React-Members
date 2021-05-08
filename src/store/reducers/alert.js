@@ -1,4 +1,4 @@
-import {addElement, updateObject, removeElementByIndex, removeElementByValue} from "../utility";
+import {addElement, updateObject, removeElementByIndex, removeElementByValue} from "../helpers/utility";
 import uuid from "react-uuid";
 import * as actionTypes from "../actions/actionsTypes";
 

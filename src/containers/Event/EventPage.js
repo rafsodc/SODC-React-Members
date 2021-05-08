@@ -1,21 +1,44 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {eventGet} from "../../store/actions/event";
+import {loadEvent} from "../../store/actions/event";
 import Aux from "../../hoc/Aux";
 import Event from "./Event";
+import {Accordion} from "react-bootstrap";
+import Loading from "../../ReactUI/Loading/Loading";
+import {useParams} from "react-router";
+import Booking from "../Booking/Booking";
+import BookingOwnerSelect from "../Booking/BookingOwnerSelect";
 
-const EventPage = (props) => {
+const EventPage = () => {
 
   const dispatch = useDispatch();
   const eventState = useSelector(state => state.eventReducer);
 
-  useEffect(() => dispatch(eventGet(props.apiUrl)), [dispatch]);
+  const { id } = useParams();
 
-  return (
-    <Aux>
-      <Event {...eventState.event} />
+  const formatTicketTypes = (ticketTypes) => ticketTypes.map((ticket) => ({
+      value: ticket["@id"],
+      description: ticket.description + " - £" + ticket.price
+  }));
+
+  useEffect(() => {
+    dispatch(loadEvent(`/events/${id}`));
+  }, [dispatch]);
+
+  if (eventState.event !== null)  {
+    return <Aux>
+      <Accordion defaultActiveKey={"event"}>
+        <Event {...eventState.event} eventKey={"event"}/>
+      </Accordion>
+      <br/>
+      <BookingOwnerSelect disabled={eventState.ownerSelectDisabled}>
+        <Booking ticketOptions={formatTicketTypes(eventState.event.ticketTypes)} event={`/events/${id}`}  />
+      </BookingOwnerSelect>
     </Aux>
-  );
+  }
+  else {
+    return <Loading />
+  }
 
 };
 

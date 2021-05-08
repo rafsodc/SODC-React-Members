@@ -38,25 +38,10 @@ const footerRoutes = [
 
 const otherRoutes = [
   {
-    path: "/events/1",
-    key: "APP_EVENT_1",
-    title: "Event 1",
+    path: "/events/:id",
+    key: "APP_EVENT_ID",
+    title: "Event",
     component: EventPage,
-    props:
-    {
-      apiUrl: "/events/1"
-    },
-    routes: [{
-      path: "/events/1/book",
-      key: "APP_EVENT_1_BOOK",
-      title: "Event 1",
-      exact: true,
-      component: Landing,
-      props:
-        {
-          apiUrl: "events/1"
-        },
-    }]
   }
 ]
 

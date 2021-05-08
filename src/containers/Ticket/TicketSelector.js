@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {eventGet} from "../../store/actions/event";
+import {loadEvent} from "../../store/actions/event";
 import Aux from "../../hoc/Aux";
 import {useParams} from "react-router";
 import Event from "../Event/Event";

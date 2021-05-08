@@ -1,4 +1,4 @@
-import {updateObject} from "../utility";
+import {updateObject} from "../helpers/utility";
 import * as actionTypes from "../actions/actionsTypes";
 
 const initialState = {

@@ -4,23 +4,29 @@ import {loginFormSchema} from "../../services/forms/schema";
 import LoginForm from "./LoginForm";
 import Aux from "../../hoc/Aux";
 import {useDispatch, useSelector} from "react-redux";
-import {LOGIN} from "../../services/axios/paths";
-import {formLoginSubmit} from "../../store/actions/form";
+import {loginSubmit, setLoginField} from "../../store/actions/";
 
 const Login = (props) => {
   const formName = 'login';
   const dispatch = useDispatch();
-  const formState = useSelector(state => state.formsReducer.login);
+  const formState = useSelector(state => state.authenticationReducer.form);
 
   const {
     register,
     errors,
     handleSubmit,
-    onChange,
-    onRecaptcha
-  } = useFormBuilder(loginFormSchema, formName, formState.fields, LOGIN)
+  } = useFormBuilder(loginFormSchema)
 
-  const onSubmit = () => dispatch(formLoginSubmit(formName, LOGIN, data.fields));
+  const onChange = (event) => {
+    dispatch(setLoginField({[event.target.name]: event.target.value}));
+  }
+
+  const onRecaptcha = (value) => {
+    dispatch(setLoginField({captcha: value}));
+    //dispatch(errorFlag('captcha', value === null))
+  }
+
+  const onSubmit = () => dispatch(loginSubmit(formState.fields));
 
   const childProps = {
     form: formName,

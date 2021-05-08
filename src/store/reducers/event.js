@@ -1,27 +1,30 @@
-import * as actionTypes from "../actions/actionsTypes";
-import {updateObject} from "../utility";
+//import * as actionTypes from "../actions/actionsTypes";
+import actionTypes from "../actionTypes/"
+import {createReducer, updateObject} from "../helpers/utility";
 
 const initialState = {
-  events: [],
+  events: null,
   event: null,
-  loaded: false
+  ownerSelectDisabled: false,
 };
 
 const setEvents = (state, action) => {
-  return updateObject(state, {events: action.events, loaded: true});
+  return updateObject(state, {events: action.payload});
 }
 
 const setEvent = (state, action) => {
-  return updateObject(state, {event: action.event});
+  return updateObject(state, {event: action.payload});
 }
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.EVENTS_SET: return setEvents(state, action);
-    case actionTypes.EVENT_SET: return setEvent(state, action);
-    default:
-      return state;
-  }
+const addTicket = (state, action) => {
+  return updateObject(state, {userSelectDisabled: true})
 }
+
+const reducer = createReducer(initialState, {
+  [actionTypes.SET_EVENTS]: setEvents,
+  [actionTypes.SET_EVENT]: setEvent,
+  //[actionTypes.SET_USER]: setUser, // This gets called when a user is logged in.
+  [actionTypes.ticket.ADD]: addTicket,
+})
 
 export default reducer;

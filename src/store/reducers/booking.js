@@ -1,17 +1,17 @@
-import * as actionTypes from "../actions/actionsTypes";
-import {updateObject} from "../utility";
+import actionTypes from "../actionTypes"
+import {setParam, updateObject} from "../helpers/utility";
 
-const initialState = {
-  ticketCount: 0,
+const initialBookingState = {
+  accordion: 0,
+  tab: "tickets",
+  owner: null
 };
 
-const addTicket = (state) => {
-  return updateObject(state, {ticketCount: state.ticketCount + 1});
-}
-
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialBookingState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_TICKET: return addTicket(state);
+    case actionTypes.booking.SET_ACCORDION: return setParam(state, action);
+    case actionTypes.booking.SET_OWNER: return setParam(state, action);
+    case actionTypes.booking.SET_TAB: return setParam(state, action);
     default:
       return state;
   }

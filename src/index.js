@@ -9,11 +9,12 @@ import reducer from "./store/reducers/index";
 import {BrowserRouter} from 'react-router-dom';
 import {HelmetProvider} from "react-helmet-async";
 import thunk from "redux-thunk";
+import multi from 'redux-multi';
 import axios from './services/axios/axios';
 import rollbar from "./services/rollbar/rollbar";
 import ErrorBoundary from "./containers/Errors/ErrorBoundary";
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk, multi));
 
 axios.interceptors.response.use(null, error => {
   //rollbar.error(error);
@@ -24,13 +25,13 @@ axios.interceptors.response.use(null, error => {
 ReactDOM.render(
   <Provider store={store}>
     {/*<React.StrictMode>*/}
-    {/*<ErrorBoundary>*/}
+    <ErrorBoundary>
       <HelmetProvider>
         <BrowserRouter>
           <App/>
         </BrowserRouter>
       </HelmetProvider>
-    {/*</ErrorBoundary>*/}
+    </ErrorBoundary>
     {/*</React.StrictMode>*/}
   </Provider>,
   document.getElementById('root')
