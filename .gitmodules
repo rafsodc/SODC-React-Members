@@ -1,6 +1,0 @@
-[submodule "src/ReactUI"]
-	path = src/ReactUI
-	url = git@github.com:rafsodc/ReactUI.git
-[submodule "src/ReactHelpers"]
-	path = src/ReactHelpers
-	url = git@github.com:rafsodc/ReactHelpers.git
