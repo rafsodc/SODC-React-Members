@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:13.12.0-alpine
+FROM node:13.12.0-alpine AS react_app_common
 
 # set working directory
 WORKDIR /app
@@ -17,4 +17,5 @@ RUN npm install react-scripts@3.4.1 -g
 COPY . ./
 
 # start app
+FROM react_app_common AS react_app_dev
 CMD ["npm", "start"]
