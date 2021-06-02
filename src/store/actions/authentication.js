@@ -59,12 +59,14 @@ const checkTokenTimeout = (expirationTime) => {
 };
 
 export const refreshToken = () => dispatch => {
+
+  //This should be post!
   axios.get(apiPaths.authentication.REFRESH_TOKEN).then((response) => dispatch(login(response.data.token)))
   .catch((error) => {
     switch(error.response.status) {
       case 401:
         dispatch(logout());
-        dispatch(setLoginHidden(true));
+        dispatch(setLoginHidden(false));
         break;
       default:
     }
