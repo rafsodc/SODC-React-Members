@@ -27,7 +27,7 @@ const EventPage = () => {
 
   if (eventState.event !== null)  {
     return <Aux>
-      <Accordion defaultActiveKey={"event"}>
+      <Accordion>
         <Event {...eventState.event} eventKey={"event"}/>
       </Accordion>
       <br/>
