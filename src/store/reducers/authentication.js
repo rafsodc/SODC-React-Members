@@ -17,7 +17,7 @@ const initialFormState = {
     password: "",
   },
   locked: false,
-  hidden: false
+  hidden: true
 }
 
 const authenticate = (state, action) => {
