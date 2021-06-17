@@ -22,7 +22,7 @@ const Ticket = (props) => {
   } = useFormBuilder(ticketFormSchema)
 
   const onChange = (event) => {
-    dispatch(setTicketField({[event.target.name]: event.target.value}, props.id));
+    dispatch(setTicketField({[event.target.name]: event.target.value}, props.ticket.id));
   }
 
   const onSubmit = () => {

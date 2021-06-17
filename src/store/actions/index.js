@@ -23,3 +23,8 @@ export {
   setTicketLocked,
   submitTicketForm
 } from './ticket'
+export {
+  setContactField,
+  setContactLocked,
+  setContactHidden
+} from './contact'

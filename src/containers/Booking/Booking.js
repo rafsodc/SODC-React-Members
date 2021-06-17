@@ -65,8 +65,6 @@ const Booking = (props) => {
     return arr.concat(el)
   }, []);
 
-  console.log(bookingState.tab);
-
   return (
     <Tabs activeKey={bookingState.tab}>
       <Tab eventKey="tickets" title={"Tickets"}><br/>
