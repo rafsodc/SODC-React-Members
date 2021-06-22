@@ -5,8 +5,8 @@ const banner = React.memo(() => {
     <div className="container h-100">
       <div className="row h-100 align-items-center">
         <div className="col-lg-12">
-          <h1 className="display-4 text-white mt-5 mb-2">Parent String | <strong>Short</strong></h1>
-          <h2 className="text-white-50 mb-5">Long Title Here</h2>
+          <h1 className="display-4 text-white mt-5 mb-2">Royal Air Force | <strong>SODC</strong></h1>
+          <h2 className="text-white-50 mb-5">Signal Officers' Dinner Club</h2>
 
         </div>
       </div>

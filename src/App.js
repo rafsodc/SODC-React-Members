@@ -13,10 +13,10 @@ function App() {
   return (
     <div className="App">
       <Layout>
-        <Authenticator>
+        {/* <Authenticator> */}
         {/* Render the content using routes to determine components */}
         <RenderRoutes routes={routes} handle404={true}/>
-        </Authenticator>
+        {/* </Authenticator> */}
       </Layout>
     </div>
   );

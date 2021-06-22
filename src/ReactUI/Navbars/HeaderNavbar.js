@@ -11,7 +11,7 @@ import {headerRoutes} from "../../containers/Routes/RouteDefs";
 const headerNavbar = React.memo(() => {
   return (
     <Navbar bg="app-primary" variant="dark" expand="lg">
-      <Navbar.Brand href="#home">Beta Site</Navbar.Brand>
+      <Navbar.Brand href="#home">RAF SODC</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">

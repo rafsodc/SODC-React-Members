@@ -18,6 +18,7 @@ const headerRoutes = [
     title: "Home",
     exact: true,
     component: Page,
+    auth: false,
     props:
       {
         apiUrl: "pages/2"
@@ -29,6 +30,7 @@ const headerRoutes = [
     title: "About",
     exact: true,
     component: Page,
+    auth: false,
     props:
       {
         apiUrl: "pages/1"
@@ -40,6 +42,7 @@ const headerRoutes = [
     title: "Contact",
     exact: true,
     component: Contact,
+    auth: false,
   },
   
   
@@ -52,6 +55,7 @@ const footerRoutes = [
     title: "Terms and Conditions",
     exact: true,
     component: Page,
+    auth: false,
     props:
       {
         apiUrl: "pages/2"
@@ -63,6 +67,7 @@ const footerRoutes = [
     title: "Privacy Notice",
     exact: true,
     component: Page,
+    auth: false,
     props:
       {
         apiUrl: "pages/2"
@@ -74,6 +79,7 @@ const footerRoutes = [
     title: "Members' Login",
     exact: true,
     component: Landing,
+    auth: true,
   },
 ];
 
@@ -83,6 +89,7 @@ const otherRoutes = [
     key: "APP_EVENT_ID",
     title: "Event",
     component: EventPage,
+    auth: true,
   },
   // {
   //   path: "/booking",
@@ -105,6 +112,7 @@ const routes = [
     key: "APP_ROOT",
     component: RenderRoutes,
     routes: headerRoutes.concat(footerRoutes).concat(otherRoutes),
+    auth: false,
   },
 
 ];
@@ -114,7 +122,8 @@ const bannerRoutes = [
     path: "/",
     key: "APP_ROOT",
     exact: true,
-    component: Banner
+    component: Banner,
+    auth: false,
   }
 ];
 

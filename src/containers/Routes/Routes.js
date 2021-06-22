@@ -7,6 +7,7 @@ import Aux from "../../hoc/Aux";
 import Page404 from "../../ReactUI/Page404/Page404";
 import * as actionTypes from "../../store/actions/actionsTypes";
 import {useDispatch} from "react-redux";
+import Authenticator from "../Authentication/Authenticator";
 
 /**
  *  Functions to render routers and children
@@ -55,16 +56,19 @@ const RouteWithSubRoutes = React.memo(
    */
   (route) => {
     // Return the title and a route to the path, whether it's exact, and render the component specified.
+    let routeComponent = <Route
+      path={route.path}
+      exact={route.exact}
+      render={props => <route.component {...props} {...route.props} routes={route.routes}
+                                        handle404={route.handle404}/>}
+    />
+
+    routeComponent = route.auth ? <Authenticator>{routeComponent}</Authenticator> : routeComponent;
     return (
       <Aux>
         {/* Only render the TitleComponent if route.title is set */}
         <TitleComponent title={route.title} show={route.title}/>
-        <Route
-          path={route.path}
-          exact={route.exact}
-          render={props => <route.component {...props} {...route.props} routes={route.routes}
-                                            handle404={route.handle404}/>}
-        />
+        { routeComponent }
       </Aux>
     );
   }
