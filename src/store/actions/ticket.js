@@ -20,10 +20,14 @@ export const loadTickets = (event, owner = null) => dispatch => {
   query += (owner === null) ? "owner=" + owner : "";
   axios.get(apiPaths.ticket.GET_COLLECTION + query).then((response) => {
     const data = response.data['hydra:member'];
-    return dispatch(addTickets(data));
+    return dispatch([resetTickets(), addTickets(data)]);
   });
 }
 
 export const addTickets = (data = []) => {
   return data.map(item => addTicket(item));
 }
+
+export const resetTickets = () => ({
+  type: actionTypes.ticket.RESET
+});

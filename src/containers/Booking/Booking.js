@@ -20,7 +20,7 @@ const Booking = (props) => {
   useEffect(() => {
     dispatch(loadTickets(props.event, bookingState.owner));
     dispatch(loadTransactions(props.event, bookingState.owner))
-  }, [dispatch]);
+  }, [dispatch, bookingState.owner, props.event]);
 
   const handleAddTicket = () => {
     if(props.user !== null) {
@@ -31,22 +31,25 @@ const Booking = (props) => {
       ]);
     }
   }
-
+  
   const handleTicketNext = () => {
     dispatch(setTab("order"))
   }
 
-  const handleHeaderClick = (key) => {
-    const setKey = (key === bookingState.accordion) ? -1 : key;
-    dispatch(setAccordion(setKey));
+  const handleHeaderClick = (tab, key) => {
+    //console.log(tab);
+    const setKey = (key === bookingState.accordion[tab]) ? -1 : key;
+    dispatch(setAccordion(tab, setKey));
   }
+
+  console.log(bookingState.accordion);
 
   const transformedTicketForms = ticketState.map( (ticket, key) => {
     return <Ticket
       ticket={ticket}
       key={key}
       ticketKey={(key + 1)}
-      handleHeaderClick={() => handleHeaderClick(key + 1)}
+      handleHeaderClick={() => handleHeaderClick('ticket', key + 1)}
       ticketOptions={props.ticketOptions}
       owner={bookingState.owner}
       event={props.event}
@@ -56,9 +59,12 @@ const Booking = (props) => {
     return arr.concat(el)
   }, []);
 
-  const transformedTransactions = transactionState.map((transaction) => {
+  const transformedTransactions = transactionState.map((transaction, key) => {
     return <Transaction
       transaction={transaction}
+      key={key}
+      transactionKey={(key + 1)}
+      handleHeaderClick={() => handleHeaderClick('transaction', key + 1)}
       />
   })
   .reduce((arr, el) => {
@@ -68,14 +74,14 @@ const Booking = (props) => {
   return (
     <Tabs activeKey={bookingState.tab}>
       <Tab eventKey="tickets" title={"Tickets"}><br/>
-        <TicketList activeKey={bookingState.accordion} handleAddTicket={handleAddTicket}>
+        <TicketList activeKey={bookingState.accordion.ticket} handleAddTicket={handleAddTicket}>
           {transformedTicketForms}
         </TicketList>
         <br/>
         <Button onClick={handleTicketNext}>Next</Button>
       </Tab>
       <Tab eventKey="order" title={"Order"}>
-        <TransactionList>
+        <TransactionList activeKey={bookingState.accordion.transaction} >
           {transformedTransactions}
         </TransactionList>
       </Tab>

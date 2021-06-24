@@ -6,10 +6,10 @@ import apiPaths from "../paths";
 import {addTickets} from "./ticket";
 
 
-export const setAccordion = (accordian) => {
+export const setAccordion = (tab, accordian) => {
   return {
     type: actionTypes.booking.SET_ACCORDION,
-    param: 'accordion',
+    tab: tab,
     data: accordian
   }
 }
@@ -17,7 +17,6 @@ export const setAccordion = (accordian) => {
 export const setOwner = (ownerIri) => {
   return {
     type: actionTypes.booking.SET_OWNER,
-    param: 'owner',
     data: ownerIri
   }
 }
@@ -25,7 +24,6 @@ export const setOwner = (ownerIri) => {
 export const setTab = (tab) => {
   return {
     type: actionTypes.booking.SET_TAB,
-    param: 'tab',
     data: tab
   }
 }

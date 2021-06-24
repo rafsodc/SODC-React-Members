@@ -4,7 +4,8 @@ import actionTypes from "../actionTypes";
 
 export const loadTransactions = (event, owner = null) => dispatch => {
   let query = "?event=" + event;
-  query += (owner === null) ? "owner=" + owner : "";
+  query += (owner === null) ? "&owner=" + owner : "";
+  query += "&isValid=true"
   axios.get(apiPaths.transaction.GET_COLLECTION + query).then((response) => {
     const data = response.data['hydra:member'];
     return dispatch(addTransactions(data));
