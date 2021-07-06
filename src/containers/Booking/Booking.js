@@ -9,6 +9,7 @@ import {} from "../../store/actions";
 import {loadTransactions} from "../../store/actions/transaction";
 import Transaction from "../Transaction/Transaction";
 import TransactionList from "../Transaction/TransactionList";
+import Basket from "../Transaction/Basket";
 
 const Booking = (props) => {
 
@@ -19,7 +20,8 @@ const Booking = (props) => {
 
   useEffect(() => {
     dispatch(loadTickets(props.event, bookingState.owner));
-    dispatch(loadTransactions(props.event, bookingState.owner))
+    //dispatch(loadTransactions(props.event, bookingState.owner))
+    
   }, [dispatch, bookingState.owner, props.event]);
 
   const handleAddTicket = () => {
@@ -71,6 +73,9 @@ const Booking = (props) => {
     return arr.concat(el)
   }, []);
 
+  // Only load basket when the order tab is displayed (prevents excessive POST requests)
+  const basket = (bookingState.tab === "order") ? <Basket owner={bookingState.owner} event={props.event}/> : "";
+
   return (
     <Tabs activeKey={bookingState.tab}>
       <Tab eventKey="tickets" title={"Tickets"}><br/>
@@ -84,6 +89,7 @@ const Booking = (props) => {
         <TransactionList activeKey={bookingState.accordion.transaction} >
           {transformedTransactions}
         </TransactionList>
+        {basket}
       </Tab>
     </Tabs>
   );

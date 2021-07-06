@@ -18,14 +18,7 @@ const Transaction = (props) => {
       <Card.Body>
         {props.transaction.amount}
 
-        <form method="post" target="ipgFrame" action={props.transaction.ipg.action}>
-          {fields}
-          <input type="submit" value="Submit" />
-
-        </form>
-
-        <iframe name="ipgFrame" id="ipgFrame" title="ipgFrame" width="460px" height="900px" > </iframe>
-      </Card.Body>
+        </Card.Body>
     </Accordion.Collapse>
   </Card>
 }
