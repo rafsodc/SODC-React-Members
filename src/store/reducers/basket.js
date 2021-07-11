@@ -7,19 +7,23 @@ const initialState = {
   amount: 0,
   tickets: [],
   loaded: false,
-  transaction: null
+  transaction: null,
+  response: null
 }
 
 const setBasket = (state, action) => {
   const tickets = (action.tickets === undefined) ? [] : action.tickets;
-  return updateObject(state,  {...action.data, loaded: true})
+  return updateObject(state,  {...action.data, tickets: tickets, loaded: true})
 };
+
+const setResponse = (state, action) => setParam(state, updateObject(action, {param: 'response'}));
 
 const setTransaction = (state, action) => setParam(state, updateObject(action, {param: 'transaction'}))
 
 const reducer = createReducer(initialState, {
   [actionTypes.basket.SET_BASKET]: setBasket,
   [actionTypes.basket.SET_TRANSACTION]: setTransaction,
+  [actionTypes.basket.SET_RESPONSE]: setResponse,
 });
 
 export default reducer;

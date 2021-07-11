@@ -21,3 +21,8 @@ export const setTransaction = (data) => ({
   type: actionTypes.basket.SET_TRANSACTION,
   data: {ipg: data.ipg, status: data.status, expired: data.expired}
 })
+
+export const setResponse = (data) => ({
+  type: actionTypes.basket.SET_RESPONSE,
+  data: data
+})

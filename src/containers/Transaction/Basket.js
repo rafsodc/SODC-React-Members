@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {} from "../../store/actions";
-import { getBasket, getTransaction } from "../../store/actions/basket";
+import { getBasket, getTransaction, setResponse } from "../../store/actions/basket";
 import Aux from "../../hoc/Aux"
 import {Button} from "react-bootstrap";
 import Loading from "../../ReactUI/Loading/Loading"
@@ -17,8 +17,14 @@ const Basket = (props) => {
     dispatch(getBasket({event: props.event, owner: props.owner}));
   }, [dispatch]);
 
+  // Handle IPG button click
   const handleIPGButton = () => {
     dispatch(getTransaction({basket: basketState.id}))
+  }
+
+  // Handle message received from IPG frame
+  const receiveMessage = (event) => {
+    dispatch(setResponse(event.data.elementArr));  
   }
 
   const tickets = basketState.tickets.map((ticket) => {
@@ -27,7 +33,7 @@ const Basket = (props) => {
 
   console.log(basketState)
 
-  const ipg = (basketState.transaction === null)? "" : <IPG ipg={basketState.transaction.ipg} />
+  const ipg = (basketState.transaction === null)? "" : <IPG ipg={basketState.transaction.ipg} receiveMessage={receiveMessage}/>
   
   const content = (
     <Aux>

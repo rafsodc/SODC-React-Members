@@ -1,16 +1,24 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {} from "../../store/actions";
-import { getBasket } from "../../store/actions/basket";
+import { getBasket, setResponse } from "../../store/actions/basket";
 import Aux from "../../hoc/Aux"
 
 const IPG = (props) => {
+
+  useEffect(() => {
+    
+    window.addEventListener('message', props.receiveMessage, false);
+    
+    // cleanup this component
+    return () => {
+      window.removeEventListener('message', props.receiveMessage, false);
+    };
+  }, [props.receiveMessage])
   
   const fields = Object.keys(props.ipg).map( (key, index) => {
     return <input type="hidden" name={key} key={index} value={props.ipg[key]} /> 
   });
-
-  console.log(props)
 
   return (
 <Aux>
