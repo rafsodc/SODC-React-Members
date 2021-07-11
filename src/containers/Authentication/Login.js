@@ -4,7 +4,7 @@ import {loginFormSchema} from "../../services/forms/schema";
 import LoginForm from "./LoginForm";
 import Aux from "../../hoc/Aux";
 import {useDispatch, useSelector} from "react-redux";
-import {loginSubmit, setLoginField} from "../../store/actions/";
+import {login, setLoginField} from "../../store/actions/";
 
 const Login = (props) => {
   const formName = 'login';
@@ -26,7 +26,7 @@ const Login = (props) => {
     //dispatch(errorFlag('captcha', value === null))
   }
 
-  const onSubmit = () => dispatch(loginSubmit(formState.fields));
+  const onSubmit = () => dispatch(login(formState.fields));
 
   const childProps = {
     form: formName,

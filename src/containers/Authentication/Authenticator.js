@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import Login from "../Login/Login";
+import Login from "../Authentication/Login";
 import {refreshToken} from "../../store/actions/";
 import axios from "../../services/axios/axios";
 import {loadUser} from "../../store/actions/";

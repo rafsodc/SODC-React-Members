@@ -3,12 +3,14 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import {DisplayRouteNav} from "../../containers/Routes/Routes";
 import {headerRoutes} from "../../containers/Routes/RouteDefs";
+import LoginLink from './LoginLink';
 
 
 // We can use the 'as' prop to render Nav.Link as a react-router-dom NavLink.
 // See https://stackoverflow.com/questions/54843302/reactjs-bootstrap-navbar-and-routing-not-working-together
 
-const headerNavbar = React.memo(() => {
+const headerNavbar = React.memo((props) => {
+  console.log(props);
   return (
     <Navbar bg="app-primary" variant="dark" expand="lg">
       <Navbar.Brand href="#home">RAF SODC</Navbar.Brand>
@@ -18,7 +20,7 @@ const headerNavbar = React.memo(() => {
           <DisplayRouteNav routes={headerRoutes}/>
         </Nav>
         <Nav>
-          <Nav.Link href="/members">Members' Login</Nav.Link>
+          <LoginLink authenticated={props.authenticated} />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

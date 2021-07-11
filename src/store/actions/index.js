@@ -7,7 +7,8 @@ export {
   errorFlag
 } from './error';
 export {
-  loginSubmit,
+  login,
+  logout,
   refreshToken,
   setLoginField,
   loadUser

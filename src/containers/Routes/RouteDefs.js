@@ -1,11 +1,12 @@
 import Banner from "../../ReactUI/Banner/Banner";
 import RenderRoutes from "./Routes";
 import Landing from "../Landing/Landing";
-import Login from "../Login/Login";
+import Login from "../Authentication/Login";
 import EventPage from "../Event/EventPage";
 import Booking from "../Booking/Booking";
 import Page from "../Page/Page"
 import Contact from "../Contact/Contact"
+import Logout from "../Authentication/Logout";
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request
@@ -91,13 +92,13 @@ const otherRoutes = [
     component: EventPage,
     auth: true,
   },
-  // {
-  //   path: "/booking",
-  //   key: "APP_BOOKING",
-  //   title: "Book Event",
-  //   exact: true,
-  //   component: Booking
-  // },
+  {
+    path: "/logout",
+    key: "APP_LOGOUT",
+    title: "Log Out",
+    exact: true,
+    component: Logout,
+  },
   // {
   //   path: "/booking/:id",
   //   key: "APP_BOOKING_ID",

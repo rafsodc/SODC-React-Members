@@ -10,11 +10,11 @@ export const setLoginLock = (isLocked) => setFormLocked(actionTypes.authenticati
 export const setLoginHidden = (isHidden) => setFormHidden(actionTypes.authentication.NAME, isHidden);
 const clearLogin = () => clearForm(actionTypes.authentication.NAME);
 
-export const loginSubmit = (data) => dispatch => {
+export const login = (data) => dispatch => {
   dispatch(setLoginLock(true));
   axios.post(apiPaths.authentication.LOGIN, JSON.stringify(data))
   .then((response) => {
-    dispatch(login(response.data.token));
+    dispatch(doLogin(response.data.token));
     dispatch(clearLogin());
   })
   .catch((error) => {
@@ -30,17 +30,14 @@ export const loginSubmit = (data) => dispatch => {
   })
 }
 
-export const login = (token) => ([
+export const doLogin = (token) => ([
   authenticate(token),
   checkTokenTimeout(3600)
 ]);
 
-// export const login = (token) => {
-//   return dispatch => {
-//     dispatch(authenticate(token));
-//     dispatch(checkTokenTimeout(3600));
-//   }
-//}
+export const logout = () => dispatch => {
+  axios.post(apiPaths.authentication.LOGOUT).then(dispatch(doLogout()));
+}
 
 const authenticate = (token) => {
   return {
@@ -61,11 +58,11 @@ const checkTokenTimeout = (expirationTime) => {
 export const refreshToken = () => dispatch => {
 
   //This should be post!
-  axios.get(apiPaths.authentication.REFRESH_TOKEN).then((response) => dispatch(login(response.data.token)))
+  axios.get(apiPaths.authentication.REFRESH_TOKEN).then((response) => dispatch(doLogin(response.data.token)))
   .catch((error) => {
     switch(error.response.status) {
       case 401:
-        dispatch(logout());
+        dispatch(doLogout());
         dispatch(setLoginHidden(false));
         break;
       default:
@@ -73,7 +70,7 @@ export const refreshToken = () => dispatch => {
   });
 }
 
-export const logout = () => {
+export const doLogout = () => {
   return {
     type: actionTypes.authentication.LOGOUT
   };
