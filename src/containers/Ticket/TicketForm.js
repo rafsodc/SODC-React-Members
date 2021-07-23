@@ -22,6 +22,10 @@ const TicketForm = (props) => {
         Save
       </Button>
 
+      <Button variant="danger" onClick={props.handleRemove}>
+        Remove
+      </Button>
+
 
     </fieldset>
   </Form>};

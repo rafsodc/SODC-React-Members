@@ -4,12 +4,14 @@ import {ticketFormSchema} from "../../services/forms/schema";
 import {useDispatch} from "react-redux";
 import TicketForm from "./TicketForm";
 import {Accordion, Card} from "react-bootstrap";
-import {setTicketField, setTicketLocked, submitTicketForm} from "../../store/actions";
+import {setAccordion, setTicketField, setTicketLocked, submitTicketForm} from "../../store/actions";
 import SavedBadge from "../Booking/SavedBadge";
 import ErrorBadge from "../Booking/ErrorBadge";
 import {isEmptyObject} from "../../services/funcs/funcs";
 import actionTypes from "../../store/actionTypes";
 import {submitForm} from "../../store/helpers/formActions";
+import {deleteTicket, loadTickets, removeTicket} from "../../store/actions/ticket";
+import Aux from "../../hoc/Aux"
 
 
 const Ticket = (props) => {
@@ -29,6 +31,13 @@ const Ticket = (props) => {
     dispatch(submitTicketForm(props.ticket.fields, props.ticket.id, props.ticket.location, props.event, props.owner))
   }
 
+  const handleRemove = () => {
+    dispatch([
+      deleteTicket(props.ticket.id, props.ticket.location),
+      setAccordion('ticket', 0)
+    ]);
+  }
+
   const childProps = {
     errors: errors,
     data: props.ticket.fields,
@@ -36,16 +45,20 @@ const Ticket = (props) => {
     ref: register
   }
 
-  const subtitle = (props.ticket.fields.ticketType !== "") ? " - " + props.ticketOptions.find(el => el.value = props.ticket.fields.ticketType).description : "";
+  const subtitle = (props.ticket.fields.ticketType !== "") ? 
+    <Aux> - 
+      {props.ticketOptions.find(el => el.value = props.ticket.fields.ticketType).description}<br/> 
+      ({props.ticket.fields.lastname}, {props.ticket.fields.firstname})
+    </Aux>: ""
 
   return <Card>
     <Card.Header onClick={props.handleHeaderClick}>
-      Ticket {props.ticketKey}{subtitle} <SavedBadge saved={props.ticket.saved}/> <ErrorBadge errors={!isEmptyObject(errors)}/>
+      Ticket {subtitle} <SavedBadge saved={props.ticket.saved}/> <ErrorBadge errors={!isEmptyObject(errors)}/>
     </Card.Header>
     <Accordion.Collapse eventKey={props.ticketKey}>
       <Card.Body>
         <TicketForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={props.ticket.locked}
-               childProps={childProps} ticketOptions={props.ticketOptions} saved={props.ticket.saved}/>
+               childProps={childProps} ticketOptions={props.ticketOptions} saved={props.ticket.saved} handleRemove={handleRemove}/>
       </Card.Body>
     </Accordion.Collapse>
   </Card>;

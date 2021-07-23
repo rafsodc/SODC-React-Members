@@ -11,7 +11,9 @@ export {
   logout,
   refreshToken,
   setLoginField,
-  loadUser
+  loadUser,
+  setPasswordResetRequestField,
+  passwordResetRequest
 } from './authentication'
 export {
   setAccordion,

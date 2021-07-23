@@ -1,4 +1,4 @@
-import {addElement, blankObject, updateItemOrArray, updateObject} from "./utility";
+import {addElement, blankObject, updateItemOrArray, updateObject, setParam, removeElementById} from "./utility";
 
 /**
  * Adds a form to an array of forms
@@ -15,6 +15,16 @@ export const addForm = (state, action, newElement) => {
   const el = updateObject(newElement, {id: action.id, location: action.location, saved: action.saved});
   // Update state
   return addElement(state, el);
+};
+
+/**
+ * Removes a form to an array of forms
+ * @param state Current state
+ * @param action Current action data
+ * @returns {*}
+ */
+ export const removeForm = (state, action) => {
+  return removeElementById(state, action.id);
 };
 
 /**
@@ -42,3 +52,13 @@ export const clearForm = (state, action) => {
 
   return updateItemOrArray(state, action, setSingle);
 }
+
+/**
+ * Default reducer object for forms
+ */
+export const formReducerObject = (actionType) => ({
+  [actionType.SET_FIELD]: setField,
+  [actionType.SET_LOCKED]: setParam,
+  [actionType.SET_HIDDEN]: setParam,
+  [actionType.CLEAR]: clearForm
+});

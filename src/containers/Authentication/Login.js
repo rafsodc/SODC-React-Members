@@ -9,7 +9,7 @@ import {login, setLoginField} from "../../store/actions/";
 const Login = (props) => {
   const formName = 'login';
   const dispatch = useDispatch();
-  const formState = useSelector(state => state.authenticationReducer.form);
+  const formState = useSelector(state => state.loginFormReducer);
 
   const {
     register,

@@ -7,7 +7,6 @@ import Aux from "../../hoc/Aux"
 const IPG = (props) => {
 
   useEffect(() => {
-    
     window.addEventListener('message', props.receiveMessage, false);
     
     // cleanup this component
@@ -15,23 +14,24 @@ const IPG = (props) => {
       window.removeEventListener('message', props.receiveMessage, false);
     };
   }, [props.receiveMessage])
-  
-  const fields = Object.keys(props.ipg).map( (key, index) => {
-    return <input type="hidden" name={key} key={index} value={props.ipg[key]} /> 
-  });
+
+   const fields = Object.keys(props.ipg).map( (key, index) => {
+     if(props.ipg[key] !== "action") {
+      return <input type="hidden" name={key} key={index} value={props.ipg[key]} /> 
+     }
+   });
+
 
   return (
-<Aux>
+    <Aux>
+      <form method="post" target="ipgFrame" action={props.ipg.action}>
+        {fields}
+        <input type="submit" value="Submit" />
 
-  <form method="post" target="ipgFrame" action={props.ipg.action}>
-          {fields}
-          <input type="submit" value="Submit" />
+      </form>
 
-        </form>
-
-        <iframe name="ipgFrame" id="ipgFrame" title="ipgFrame" width="460px" height="900px" > </iframe>
+      <iframe name="ipgFrame" id="ipgFrame" title="ipgFrame" width="460px" height="900px" > </iframe>
      </Aux> 
-
 )
   }
 

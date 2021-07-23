@@ -6,7 +6,7 @@ import {bannerRoutes} from "../../containers/Routes/RouteDefs";
 
 const Header = () => {
 
-  const auth = useSelector(state => state.authenticationReducer.auth);
+  const auth = useSelector(state => state.authenticationReducer);
 
   return (
     <header className={"bg-app-primary"} >

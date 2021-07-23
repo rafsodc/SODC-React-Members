@@ -1,0 +1,1 @@
+export const ERROR_FLAG = 'ERROR_FLAG';

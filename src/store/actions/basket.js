@@ -22,7 +22,16 @@ export const setTransaction = (data) => ({
   data: {ipg: data.ipg, status: data.status, expired: data.expired}
 })
 
-export const setResponse = (data) => ({
+export const setResponse = (data) => {
+  
+  const obj = {};
+
+  data.map(element => {
+    obj[element['name']] = element['value']
+    return;
+  })
+
+  return {
   type: actionTypes.basket.SET_RESPONSE,
-  data: data
-})
+  data: obj
+}};

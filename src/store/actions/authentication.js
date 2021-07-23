@@ -3,12 +3,12 @@ import actionTypes from "../actionTypes";
 import axios from "../../services/axios/axios";
 import apiPaths from "../paths";
 import {setAlert} from "./alert";
-import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes";
+import {ALERT_DANGER, ALERT_SUCCESS} from "../../ReactUI/AlertWindow/alertTypes";
 
-export const setLoginField = (data) => setFormField(actionTypes.authentication.NAME, data);
-export const setLoginLock = (isLocked) => setFormLocked(actionTypes.authentication.NAME, isLocked);
-export const setLoginHidden = (isHidden) => setFormHidden(actionTypes.authentication.NAME, isHidden);
-const clearLogin = () => clearForm(actionTypes.authentication.NAME);
+export const setLoginField = (data) => setFormField(actionTypes.loginForm.NAME, data);
+export const setLoginLock = (isLocked) => setFormLocked(actionTypes.loginForm.NAME, isLocked);
+export const setLoginHidden = (isHidden) => setFormHidden(actionTypes.loginForm.NAME, isHidden);
+const clearLogin = () => clearForm(actionTypes.loginForm.NAME);
 
 export const login = (data) => dispatch => {
   dispatch(setLoginLock(true));
@@ -84,3 +84,31 @@ export const setUser = (user) => ({
   type: actionTypes.authentication.SET_USER,
   payload: user
 });
+
+
+//////
+
+export const setPasswordResetRequestField = (data) => setFormField(actionTypes.passwordResetRequestForm.NAME, data);
+export const setPasswordResetRequestLocked = (isLocked) => setFormLocked(actionTypes.passwordResetRequestForm.NAME, isLocked);
+export const setPasswordResetRequestHidden = (isHidden) => setFormHidden(actionTypes.passwordResetRequestForm.NAME, isHidden);
+const clearPasswordResetRequest = () => clearForm(actionTypes.passwordResetRequestForm.NAME);
+
+export const passwordResetRequest = (data) => dispatch => {
+  dispatch(setPasswordResetRequestLocked(true));
+  axios.post(apiPaths.authentication.FORGOT_PASSWORD, JSON.stringify(data))
+  .then((response) => {
+    dispatch(setAlert("A password reset link has been sent to your email address.", "", ALERT_SUCCESS));
+    dispatch(clearPasswordResetRequest());
+  })
+  .catch((error) => {
+    switch (error.response.status) {
+      case 401:
+        dispatch(setAlert("An error has occurred", error.response.data.message, ALERT_DANGER));
+        break;
+      default:
+    }
+  })
+  .finally(() => {
+    dispatch(setPasswordResetRequestLocked(false));
+  })
+}

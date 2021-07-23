@@ -7,8 +7,8 @@ import {loadUser} from "../../store/actions/";
 
 const Authenticator = (props) => {
 
-  const auth = useSelector(state => state.authenticationReducer.auth)
-  const form = useSelector(state => state.authenticationReducer.form)
+  const auth = useSelector(state => state.authenticationReducer)
+  const form = useSelector(state => state.loginFormReducer)
   const dispatch = useDispatch();
 
   // useLayoutEffect runs synchronously, which allows axios to be updated.

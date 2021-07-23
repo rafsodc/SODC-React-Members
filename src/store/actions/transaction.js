@@ -1,6 +1,7 @@
 import axios from "../../services/axios/axios";
 import apiPaths from "../paths";
 import actionTypes from "../actionTypes";
+import ipgAxios from 'axios';
 
 export const loadTransactions = (event, owner = null) => dispatch => {
   let query = "?event=" + event;

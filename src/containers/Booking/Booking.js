@@ -39,12 +39,9 @@ const Booking = (props) => {
   }
 
   const handleHeaderClick = (tab, key) => {
-    //console.log(tab);
     const setKey = (key === bookingState.accordion[tab]) ? -1 : key;
     dispatch(setAccordion(tab, setKey));
   }
-
-  console.log(bookingState.accordion);
 
   const transformedTicketForms = ticketState.map( (ticket, key) => {
     return <Ticket

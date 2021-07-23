@@ -6,6 +6,7 @@ import Aux from "../../hoc/Aux"
 import {Button} from "react-bootstrap";
 import Loading from "../../ReactUI/Loading/Loading"
 import IPG from "./IPG.js"
+import IPGResponse from "./IPGResponse";
 
 
 const Basket = (props) => {
@@ -33,14 +34,16 @@ const Basket = (props) => {
 
   console.log(basketState)
 
-  const ipg = (basketState.transaction === null)? "" : <IPG ipg={basketState.transaction.ipg} receiveMessage={receiveMessage}/>
+  const ipg = (basketState.transaction === null)? <Button onClick={handleIPGButton}>Proceed to Payment</Button> : 
+    (basketState.response === null) ? <IPG ipg={basketState.transaction.ipg} receiveMessage={receiveMessage}/> : 
+    <IPGResponse response={basketState.response} />;
   
   const content = (
     <Aux>
     <h4>Basket</h4>
     <p>Amount: &pound;{basketState.amount}</p>
     <p>Tickets: {tickets}</p>
-    <Button onClick={handleIPGButton}>Proceed to Payment</Button>
+    
     {ipg}
     </Aux>
   );

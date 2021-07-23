@@ -41,6 +41,10 @@ export const removeElementByValue = (oldArray, value) => {
   return [...oldArray].filter(el => (el !== value));
 }
 
+export const removeElementById = (oldArray, id) => {
+  return [...oldArray].filter(el => (el.id !== id));
+}
+
 export const replaceElementByIndex = (oldArray, index, newElement) => {
   const arr = [...oldArray];
   arr[index] = newElement;
@@ -68,6 +72,7 @@ export const setParam = (state, action) => {
 }
 
 export const createReducer = (initialState, handlers) => (state = initialState, action) => {
+
   if (handlers.hasOwnProperty(action.type)) {
     if(typeof(handlers[action.type]) === 'function') {
       return handlers[action.type](state, action)

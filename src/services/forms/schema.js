@@ -19,3 +19,7 @@ export const contactFormSchema = () => yup.object().shape({
   subject: yup.string().required(),
   message: yup.string().required(),
 })
+
+export const passwordResetRequestFormSchema = () => yup.object().shape({
+  email: yup.string().email().required()
+})
