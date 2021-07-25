@@ -7,11 +7,11 @@ import Aux from "../../hoc/Aux"
 const IPG = (props) => {
 
   useEffect(() => {
-    window.addEventListener('message', props.receiveMessage, false);
+    window.addEventListener('message', props.messageHandler, false);
     
     // cleanup this component
     return () => {
-      window.removeEventListener('message', props.receiveMessage, false);
+      window.removeEventListener('message', props.messageHandler, false);
     };
   }, [props.receiveMessage])
 
@@ -26,7 +26,7 @@ const IPG = (props) => {
     <Aux>
       <form method="post" target="ipgFrame" action={props.ipg.action}>
         {fields}
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Click here to pay using Credit or Debit Card" />
 
       </form>
 

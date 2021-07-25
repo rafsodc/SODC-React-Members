@@ -12,6 +12,7 @@ import actionTypes from "../../store/actionTypes";
 import {submitForm} from "../../store/helpers/formActions";
 import {deleteTicket, loadTickets, removeTicket} from "../../store/actions/ticket";
 import Aux from "../../hoc/Aux"
+import PaidBadge from "../Booking/PaidBadge";
 
 
 const Ticket = (props) => {
@@ -46,14 +47,14 @@ const Ticket = (props) => {
   }
 
   const subtitle = (props.ticket.fields.ticketType !== "") ? 
-    <Aux> - 
-      {props.ticketOptions.find(el => el.value = props.ticket.fields.ticketType).description}<br/> 
-      ({props.ticket.fields.lastname}, {props.ticket.fields.firstname})
+    <Aux>{" - "}
+      {props.ticketOptions.find(el => el.value = props.ticket.fields.ticketType).description}
     </Aux>: ""
 
   return <Card>
     <Card.Header onClick={props.handleHeaderClick}>
-      Ticket {subtitle} <SavedBadge saved={props.ticket.saved}/> <ErrorBadge errors={!isEmptyObject(errors)}/>
+      
+      Ticket {subtitle} <SavedBadge saved={props.ticket.saved}/> <PaidBadge paid={props.ticket.fields.paid}/><ErrorBadge errors={!isEmptyObject(errors)}/>
     </Card.Header>
     <Accordion.Collapse eventKey={props.ticketKey}>
       <Card.Body>

@@ -5,8 +5,6 @@ import "../../ReactUI/Forms/Form.css";
 
 const TicketForm = (props) => {
 
-
-
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={"disabled"}>
     <fieldset disabled={props.locked && "disabled"}>
       <Form.Group>
@@ -22,7 +20,7 @@ const TicketForm = (props) => {
         Save
       </Button>
 
-      <Button variant="danger" onClick={props.handleRemove}>
+      <Button variant="danger" onClick={props.handleRemove} disabled={props.childProps.data.paid}>
         Remove
       </Button>
 

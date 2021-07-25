@@ -27,6 +27,7 @@ const EventPage = () => {
 
   if (eventState.event !== null)  {
     return <Aux>
+      <h2>Event Booking</h2>
       <Accordion>
         <Event {...eventState.event} eventKey={"event"}/>
       </Accordion>

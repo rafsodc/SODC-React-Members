@@ -10,6 +10,9 @@ import {loadTransactions} from "../../store/actions/transaction";
 import Transaction from "../Transaction/Transaction";
 import TransactionList from "../Transaction/TransactionList";
 import Basket from "../Transaction/Basket";
+import Payment from "../Transaction/Payment";
+import {setResponse } from "../../store/actions/basket";
+import IPGResponse from "../Transaction/IPGResponse";
 
 const Booking = (props) => {
 
@@ -33,9 +36,15 @@ const Booking = (props) => {
       ]);
     }
   }
-  
-  const handleTicketNext = () => {
-    dispatch(setTab("order"))
+
+  const handleTabSelect = (key) => dispatch(setTab(key))
+
+  // Handle message received from IPG frame
+  const messageHandler = (event) => {
+    dispatch([
+      setResponse(event.data.elementArr),
+      dispatch(setTab("confirmation"))
+    ]);  
   }
 
   const handleHeaderClick = (tab, key) => {
@@ -72,21 +81,35 @@ const Booking = (props) => {
 
   // Only load basket when the order tab is displayed (prevents excessive POST requests)
   const basket = (bookingState.tab === "order") ? <Basket owner={bookingState.owner} event={props.event}/> : "";
+  const payment = (bookingState.tab === "payment") ? <Payment messageHandler={messageHandler}/> : "";
+  const confirmation = (bookingState.tab === "confirmation") ? <IPGResponse /> : "";
+
+  const order_disabled = !['order', 'payment'].includes(bookingState.tab);
 
   return (
-    <Tabs activeKey={bookingState.tab}>
+    <Tabs activeKey={bookingState.tab} onSelect={(key) => handleTabSelect(key)}>
       <Tab eventKey="tickets" title={"Tickets"}><br/>
+        <p>Below are the tickets you have requested for this event.  Ticket details can be edited up until booking closes.  Unpaid tickets can be cancelled; however it is not possible to cancel paid tickets via the website.  Please email <a href="mailto:admin@sodc.net">admin@sodc.net</a> to cancel paid tickets.</p>
+        <p>To view or edit ticket details, please click on a heading.</p>
         <TicketList activeKey={bookingState.accordion.ticket} handleAddTicket={handleAddTicket}>
           {transformedTicketForms}
         </TicketList>
         <br/>
-        <Button onClick={handleTicketNext}>Next</Button>
+        <Button onClick={() => handleTabSelect('order')}>Proceed to Order Confirmation</Button>
       </Tab>
-      <Tab eventKey="order" title={"Order"}>
-        <TransactionList activeKey={bookingState.accordion.transaction} >
+      <Tab eventKey="order" title={"Order"} disabled={order_disabled}>
+        {/* <TransactionList activeKey={bookingState.accordion.transaction} >
           {transformedTransactions}
-        </TransactionList>
+        </TransactionList> */}
         {basket}
+        <Button onClick={() => handleTabSelect('payment')}>Proceed to Payment</Button>
+      </Tab>
+      <Tab eventKey="payment" title={"Payment"} disabled={false}>
+         {payment}
+      </Tab>
+      <Tab eventKey="confirmation" title={"Confirmation"} disabled={true}>
+         {confirmation}
+         <Button onClick={() => handleTabSelect('tickets')}>Return to Tickets</Button>
       </Tab>
     </Tabs>
   );
