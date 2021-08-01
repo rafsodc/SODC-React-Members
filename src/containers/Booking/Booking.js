@@ -104,7 +104,7 @@ const Booking = (props) => {
         {basket}
         <Button onClick={() => handleTabSelect('payment')}>Proceed to Payment</Button>
       </Tab>
-      <Tab eventKey="payment" title={"Payment"} disabled={false}>
+      <Tab eventKey="payment" title={"Payment"} disabled={true}>
          {payment}
       </Tab>
       <Tab eventKey="confirmation" title={"Confirmation"} disabled={true}>

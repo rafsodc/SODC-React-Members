@@ -9,13 +9,13 @@ const FormElement = React.forwardRef((props, ref) => {
 
   switch(props.type) {
     case 'select':
-      control = <Form.Control as="select" onChange={props.onChange} name={props.name} ref={ref}
+      control = <Form.Control as="select" disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref}
                                     placeholder={props.placeholder}
                                     className={props.errors[props.name] && "form-warning-el"}
                                     value={props.data[props.name]}><FormSelectOptions options={props.options}/></Form.Control>
       break;
     default:
-      control = <Form.Control onChange={props.onChange} name={props.name} ref={ref} type={props.type}
+      control = <Form.Control disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref} type={props.type}
                                     placeholder={props.placeholder}
                                     className={props.errors[props.name] && "form-warning-el"}
                                     value={props.data[props.name]} />

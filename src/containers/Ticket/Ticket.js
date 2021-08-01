@@ -59,7 +59,7 @@ const Ticket = (props) => {
     <Accordion.Collapse eventKey={props.ticketKey}>
       <Card.Body>
         <TicketForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={props.ticket.locked}
-               childProps={childProps} ticketOptions={props.ticketOptions} saved={props.ticket.saved} handleRemove={handleRemove}/>
+               childProps={childProps} ticketOptions={props.ticketOptions} saved={props.ticket.saved} paid={props.ticket.fields.paid} handleRemove={handleRemove}/>
       </Card.Body>
     </Accordion.Collapse>
   </Card>;

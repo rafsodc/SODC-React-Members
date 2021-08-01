@@ -8,7 +8,7 @@ const TicketForm = (props) => {
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={"disabled"}>
     <fieldset disabled={props.locked && "disabled"}>
       <Form.Group>
-        <FormElement type="select" placeholder="Select Ticket" label="Ticket" name="ticketType" {...props.childProps} options={props.ticketOptions} />
+        <FormElement type="select" placeholder="Select Ticket" label="Ticket" name="ticketType" {...props.childProps} options={props.ticketOptions} disabled={props.paid} />
         <FormElement type="text" placeholder="Rank" label="Rank" name="rank" {...props.childProps}/>
         <FormElement type="text" placeholder="First Name" label="First Name" name="firstname" {...props.childProps}/>
         <FormElement type="text" placeholder="Last Name" label="Last Name" name="lastname" {...props.childProps}/>
