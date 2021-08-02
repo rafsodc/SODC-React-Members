@@ -112,3 +112,52 @@ export const passwordResetRequest = (data) => dispatch => {
     dispatch(setPasswordResetRequestLocked(false));
   })
 }
+
+
+//////
+
+export const setPasswordResetSubmitField = (data) => setFormField(actionTypes.passwordResetSubmitForm.NAME, data);
+export const setPasswordResetSubmitLocked = (isLocked) => setFormLocked(actionTypes.passwordResetSubmitForm.NAME, isLocked);
+export const setPasswordResetSubmitHidden = (isHidden) => setFormHidden(actionTypes.passwordResetSubmitForm.NAME, isHidden);
+const clearPasswordResetSubmit = () => clearForm(actionTypes.passwordResetSubmitForm.NAME);
+
+/////
+
+const setValid = (isValid) => ({
+  type: actionTypes.passwordResetSubmit.SET_VALID,
+  data: isValid
+});
+
+const setLoaded = (isLoaded) => ({
+  type: actionTypes.passwordResetSubmit.SET_LOADED,
+  data: isLoaded
+});
+
+export const checkPasswordResetToken = (token) => dispatch => {
+  axios.get(apiPaths.authentication.FORGOT_PASSWORD + token)
+  .then(() => dispatch(setValid(true)))
+  .catch(() => dispatch(setValid(false)))
+  .finally(() => dispatch(setLoaded(true)));
+}
+
+export const submitPasswordReset = (token, data) => dispatch => {
+  dispatch(setPasswordResetSubmitLocked(true));
+  axios.post(apiPaths.authentication.FORGOT_PASSWORD + token, JSON.stringify(data))
+  .then((response) => {
+    dispatch([setAlert("Your password has been successfully changed.", "", ALERT_SUCCESS),
+      clearPasswordResetSubmit(),
+      setPasswordResetSubmitHidden(true)
+    ]);
+  })
+  .catch((error) => {
+    switch (error.response.status) {
+      case 401:
+        dispatch(setAlert("An error has occurred", error.response.data.message, ALERT_DANGER));
+        break;
+      default:
+    }
+  })
+  .finally(() => {
+    dispatch(setPasswordResetSubmitLocked(false));
+  })
+}

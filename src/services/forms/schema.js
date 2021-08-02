@@ -23,3 +23,8 @@ export const contactFormSchema = () => yup.object().shape({
 export const passwordResetRequestFormSchema = () => yup.object().shape({
   email: yup.string().email().required()
 })
+
+export const passwordResetSubmitFormSchema = () => yup.object().shape({
+  password: yup.string().required(),
+  passwordConfirm: yup.string().oneOf([yup.ref('password'), null], "Passwords must match")
+})

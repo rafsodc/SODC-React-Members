@@ -29,9 +29,16 @@ const passwordResetSubmitForm = {
   CLEAR: 'CLEAR_PASSWORD_RESET_SUBMIT'
 }
 
+const passwordResetSubmit = {
+  NAME: 'passwordResetSubmit',
+  SET_LOADED: 'SET_PASSWORD_RESET_SUBMIT_LOADED',
+  SET_VALID: 'SET_PASSWORD_RESET_SUBMIT_VALID'
+}
+
 export default {
   authentication: authentication,
   loginForm: loginForm,
   passwordResetRequestForm: passwordResetRequestForm,
-  passwordResetSubmitForm: passwordResetSubmitForm
+  passwordResetSubmitForm: passwordResetSubmitForm,
+  passwordResetSubmit: passwordResetSubmit
 }

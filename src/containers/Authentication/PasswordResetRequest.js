@@ -46,6 +46,7 @@ const PasswordResetRequest = (props) => {
 
   return <Aux>
     <h1>Password Reset</h1>
+    <p>Please enter your email address.  If that email address matches one on our records, a password reset link will be sent to that email address.  Please be sure to check you junk mail folders.  If you do not receive an email, please email <a href="mailto:admin@sodc.net">admin@sodc.net</a>.</p>
     <PasswordResetRequestForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={formState.locked}
                childProps={childProps} captchaError={captchaError}/>
   </Aux>;

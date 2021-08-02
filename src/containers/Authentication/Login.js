@@ -5,6 +5,7 @@ import LoginForm from "./LoginForm";
 import Aux from "../../hoc/Aux";
 import {useDispatch, useSelector} from "react-redux";
 import {login, setLoginField} from "../../store/actions/";
+import {NavLink} from "react-router-dom";
 
 const Login = (props) => {
   const formName = 'login';
@@ -40,6 +41,7 @@ const Login = (props) => {
     <h1>Login</h1>
     <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={formState.locked}
                childProps={childProps} />
+    <br/><NavLink to={"/forgot-password"}>Request Password Reset</NavLink>
   </Aux>;
 
 };

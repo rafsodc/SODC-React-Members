@@ -66,7 +66,8 @@ class ErrorBoundary extends Component {
   errorSelectors = [
     'error',
     'hydra:description',
-    'message'
+    'message',
+    'detail'
   ];
 }
 

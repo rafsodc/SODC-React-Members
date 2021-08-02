@@ -8,6 +8,7 @@ import Page from "../Page/Page"
 import Contact from "../Contact/Contact"
 import Logout from "../Authentication/Logout";
 import PasswordResetRequest from "../Authentication/PasswordResetRequest";
+import PasswordResetSubmit from "../Authentication/PasswordResetSubmit";
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request
@@ -107,13 +108,13 @@ const otherRoutes = [
     exact: true,
     component: PasswordResetRequest
   },
-  // {
-  //   path: "/forgot-password/:id",
-  //   key: "APP_FORGOT_PASSWORD_ID",
-  //   title: "Password Reset",
-  //   exact: true,
-  //   component: PasswordResetRequestSubmit
-  // }
+  {
+    path: "/forgot-password/:token",
+    key: "APP_FORGOT_PASSWORD_SUBMIT",
+    title: "Password Reset",
+    exact: true,
+    component: PasswordResetSubmit
+  }
   // {
   //   path: "/booking/:id",
   //   key: "APP_BOOKING_ID",

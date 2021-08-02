@@ -13,7 +13,9 @@ export {
   setLoginField,
   loadUser,
   setPasswordResetRequestField,
-  passwordResetRequest
+  passwordResetRequest,
+  setPasswordResetSubmitField,
+  submitPasswordReset
 } from './authentication'
 export {
   setAccordion,
