@@ -20,7 +20,10 @@ COPY . ./
 FROM react_app_common AS react_app_dev
 CMD ["npm", "start"]
 
+FROM react_app_common AS react_app_build
+RUN npm run build
+
 FROM nginx:stable AS react_app_prod
-COPY --from=react_app_common /app/build /usr/share/nginx/html
+COPY --from=react_app_build /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
