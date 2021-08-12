@@ -13,14 +13,24 @@ const BookingOwnerSelect = (props) => {
   const dispatch = useDispatch();
   const bookingState = useSelector(state => state.bookingReducer);
   const typeAhead = useSelector(state => state.typeAheadReducer.bookingOwner);
+  const user = useSelector(state => state.authenticationReducer.token_data);
 
   useEffect(() => {
     // If I am an admin @todo - check for role
-    if(!props.ownerSelectDisabled) {
-      // Put me in the search box
-      dispatch(setMeAsDefault("bookingOwner"));
+    //console.log(user.roles.includes("ROLE_ADMIN"));
+    if(user.roles.includes("ROLE_ADMIN")) {
+      if(!props.ownerSelectDisabled) {
+        // Put me in the search box
+        dispatch(setMeAsDefault("bookingOwner"));
+      }
     }
-  }, [dispatch]);
+    else {
+      dispatch(setOwner(user.id));
+    }
+    
+    // setOwner(user.id)
+    
+  }, [dispatch, user]);
 
   const handleSelectOwner = () => {
     dispatch(clearUnstickyAlerts())
