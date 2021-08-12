@@ -29,8 +29,9 @@ const IPG = (props) => {
         <input type="submit" value="Click here to pay using Credit or Debit Card" />
 
       </form>
+      <br/>
 
-      <iframe name="ipgFrame" id="ipgFrame" title="ipgFrame" width="460px" height="900px" > </iframe>
+      <iframe name="ipgFrame" id="ipgFrame" title="ipgFrame" width="460px" height="900px" style={{border:"0px"}} > </iframe>
      </Aux> 
 )
   }

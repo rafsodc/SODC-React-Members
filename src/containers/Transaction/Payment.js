@@ -25,7 +25,7 @@ const Payment = (props) => {
   return (
     <Aux><br/>
       <p>Payment will be taken using the Lloyds Cardnet Payment Gateway.  Please click on the button below to continue.</p>
-      {ipg};
+      {ipg}
     </Aux> 
   );
 

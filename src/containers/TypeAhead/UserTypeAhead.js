@@ -26,6 +26,11 @@ const UserTypeAhead = (props) => {
 
   const errorMsg = typeAheadState.error ? <Form.Text muted className={"form-warning-desc"}>User must be selected</Form.Text> : "";
 
+  const formatOption = (option) => {
+    const rank = option.rank === undefined ? "" : " (" + option.rank.rank + ")";
+    return option.lastName + ", " + option.firstName + rank;
+  }
+
   return (
     <Aux>
       <AsyncTypeahead
@@ -33,7 +38,7 @@ const UserTypeAhead = (props) => {
         filterBy={filterBy}
         id="async-example"
         isLoading={typeAheadState.loading}
-        labelKey={(option) => `${option.username}`}
+        labelKey={(option) => formatOption(option)}
         minLength={3}
         onSearch={handleSearch}
         options={typeAheadState.options}

@@ -61,7 +61,7 @@ const footerRoutes = [
     auth: false,
     props:
       {
-        apiUrl: "pages/2"
+        apiUrl: "pages/3"
       },
   },
   {
@@ -73,7 +73,7 @@ const footerRoutes = [
     auth: false,
     props:
       {
-        apiUrl: "pages/2"
+        apiUrl: "pages/4"
       },
   },
   {

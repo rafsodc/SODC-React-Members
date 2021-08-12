@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import {NavLink} from "react-router-dom";
 import {DisplayRouteNav} from "../../containers/Routes/Routes";
 import {headerRoutes} from "../../containers/Routes/RouteDefs";
 import LoginLink from './LoginLink';
@@ -13,7 +14,7 @@ const headerNavbar = React.memo((props) => {
   console.log(props);
   return (
     <Navbar bg="app-primary" variant="dark" expand="lg">
-      <Navbar.Brand href="#home">RAF SODC</Navbar.Brand>
+      <Navbar.Brand as={NavLink} to={"/"}>RAF SODC</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
