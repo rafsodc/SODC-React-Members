@@ -17,7 +17,7 @@ const BookingOwnerSelect = (props) => {
 
   useEffect(() => {
     // If I am an admin @todo - check for role
-    //console.log(user.roles.includes("ROLE_ADMIN"));
+    console.log(user.roles.includes("ROLE_ADMIN"));
     if(user.roles.includes("ROLE_ADMIN")) {
       if(!props.ownerSelectDisabled) {
         // Put me in the search box
@@ -25,6 +25,7 @@ const BookingOwnerSelect = (props) => {
       }
     }
     else {
+      console.log(user.id);
       dispatch(setOwner(user.id));
     }
     
