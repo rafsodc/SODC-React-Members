@@ -16,6 +16,7 @@ const UserTypeAhead = (props) => {
 
   const handleSelect = (value) => {
     //const value = valueArr.length !== 0 ? valueArr[0] : null;
+    console.log(value)
     dispatch(setValue(value, props.id))
     dispatch(setError(false, props.id))
   }
@@ -36,15 +37,17 @@ const UserTypeAhead = (props) => {
       <AsyncTypeahead
         className={typeAheadState.error ? "form-warning-el" : ""}
         filterBy={filterBy}
-        id="async-example"
+        id="user-select"
         isLoading={typeAheadState.loading}
         labelKey={(option) => formatOption(option)}
-        minLength={3}
+        minLength={2}
         onSearch={handleSearch}
         options={typeAheadState.options}
         placeholder="Search for a user..."
         selected={typeAheadState.selected}
         onChange={handleSelect}
+        renderMenuItemChildren={(option) => formatOption(option)}
+        useCache={true}
       />
       {errorMsg}
     </Aux>
