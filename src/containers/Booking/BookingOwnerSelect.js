@@ -3,57 +3,49 @@ import Aux from "../../hoc/Aux";
 import {useDispatch, useSelector} from "react-redux";
 import UserTypeAhead from "../TypeAhead/UserTypeAhead";
 import {Button} from "react-bootstrap";
-import {clearUnstickyAlerts, setAlert} from "../../store/actions";
-import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes";
-import {setError, setMeAsDefault} from "../../store/actions/typeAhead";
-import {setOwner} from "../../store/actions/booking";
+import {setOwner, setOwnerError, setOwnerSelected} from "../../store/actions/booking";
+import { setAlert } from "../../store/actions/alert";
+import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes"
 
 const BookingOwnerSelect = (props) => {
 
   const dispatch = useDispatch();
   const bookingState = useSelector(state => state.bookingReducer);
-  const typeAhead = useSelector(state => state.typeAheadReducer.bookingOwner);
   const user = useSelector(state => state.authenticationReducer.token_data);
 
+  const error = bookingState.ownerError && "User must be selected";
+  const displaySelect = user.roles.includes("ROLE_ADMIN") && !bookingState.ownerSelected;
+
   useEffect(() => {
-    // If I am an admin @todo - check for role
-    console.log(user.roles.includes("ROLE_ADMIN"));
-    if(user.roles.includes("ROLE_ADMIN")) {
-      if(!props.ownerSelectDisabled) {
-        // Put me in the search box
-        dispatch(setMeAsDefault("bookingOwner"));
-      }
-    }
-    else {
-      console.log(user.id);
-      dispatch(setOwner(user.id));
-    }
-    
-    // setOwner(user.id)
-    
+    dispatch(setOwner(user.iri))
   }, [dispatch, user]);
 
-  const handleSelectOwner = () => {
-    dispatch(clearUnstickyAlerts())
-    if(typeAhead.selected.length === 0) {
-      dispatch(setAlert('Error', 'Please select a user', ALERT_DANGER));
-      dispatch(setError(true, "bookingOwner"))
+  const handleSelect = (value) => {
+    dispatch(setOwner(value))
+  }
+
+  const handleClick = () => {
+    if(bookingState.owner === null) {
+      dispatch([
+        setAlert('Error', 'Please select a user', ALERT_DANGER),
+        setOwnerError(true)
+      ]);
     }
     else {
-      dispatch(setOwner(typeAhead.selected[0]['@id']))
+      dispatch(setOwnerSelected(true));
     }
   }
 
-  if(props.disabled || bookingState.owner !== null) {
-    return props.children;
+  console.log(bookingState.ownerSelected);
+
+  if(displaySelect ) {
+    return <Aux>
+        <UserTypeAhead handleSelect={handleSelect} error={error} selected={user.id}/><br/>
+        <Button onClick={handleClick}>Select User</Button>
+    </Aux>
   }
   else {
-    return (
-      <Aux>
-        <UserTypeAhead id={"bookingOwner"} /><br/>
-        <Button onClick={handleSelectOwner}>Select User</Button>
-      </Aux>
-    );
+    return props.children;
   }
 }
 

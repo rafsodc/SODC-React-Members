@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Form} from "react-bootstrap";
 import FormElement from "../../ReactUI/Forms/FormElement";
 import "../../ReactUI/Forms/Form.css";
+import UserTypeAhead from "../TypeAhead/UserTypeAhead";
 
 const TicketForm = (props) => {
 
@@ -14,6 +15,10 @@ const TicketForm = (props) => {
         <FormElement type="text" placeholder="Last Name" label="Last Name" name="lastname" {...props.childProps}/>
         <FormElement type="text" placeholder="Dietary Requirements" label="Dietary Requirements"
                      name="dietary" {...props.childProps}/>
+        <FormElement type="userTypeAhead" placeholder="Seating Preferences" label="Seating Preferences"
+                     name="seatingPreferences" {...props.childProps} />
+                       
+                  
       </Form.Group>
 
       <Button variant="primary" type="submit" disabled={props.saved && "disabled"}>

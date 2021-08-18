@@ -18,7 +18,7 @@ export const submitTicketForm = (data, id, location = null, event, owner) => {
 
 export const loadTickets = (event, owner = null) => dispatch => {
   let query = "?event=" + event;
-  query += (owner === null) ? "owner=" + owner : "";
+  query += (owner !== null) ? "&owner=" + owner : "";
   axios.get(apiPaths.ticket.GET_COLLECTION + query).then((response) => {
     const data = response.data['hydra:member'];
     return dispatch([resetTickets(), addTickets(data)]);

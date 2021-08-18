@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form} from "react-bootstrap";
+import UserTypeAhead from '../../containers/TypeAhead/UserTypeAhead';
 import Aux from "../../hoc/Aux";
 import FormSelectOptions from "./FormSelectOptions";
 
@@ -13,6 +14,11 @@ const FormElement = React.forwardRef((props, ref) => {
                                     placeholder={props.placeholder}
                                     className={props.errors[props.name] && "form-warning-el"}
                                     value={props.data[props.name]}><FormSelectOptions options={props.options}/></Form.Control>
+      break;
+    case 'userTypeAhead':
+      control = <UserTypeAhead id={"seatingPreference"} />
+      //  disabled={props.disabled} 
+      // name={props.name} className={props.errors[props.name] && "form-warning-el"}/>
       break;
     default:
       control = <Form.Control disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref} type={props.type}

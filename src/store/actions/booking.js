@@ -21,6 +21,20 @@ export const setOwner = (ownerIri) => {
   }
 }
 
+export const setOwnerError = (isError) => {
+  return {
+    type: actionTypes.booking.SET_OWNER_ERROR,
+    data: isError
+  }
+}
+
+export const setOwnerSelected = (isSelected) => {
+  return {
+    type: actionTypes.booking.SET_OWNER_SELECTED,
+    data: isSelected
+  }
+}
+
 export const setTab = (tab) => {
   return {
     type: actionTypes.booking.SET_TAB,

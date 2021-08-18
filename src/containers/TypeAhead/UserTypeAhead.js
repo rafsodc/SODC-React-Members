@@ -1,31 +1,55 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import AsyncTypeahead from "react-bootstrap-typeahead/lib/components/AsyncTypeahead";
-import {useDispatch, useSelector} from "react-redux";
-import {loadUsers, setError, setOptions, setValue} from "../../store/actions/typeAhead";
-import {Form} from "react-bootstrap";
 import Aux from "../../hoc/Aux";
+import axios from "../../services/axios/axios";
+import apiPaths from "../../store/paths";
+import {Form} from "react-bootstrap";
 
 const UserTypeAhead = (props) => {
 
-  const dispatch = useDispatch();
-  const typeAheadState = useSelector(state => state.typeAheadReducer[props.id])
+  const [isLoading, setIsLoading] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [selected, setSelected] = useState([]);
+
+  useEffect(() => {
+    if(props.selected !== undefined) {
+      setIsLoading(true);
+      const path = apiPaths.user.GET_COLLECTION + "?id=" + props.selected
+      axios.get(path).then((response) => {
+        setOptions(response.data['hydra:member']);
+        setSelected(response.data['hydra:member']);
+      })
+      .finally(
+        setIsLoading(false)
+      );
+    }
+
+  }, [props.selected]);
 
   const handleSearch = (query) => {
-    dispatch(loadUsers(query, props.id))
-  }
+    setIsLoading(true);
+
+    const path = apiPaths.user.GET_COLLECTION + "?name=" + query.toLowerCase();
+    axios.get(path).then((response) => {
+      console.log(response.data);
+      setOptions(response.data['hydra:member']);
+    })
+    .finally(
+      setIsLoading(false)
+    );
+  };
 
   const handleSelect = (value) => {
-    //const value = valueArr.length !== 0 ? valueArr[0] : null;
-    console.log(value)
-    dispatch(setValue(value, props.id))
-    dispatch(setError(false, props.id))
+    setSelected(value);
+    if(value[0] !== undefined) {
+      const uri = value[0]['@id'];
+      props.handleSelect(uri);
+    }
   }
 
   // Bypass client-side filtering by returning `true`. Results are already
   // filtered by the search endpoint, so no need to do it again.
   const filterBy = () => true;
-
-  const errorMsg = typeAheadState.error ? <Form.Text muted className={"form-warning-desc"}>User must be selected</Form.Text> : "";
 
   const formatOption = (option) => {
     const rank = option.rank === undefined ? "" : " (" + option.rank.rank + ")";
@@ -35,21 +59,21 @@ const UserTypeAhead = (props) => {
   return (
     <Aux>
       <AsyncTypeahead
-        className={typeAheadState.error ? "form-warning-el" : ""}
+        className={props.error ? "form-warning-el" : ""}
         filterBy={filterBy}
-        id="user-select"
-        isLoading={typeAheadState.loading}
+        id={props.id}
+        isLoading={isLoading}
         labelKey={(option) => formatOption(option)}
         minLength={2}
         onSearch={handleSearch}
-        options={typeAheadState.options}
+        options={options}
         placeholder="Search for a user..."
-        selected={typeAheadState.selected}
+        selected={selected}
         onChange={handleSelect}
         renderMenuItemChildren={(option) => formatOption(option)}
         useCache={true}
       />
-      {errorMsg}
+      <Form.Text muted className={"form-warning-desc"}>{props.error}</Form.Text>
     </Aux>
     );
 }

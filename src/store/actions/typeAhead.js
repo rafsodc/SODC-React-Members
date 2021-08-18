@@ -30,6 +30,16 @@ export const setMeAsDefault = (id) => dispatch => {
   );
 }
 
+export const addTypeAhead = (id) => ({
+  type: actionTypes.typeAhead.ADD,
+  id: id
+});
+
+export const removeTypeAhead = (id) => ({
+  type: actionTypes.typeAhead.REMOVE,
+  id: id
+})
+
 export const setOptions = (options, id) => ({
   type: actionTypes.typeAhead.SET_OPTIONS,
   id: id,
