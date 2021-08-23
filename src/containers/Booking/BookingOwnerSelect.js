@@ -18,9 +18,13 @@ const BookingOwnerSelect = (props) => {
 
   useEffect(() => {
     dispatch(setOwner(user.iri))
-  }, [dispatch, user]);
+    return () => {
+      dispatch(setOwnerSelected(false));
+    }
+  }, [dispatch, user.iri]);
 
   const handleSelect = (value) => {
+    console.log(value);
     dispatch(setOwner(value))
   }
 
@@ -35,8 +39,6 @@ const BookingOwnerSelect = (props) => {
       dispatch(setOwnerSelected(true));
     }
   }
-
-  console.log(bookingState.ownerSelected);
 
   if(displaySelect ) {
     return <Aux>

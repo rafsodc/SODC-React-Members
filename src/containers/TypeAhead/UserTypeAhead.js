@@ -10,8 +10,11 @@ const UserTypeAhead = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
+  const [hasChanged, setHasChanged] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
+    setError(props.error);
     if(props.selected !== undefined) {
       setIsLoading(true);
       const path = apiPaths.user.GET_COLLECTION + "?id=" + props.selected
@@ -24,7 +27,7 @@ const UserTypeAhead = (props) => {
       );
     }
 
-  }, [props.selected]);
+  }, [props.selected, props.error]);
 
   const handleSearch = (query) => {
     setIsLoading(true);
@@ -40,11 +43,27 @@ const UserTypeAhead = (props) => {
   };
 
   const handleSelect = (value) => {
+    setHasChanged(false);
+    setError(false);
     setSelected(value);
-    if(value[0] !== undefined) {
-      const uri = value[0]['@id'];
-      props.handleSelect(uri);
+    // If value, then change
+    //const uri = value[0] === undefined ? null : value[0]['@id'];
+    if(props.handleSelect !== undefined && value[0] !== undefined) {
+      props.handleSelect(value[0]['@id'], props.index);
+    } 
+  }
+
+  const handleInputChange = (value) => {
+    if(value === "") {
+      props.handleSelect(null, props.index);
     }
+    else {
+      setHasChanged(true);
+    }
+  }
+
+  const handleBlur = () => {
+    setError(hasChanged && "Please use the drop down menu to select a user.");
   }
 
   // Bypass client-side filtering by returning `true`. Results are already
@@ -59,7 +78,8 @@ const UserTypeAhead = (props) => {
   return (
     <Aux>
       <AsyncTypeahead
-        className={props.error ? "form-warning-el" : ""}
+        clearButton
+        className={error ? "form-warning-el" : ""}
         filterBy={filterBy}
         id={props.id}
         isLoading={isLoading}
@@ -72,8 +92,10 @@ const UserTypeAhead = (props) => {
         onChange={handleSelect}
         renderMenuItemChildren={(option) => formatOption(option)}
         useCache={true}
+        onInputChange={handleInputChange}
+        onBlur={handleBlur}
       />
-      <Form.Text muted className={"form-warning-desc"}>{props.error}</Form.Text>
+      <Form.Text muted className={"form-warning-desc"}>{error}</Form.Text>
     </Aux>
     );
 }

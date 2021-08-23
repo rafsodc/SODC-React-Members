@@ -67,7 +67,7 @@ export const clearForm = (formName) => {
 export const submitForm = (formName, data, id = null, location = null) => dispatch => {
   dispatch(setFormLocked(formName, true, id));
   const apiPath = (location === null) ? apiPaths[formName].POST : location;
-  const apiMethod = (location === null) ? 'post':'put';
+  const apiMethod = (location === null) ? 'post':'patch';
 
   axios[apiMethod](apiPath, JSON.stringify(data))
   .then((response) => dispatch([

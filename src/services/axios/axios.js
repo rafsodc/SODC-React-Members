@@ -2,7 +2,12 @@ import axios from 'axios';
 
 const instance = axios.create({
   headers: {
-    "Content-Type": "application/json",
+    post: {
+      "Content-Type": "application/json",
+    },
+    patch: {
+      'Content-Type': 'application/merge-patch+json'
+    }
   }
 });
 
