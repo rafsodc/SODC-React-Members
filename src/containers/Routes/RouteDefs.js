@@ -1,4 +1,4 @@
-import Banner from "../../ReactUI/Banner/Banner";
+import Banner from "../Banner/Banner";
 import RenderRoutes from "./Routes";
 import Landing from "../Landing/Landing";
 import Login from "../Authentication/Login";

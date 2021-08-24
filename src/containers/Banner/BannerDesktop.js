@@ -1,6 +1,6 @@
 import React from "react";
 
-const banner = React.memo(() => {
+const BannerDesktop = React.memo(() => {
   return (
     <div className="container h-100">
       <div className="row h-100 align-items-center">
@@ -14,4 +14,4 @@ const banner = React.memo(() => {
   )
 });
 
-export default banner;
+export default BannerDesktop;

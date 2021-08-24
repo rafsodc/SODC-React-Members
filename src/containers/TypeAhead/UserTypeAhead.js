@@ -4,6 +4,7 @@ import Aux from "../../hoc/Aux";
 import axios from "../../services/axios/axios";
 import apiPaths from "../../store/paths";
 import {Form} from "react-bootstrap";
+import "../../resources/css/TypeAhead.css"
 
 const UserTypeAhead = (props) => {
 

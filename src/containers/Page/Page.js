@@ -12,34 +12,8 @@ const Page = (props) => {
   // Get page data from state
   const pageState = useSelector(state => state.pageReducer);
 
-  // React Hook that runs on render.  The use of dependencies prevents re-running if dependencies don't change.
-//   useEffect(() => {
-//     // Server query based on api URL provided in props
-//     http.get(props.apiUrl)
-//     .then((response) => {
-//       // If we get a valid response
-//       dispatch({
-//         type: actionTypes.PAGE_LOAD,
-//         response: response
-//       });
-//     })
-//     .catch(() => {
-//         // If we get an error, raise the error flag in the state
-//         dispatch({
-//           type: actionTypes.ERROR_FLAG,
-//           flag: 'Page',
-//           value: true
-//         });
-//       }
-//     ).finally(
-//     dispatch({type: actionTypes.PAGE_LOAD_FINISH})
-//   )
-
-
 
   useEffect(() => dispatch(loadPage(props.apiUrl)), [props.apiUrl, dispatch]);
-
-  console.log(pageState);
 
   // If the state is loading, show the loading screen
   if (pageState.loading) {
