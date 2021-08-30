@@ -33,3 +33,4 @@ export {
   setContactLocked,
   setContactHidden
 } from './contact'
+export * from "./user"

@@ -13,6 +13,7 @@ export const submitTicketForm = (data, id, location = null, event, owner) => {
   if(location === null) {
     data = updateObject(data, {owner: owner, event: event, uuid: id})
   }
+  /** Not sure why this is in an array - @todo check */
   return [submitForm(actionTypes.ticket.NAME, data, id, location)]
 }
 

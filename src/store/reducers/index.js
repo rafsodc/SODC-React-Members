@@ -11,6 +11,7 @@ import transactionReducer  from "./transaction"
 import pageReducer from "./page"
 import contactReducer from "./contact"
 import basketReducer from "./basket"
+import userReducer from "./user"
 
 const rootReducer = combineReducers({
   ...authenticationReducers,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   pageReducer: pageReducer,
   contactReducer: contactReducer,
   basketReducer: basketReducer,
+  userReducer: userReducer
 });
 
 export default rootReducer;

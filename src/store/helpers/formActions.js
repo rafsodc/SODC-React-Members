@@ -57,6 +57,12 @@ const setFormLocation = (formName, location, id = null) => ({
   id: id
 })
 
+export const setFormIsLoaded = (formName, isLoaded, id = null) => ({
+  type: actionTypes[formName].SET_IS_LOADED,
+  data: isLoaded,
+  id: id
+})
+
 export const clearForm = (formName) => {
   return {
     type: actionTypes[formName].CLEAR,

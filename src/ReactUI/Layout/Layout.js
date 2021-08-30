@@ -14,7 +14,7 @@ const Layout = (props) => (
         {props.children}
       </Container>
     </main>
-    <footer class="footer">
+    <footer className="footer">
         <FooterNavbar/>
     </footer>
   </Aux>

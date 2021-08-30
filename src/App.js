@@ -7,7 +7,10 @@ import RenderRoutes from "./containers/Routes/Routes"
 import routes from "./containers/Routes/RouteDefs";
 import Authenticator from "./containers/Authentication/Authenticator";
 
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faCaretDown, faCheck} from '@fortawesome/free-solid-svg-icons'
 
+library.add(faCaretDown, faCheck);
 
 function App() {
   return (

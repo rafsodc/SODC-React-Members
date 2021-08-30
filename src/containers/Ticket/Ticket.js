@@ -8,8 +8,6 @@ import {setAccordion, setTicketField, setTicketLocked, submitTicketForm} from ".
 import SavedBadge from "../Booking/SavedBadge";
 import ErrorBadge from "../Booking/ErrorBadge";
 import {isEmptyObject} from "../../services/funcs/funcs";
-import actionTypes from "../../store/actionTypes";
-import {submitForm} from "../../store/helpers/formActions";
 import {deleteTicket, loadTickets, removeTicket} from "../../store/actions/ticket";
 import Aux from "../../hoc/Aux"
 import PaidBadge from "../Booking/PaidBadge";

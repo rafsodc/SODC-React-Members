@@ -8,6 +8,7 @@ import * as page from "./page"
 import * as contact from "./contact"
 import * as basket from "./basket"
 import * as error from "./error"
+import * as user from "./user"
 
 const actionTypes = {
   ...event,
@@ -19,7 +20,8 @@ const actionTypes = {
   page: page,
   contact: contact,
   basket: basket,
-  error: error
+  error: error,
+  user: user
 }
 
 export default actionTypes;

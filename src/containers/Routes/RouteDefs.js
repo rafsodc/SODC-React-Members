@@ -3,7 +3,7 @@ import RenderRoutes from "./Routes";
 import Landing from "../Landing/Landing";
 import Login from "../Authentication/Login";
 import EventPage from "../Event/EventPage";
-import Booking from "../Booking/Booking";
+import UserEdit from "../User/UserEdit";
 import Page from "../Page/Page"
 import Contact from "../Contact/Contact"
 import Logout from "../Authentication/Logout";
@@ -114,7 +114,22 @@ const otherRoutes = [
     title: "Password Reset",
     exact: true,
     component: PasswordResetSubmit
-  }
+  },
+  {
+    path: "/myaccount/",
+    key: "APP_USER",
+    title: "User Details",
+    component: UserEdit,
+    exact: true,
+    auth: true,
+  },
+  // {
+  //   path: "/users/:id",
+  //   key: "APP_USER_ID",
+  //   title: "User Details",
+  //   component: UserEdit,
+  //   auth: true,
+  // }
   // {
   //   path: "/booking/:id",
   //   key: "APP_BOOKING_ID",
