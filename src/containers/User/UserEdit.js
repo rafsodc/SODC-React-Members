@@ -22,8 +22,6 @@ const UserEdit = () => {
   const authState = useSelector(state=> state.authenticationReducer)
 
   let { id } = useParams();
-  
-  console.log(id);
 
   id = id === undefined ? authState.token_data.id : id;
 

@@ -19,7 +19,7 @@ const headerNavbar = React.memo((props) => (
           <DisplayRouteNav routes={headerRoutes}/>
         </Nav>
         <Nav>
-          <LoginLink authenticated={props.authenticated} />
+          <LoginLink authenticated={props.authenticated} user={props.user}/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

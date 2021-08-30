@@ -4,6 +4,7 @@ import * as user from "./user"
 import * as ticket from "./ticket"
 import * as transaction from "./transaction"
 import * as basket from "./basket"
+import * as rank from "./rank"
 
 const apiPaths = {
   ...event,
@@ -11,7 +12,8 @@ const apiPaths = {
   ticket: ticket,
   user: user,
   transaction: transaction,
-  basket: basket
+  basket: basket,
+  rank: rank
 }
 
 export default apiPaths;
