@@ -32,7 +32,7 @@ const Booking = (props) => {
       const accordion = ticketState.length + 1
       dispatch([
         addTicket(),
-        setAccordion(accordion)
+        setAccordion('ticket', accordion)
       ]);
     }
   }
@@ -48,6 +48,7 @@ const Booking = (props) => {
   }
 
   const handleHeaderClick = (tab, key) => {
+    console.log(key)
     const setKey = (key === bookingState.accordion[tab]) ? -1 : key;
     dispatch(setAccordion(tab, setKey));
   }

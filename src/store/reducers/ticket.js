@@ -8,7 +8,8 @@ const initialTicket = {
     firstname: "",
     lastname: "",
     dietary: "",
-    ticketType: ""
+    ticketType: "",
+    seatingPreference: []
   },
   locked: false,
   id: null,

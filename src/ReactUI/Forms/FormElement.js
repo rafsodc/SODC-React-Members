@@ -48,7 +48,6 @@ const FormElement = React.forwardRef((props, ref) => {
       control = <RankTypeAhead id={"rankTypeAhead"} handleSelect={handleSelect} selected={props.data[props.name]}/>
       break;
     case 'userTypeAhead':
-
       const typeAheads = props.data[props.name].map((selected, index) => {
         return <UserTypeAhead id={props.name + index} index={index} key={index} selected={selected} handleSelect={handleSelect}/>
       })
@@ -63,8 +62,6 @@ const FormElement = React.forwardRef((props, ref) => {
                                     className={props.errors[props.name] && "form-warning-el"}
                                     value={props.data[props.name]} />
   }
-
-  console.log(props.label);
 
    return <Aux>
       <Form.Label>{props.label}</Form.Label>
