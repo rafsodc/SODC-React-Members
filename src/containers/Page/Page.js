@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Loading from '../../ReactUI/Loading/Loading';
 import ReactMarkdown from "react-markdown";
 import {useDispatch, useSelector} from "react-redux";
-import { loadPage } from '../../store/actions/page';
+import { clearPage, loadPage } from '../../store/actions/page';
 //import withErrorBoundary from "../../ReactHelpers/ErrorBoundaries/withErrorBoundary";
 
 const Page = (props) => {
@@ -13,7 +13,10 @@ const Page = (props) => {
   const pageState = useSelector(state => state.pageReducer);
 
 
-  useEffect(() => dispatch(loadPage(props.apiUrl)), [props.apiUrl, dispatch]);
+  useEffect(() => {
+    dispatch(loadPage(props.apiUrl))
+    return dispatch(clearPage());
+  }, [props.apiUrl, dispatch]);
 
   // If the state is loading, show the loading screen
   if (pageState.loading) {

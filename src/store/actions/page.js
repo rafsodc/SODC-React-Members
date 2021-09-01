@@ -18,3 +18,7 @@ export const loadPage = (apiUrl) => dispatch => {
         });
     })
 }
+
+export const clearPage = () => ({
+  type: actionTypes.page.CLEAR
+});
