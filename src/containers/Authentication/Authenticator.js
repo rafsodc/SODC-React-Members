@@ -12,9 +12,11 @@ const Authenticator = (props) => {
   const dispatch = useDispatch();
 
   // useLayoutEffect runs synchronously, which allows axios to be updated.
+  // @todo - Dynamically save the interceptor ID - For now we are using 0
   useLayoutEffect(() => {
+    let tokenInterceptor;
     if (auth.authenticated) {
-      axios.interceptors.request.use(
+      tokenInterceptor = axios.interceptors.request.use(
         config => {
           config.headers.authorization = "BEARER " + auth.token;
           return config;
@@ -23,6 +25,7 @@ const Authenticator = (props) => {
       );
       dispatch(loadUser(auth.token_data.iri));
     } else {
+      axios.interceptors.request.eject(0);
       dispatch(refreshToken());
     }
   }, [dispatch, auth.authenticated, auth.token])

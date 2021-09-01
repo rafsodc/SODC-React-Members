@@ -17,7 +17,7 @@ const authenticate = (state, action) => {
 }
 
 const logout = (state, action) => {
-  return updateObject(state, initialAuthState);
+  return initialAuthState;
 }
 
 const setUser = (state, action) => setParam(state, updateObject(action, {param: 'user'}));

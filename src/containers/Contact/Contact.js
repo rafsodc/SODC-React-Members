@@ -7,8 +7,9 @@ import ContactForm from "./ContactForm";
 import ContactSub from "./ContactSub";
 import Aux from "../../hoc/Aux";
 //import withErrorBoundary from "../../ReactHelpers/ErrorBoundaries/withErrorBoundary";
-import {setContactField, setContactHidden, setContactLocked} from '../../store/actions'
+import {errorFlag, setContactField, setContactHidden, setContactLocked} from '../../store/actions'
 import "../../ReactUI/Forms/Form.css"
+import { submitContactForm } from '../../store/actions/contact';
 //import httpServices from "../../services/http/httpServices";
 
 const Contact = () => {
@@ -28,12 +29,19 @@ const Contact = () => {
     //captchaError
   } = useFormBuilder(contactFormSchema) //, formName, httpServices[formName])
 
-  //console.log(formState);
+  console.log(formState);
 
   const onChange = (event) => dispatch(setContactField({[event.target.name]: event.target.value}));
-  const onSubmit = () => null;
-  const onRecaptcha = () => null;
-  const captchaError = () => null;
+  const onSubmit = () => dispatch(submitContactForm(formState.fields));
+  const onRecaptcha = (value) => {
+    dispatch(setContactField({captcha: value}));
+    dispatch(errorFlag('captcha', value === null));
+  }
+
+  // @todo - Form error flags should be part of form data
+  //const captchaError = useSelector(state => state.errorReducer.captcha);
+
+  const captchaError = false;
 
   const childProps = {
     form: formName,
@@ -43,7 +51,7 @@ const Contact = () => {
     ref: register
   }
 
-  const content = formState.hidden ?
+  const content = formState.saved ?
     <ContactSub data={formState.fields}/> :
     <ContactForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={formState.locked}
                  childProps={childProps} captchaError={captchaError}/>;

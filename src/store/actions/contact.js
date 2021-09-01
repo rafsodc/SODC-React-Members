@@ -6,3 +6,4 @@ export const setContactLocked = (isLocked) => setFormLocked(actionTypes.contact.
 export const setContactHidden = (isHidden) => setFormHidden(actionTypes.contact.NAME, isHidden);
 
 
+export const submitContactForm = (data) => submitForm(actionTypes.contact.NAME, data, null, null);

@@ -2,7 +2,7 @@ import {setFormField, setFormLocked, clearForm, setFormHidden} from "../helpers/
 import actionTypes from "../actionTypes";
 import axios from "../../services/axios/axios";
 import apiPaths from "../paths";
-import {setAlert} from "./alert";
+import {clearUnstickyAlerts, setAlert} from "./alert";
 import {ALERT_DANGER, ALERT_SUCCESS} from "../../ReactUI/AlertWindow/alertTypes";
 
 export const setLoginField = (data) => setFormField(actionTypes.loginForm.NAME, data);
@@ -11,7 +11,12 @@ export const setLoginHidden = (isHidden) => setFormHidden(actionTypes.loginForm.
 const clearLogin = () => clearForm(actionTypes.loginForm.NAME);
 
 export const login = (data) => dispatch => {
-  dispatch(setLoginLock(true));
+
+  dispatch([
+    setLoginLock(true),
+    clearUnstickyAlerts()
+  ]);
+
   axios.post(apiPaths.authentication.LOGIN, JSON.stringify(data))
   .then((response) => {
     dispatch(doLogin(response.data.token));
@@ -94,7 +99,10 @@ export const setPasswordResetRequestHidden = (isHidden) => setFormHidden(actionT
 const clearPasswordResetRequest = () => clearForm(actionTypes.passwordResetRequestForm.NAME);
 
 export const passwordResetRequest = (data) => dispatch => {
-  dispatch(setPasswordResetRequestLocked(true));
+  dispatch([
+    setPasswordResetRequestLocked(true),
+    clearUnstickyAlerts()
+  ]);
   axios.post(apiPaths.authentication.FORGOT_PASSWORD, JSON.stringify(data))
   .then((response) => {
     dispatch(setAlert("A password reset link has been sent to your email address.", "", ALERT_SUCCESS));
@@ -141,7 +149,10 @@ export const checkPasswordResetToken = (token) => dispatch => {
 }
 
 export const submitPasswordReset = (token, data) => dispatch => {
-  dispatch(setPasswordResetSubmitLocked(true));
+  dispatch([
+    setPasswordResetSubmitLocked(true),
+    clearUnstickyAlerts()
+  ]);
   axios.post(apiPaths.authentication.FORGOT_PASSWORD + token, JSON.stringify(data))
   .then((response) => {
     dispatch([setAlert("Your password has been successfully changed.", "", ALERT_SUCCESS),

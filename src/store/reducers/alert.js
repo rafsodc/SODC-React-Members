@@ -31,7 +31,9 @@ const clearUnstickyAlert = (state) => {
   const filterSticky = (arr, stickyArr) => {
     return arr.filter(el => (stickyArr.includes(el.key)));
   }
+  
   return updateObject(state, {alerts: filterSticky(state.alerts, state.stickyAlerts)});
+  
 }
 
 const reducer = (state = initialState, action) => {
