@@ -16,11 +16,6 @@ const EventPage = () => {
 
   const { id } = useParams();
 
-  const formatTicketTypes = (ticketTypes) => ticketTypes.map((ticket) => ({
-      value: ticket["@id"],
-      description: ticket.description + " - £" + ticket.price
-  }));
-
   useEffect(() => {
     dispatch(loadEvent(`/events/${id}`));
   }, [dispatch]);
@@ -33,7 +28,7 @@ const EventPage = () => {
       </Accordion>
       <br/>
       <BookingOwnerSelect disabled={eventState.ownerSelectDisabled}>
-        <Booking ticketOptions={formatTicketTypes(eventState.event.ticketTypes)} event={`/events/${id}`}  />
+        <Booking ticketOptions={eventState.event.ticketTypes} event={`/events/${id}`}  />
       </BookingOwnerSelect>
     </Aux>
   }

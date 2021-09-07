@@ -86,7 +86,6 @@ export const submitForm = (formName, data, id = null, location = null) => dispat
 }
 
 export const onCaptchaSubmit = (onSubmit, fields) => dispatch => {
-  console.log(fields);
   if (fields.captcha === null) {
     dispatch({
       type: actionTypes.error.ERROR_FLAG,

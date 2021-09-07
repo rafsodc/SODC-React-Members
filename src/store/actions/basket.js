@@ -5,14 +5,6 @@ import actionTypes from "../actionTypes";
 export const getBasket = (data) => dispatch => {
   axios.post(apiPaths.basket.BASKETS, JSON.stringify(data))
   .then((response) => dispatch(setBasket(response.data)))
-
-  //axios.post(apiPaths.basket.BASKETS, JSON.stringify(data))
-  //.then((response) => {
-  //  axios.get(response.headers.location).then((response) => {
-  //    console.log(response)
-  //    dispatch(setBasket(response.data))
-  //  })
-  //});
 }
 
 export const setBasket = (data) => ({

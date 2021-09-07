@@ -3,13 +3,19 @@ import {Button, Form} from "react-bootstrap";
 import FormElement from "../../ReactUI/Forms/FormElement";
 import "../../ReactUI/Forms/Form.css";
 import UserTypeAhead from "../TypeAhead/UserTypeAhead";
+import {useSelector} from "react-redux";
 
 const TicketForm = (props) => {
 
+  const formatTicketTypes = (ticketTypes) => ticketTypes.map((ticket) => ({
+    value: ticket["@id"],
+    description: ticket.description + " - £" + ticket.price
+  }));
+  
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={"disabled"}>
     <fieldset disabled={props.locked && "disabled"}>
       <Form.Group>
-        <FormElement type="select" placeholder="Select Ticket" label="Ticket" name="ticketType" {...props.childProps} options={props.ticketOptions} disabled={props.paid} />
+        <FormElement type="select" placeholder="Select Ticket" label="Ticket" name="ticketType" {...props.childProps} options={formatTicketTypes(props.ticketOptions)} disabled={props.paid} />
         <FormElement type="text" placeholder="Rank" label="Rank" name="rank" {...props.childProps}/>
         <FormElement type="text" placeholder="First Name" label="First Name" name="firstname" {...props.childProps}/>
         <FormElement type="text" placeholder="Last Name" label="Last Name" name="lastname" {...props.childProps}/>

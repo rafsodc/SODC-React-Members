@@ -12,7 +12,6 @@ const initialState = {
 }
 
 const setBasket = (state, action) => {
- //console.log(action);
   const tickets = (action.data.tickets === undefined) ? [] : action.data.tickets;
   return updateObject(state,  {...action.data, tickets: tickets, loaded: true})
 };
