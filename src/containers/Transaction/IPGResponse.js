@@ -10,8 +10,8 @@ const IPGResponse = () => {
   const basketState = useSelector(state => state.basketReducer);
   
   const response = (basketState.response === null) ? <Loading /> :
-    (basketState.response.status === 'FAILED') ? <p><strong>Transaction Failed: </strong>{basketState.response.fail_reason}</p> : 
-    "";
+    (basketState.response.status === 'FAILED') ? <Aux><h4>Transaction Failed: </h4><p>{basketState.response.fail_reason}</p></Aux>: 
+    <h4>Transaction Complete!</h4>;
   return(
     <Aux>
       <br/>

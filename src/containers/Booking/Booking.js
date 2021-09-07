@@ -37,14 +37,21 @@ const Booking = (props) => {
     }
   }
 
-  const handleTabSelect = (key) => dispatch(setTab(key))
+  const handleTabSelect = (key) => dispatch(setTab(key));
+
+  const handleReturnToTickets = () => {
+    dispatch([
+      loadTickets(props.event, bookingState.owner),
+      setTab('tickets')
+    ])
+  }
 
   // Handle message received from IPG frame
   const messageHandler = (event) => {
     dispatch([
       setResponse(event.data.elementArr),
       dispatch(setTab("confirmation"))
-    ]);  
+    ]);
   }
 
   const handleHeaderClick = (tab, key) => {
@@ -109,7 +116,7 @@ const Booking = (props) => {
       </Tab>
       <Tab eventKey="confirmation" title={"Confirmation"} disabled={true}>
          {confirmation}
-         <Button onClick={() => handleTabSelect('tickets')}>Return to Tickets</Button>
+         <Button onClick={() => handleReturnToTickets()}>Return to Tickets</Button>
       </Tab>
     </Tabs>
   );
