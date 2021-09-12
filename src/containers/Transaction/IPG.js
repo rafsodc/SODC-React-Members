@@ -26,7 +26,7 @@ const IPG = (props) => {
     <Aux>
       <form method="post" target="ipgFrame" action={props.ipg.action}>
         {fields}
-        <input type="submit" class="btn btn-primary" value="Click here to pay using Credit or Debit Card" />
+        <input type="submit" className="btn btn-primary" value="Click here to pay using Credit or Debit Card" />
 
       </form>
       <br/>

@@ -42,7 +42,8 @@ const FormElement = React.forwardRef((props, ref) => {
       control = <Form.Control as="select" disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref}
                                     placeholder={props.placeholder}
                                     className={props.errors[props.name] && "form-warning-el"}
-                                    ><FormSelectOptions options={props.options} selected={props.data[props.name]}/></Form.Control>
+                                    defaultValue={props.data[props.name]}
+                                    ><FormSelectOptions options={props.options} /></Form.Control>
       break;
     case 'rankTypeAhead':
       control = <RankTypeAhead id={"rankTypeAhead"} handleSelect={handleSelect} selected={props.data[props.name]}/>
