@@ -14,6 +14,7 @@ import PaidBadge from "../Booking/PaidBadge";
 
 
 const Ticket = (props) => {
+  
   const dispatch = useDispatch();
 
   const thisTicketFormSchema = () => ticketFormSchema(props.ticket.fields.paid)
@@ -23,8 +24,6 @@ const Ticket = (props) => {
     errors,
     handleSubmit,
   } = useFormBuilder(thisTicketFormSchema)
-
-  //, {paid: props.ticket.fields.paid}
 
   const onChange = (event) => {
     dispatch(setTicketField({[event.target.name]: event.target.value}, props.ticket.id));
