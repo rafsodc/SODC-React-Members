@@ -8,16 +8,16 @@ const ContactForm = (props) => (
   <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={"disabled"}>
     <fieldset disabled={props.locked && "disabled"}>
       <Form.Group controlId="formName">
-        <FormElement type="text" placeholder="Enter name" label="Name" name="name" {...props.childProps}/>
+        <FormElement type="input" placeholder="Enter name" label="Name" name="name" {...props.childProps}/>
       </Form.Group>
       <Form.Group controlId="formEmail">
-        <FormElement type="text" placeholder="Enter email address" label="Email" name="email" {...props.childProps}/>
+        <FormElement type="input" placeholder="Enter email address" label="Email" name="email" {...props.childProps}/>
       </Form.Group>
       <Form.Group controlId="formSubject">
-        <FormElement type="text" placeholder="Enter subject" label="Subject" name="subject" {...props.childProps}/>
+        <FormElement type="input" placeholder="Enter subject" label="Subject" name="subject" {...props.childProps}/>
       </Form.Group>
       <Form.Group controlId="formMessage">
-        <FormElement as="textarea" rows={5} placeholder="Enter message" label="Message"
+        <FormElement type="textarea" placeholder="Enter message" label="Message"
                      name="message" {...props.childProps}/>
       </Form.Group>
       <FormRecaptcha onRecaptcha={props.onRecaptcha} error={props.captchaError}/>

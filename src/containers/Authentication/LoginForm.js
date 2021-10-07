@@ -8,7 +8,7 @@ const LoginForm = (props) => (
   <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={"disabled"}>
     <fieldset disabled={props.locked && "disabled"}>
       <Form.Group controlId="formUsername">
-        <FormElement type="email" placeholder="Email address" label="Email Address" name="email" {...props.childProps}/>
+        <FormElement type="input" placeholder="Email address" label="Email Address" name="email" {...props.childProps}/>
       </Form.Group>
       <Form.Group controlId="formPassword">
         <FormElement type="password" placeholder="Password" label="Password" name="password" {...props.childProps}/>

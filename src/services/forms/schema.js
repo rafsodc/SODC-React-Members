@@ -40,5 +40,6 @@ export const userFormSchema = () => yup.object().shape({
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   email: yup.string().email().required(),
-  mobileNumber: yup.string().required(),
+  password: yup.string().required(),
+  passwordConfirm: yup.string().oneOf([yup.ref('password'), null], "Passwords must match")
 })

@@ -16,10 +16,10 @@ const TicketForm = (props) => {
     <fieldset disabled={props.locked && "disabled"}>
       <Form.Group>
         <FormElement type="select" placeholder="Select Ticket" label="Ticket" name="ticketType" {...props.childProps} options={formatTicketTypes(props.ticketOptions)} disabled={props.paid} />
-        <FormElement type="text" placeholder="Rank" label="Rank" name="rank" {...props.childProps}/>
-        <FormElement type="text" placeholder="First Name" label="First Name" name="firstname" {...props.childProps}/>
-        <FormElement type="text" placeholder="Last Name" label="Last Name" name="lastname" {...props.childProps}/>
-        <FormElement type="text" placeholder="Dietary Requirements" label="Dietary Requirements"
+        <FormElement type="input" placeholder="Rank" label="Rank" name="rank" {...props.childProps}/>
+        <FormElement type="input" placeholder="First Name" label="First Name" name="firstname" {...props.childProps}/>
+        <FormElement type="input" placeholder="Last Name" label="Last Name" name="lastname" {...props.childProps}/>
+        <FormElement type="input" placeholder="Dietary Requirements" label="Dietary Requirements"
                      name="dietary" {...props.childProps}/>
         <FormElement type="userTypeAhead" placeholder="Seating Preferences" label="Seating Preferences"
                      name="seatingPreference" {...props.childProps} />

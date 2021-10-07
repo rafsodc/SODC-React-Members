@@ -12,7 +12,7 @@ import Aux from "../../hoc/Aux"
 import PaidBadge from "../Booking/PaidBadge";
 import {useParams} from "react-router";
 import UserForm from "./UserForm";
-import {loadUser} from "../../store/actions/user"
+import {clearUser, loadUser} from "../../store/actions/user"
 import Load from "../../ReactUI/Loading/Load";
 
 const UserEdit = () => {
@@ -26,7 +26,8 @@ const UserEdit = () => {
   id = id === undefined ? authState.token_data.id : id;
 
   useEffect(() => {
-    dispatch(loadUser(id))
+    dispatch(loadUser(id));
+    return () => dispatch(clearUser());
   }, [dispatch, id])
 
   const {
