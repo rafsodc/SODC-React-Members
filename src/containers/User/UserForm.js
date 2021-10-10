@@ -2,10 +2,12 @@ import React from "react";
 import {Button, Form} from "react-bootstrap";
 import FormElement from "../../ReactUI/Forms/FormElement";
 import FormSaved from "../../ReactUI/Forms/FormSaved";
+import FormRecaptcha from "../../ReactUI/Forms/FormRecaptcha";
 
 const UserForm = (props) => {
 
   const optionsYesNo = [{value: true, description: "Yes"}, {value: false, description: "No"}];
+  const recaptcha = props.recaptcha ? <FormRecaptcha onRecaptcha={props.onRecaptcha} error={props.captchaError}/> : "";
 
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={"disabled"}>
     <fieldset disabled={props.locked && "disabled"}>
@@ -23,7 +25,9 @@ const UserForm = (props) => {
         <FormElement type="select" label="Share contact details with other members?" name="isShared" options={optionsYesNo} {...props.childProps}/>
         <FormElement type="password" placeholder="Enter new password (leave blank to keep existing password)" label="Update password:" name="password" {...props.childProps} />
         <FormElement type="password" placeholder="Confirm new password (leave blank to keep existing password)" label="Confirm password:" name="passwordConfirm" {...props.childProps} />
+        {recaptcha}
       </Form.Group>
+
       <Button variant="primary" type="submit">
         Save
       </Button>

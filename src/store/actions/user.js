@@ -9,9 +9,8 @@ export const setUserHidden = (isHidden) => setFormHidden(actionTypes.user.NAME, 
 export const setUserIsLoaded = (isLoaded) => setFormIsLoaded(actionTypes.user.NAME, isLoaded);
 //export const submitUserForm = (data, location) => submitForm(actionTypes.user.NAME, data, null, location);
 
-export const submitUserForm = (data, location) => {
+export const submitUserForm = (data, location = null) => {
   data.isShared = String(data.isShared) === "true";
-  console.log(data);
   return submitForm(actionTypes.user.NAME, data, null, location);
 }
 

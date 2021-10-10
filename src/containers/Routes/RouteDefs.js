@@ -7,6 +7,7 @@ import UserEdit from "../User/UserEdit";
 import Page from "../Page/Page"
 import Contact from "../Contact/Contact"
 import Logout from "../Authentication/Logout";
+import UserRegister from "../User/UserRegister"
 import PasswordResetRequest from "../Authentication/PasswordResetRequest";
 import PasswordResetSubmit from "../Authentication/PasswordResetSubmit";
 
@@ -45,6 +46,14 @@ const headerRoutes = [
     title: "Contact",
     exact: true,
     component: Contact,
+    auth: false,
+  },
+  {
+    path: "/register",
+    key: "APP_REGISTER",
+    title: "Register",
+    exact: true,
+    component: UserRegister,
     auth: false,
   },
   

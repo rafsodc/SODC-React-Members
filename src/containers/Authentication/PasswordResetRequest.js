@@ -21,20 +21,15 @@ const PasswordResetRequest = (props) => {
     handleSubmit,
   } = useFormBuilder(passwordResetRequestFormSchema)
 
-  const onChange = (event) => {  
-    dispatch(setPasswordResetRequestField({[event.target.name]: event.target.value}));
-  }
-
+  const onChange = (event) => dispatch(setPasswordResetRequestField({[event.target.name]: event.target.value}));
+  
   const onRecaptcha = (value) => {
     dispatch(setPasswordResetRequestField({captcha: value}));
     dispatch(errorFlag('captcha', value === null))
   }
 
   //const onSubmit = () => dispatch(passwordResetRequest(formState.fields));
-  const onSubmit = () => {
-    console.log(formState.fields);
-    dispatch(onCaptchaSubmit(passwordResetRequest, formState.fields));
-  }
+  const onSubmit = () => dispatch(onCaptchaSubmit(passwordResetRequest, formState.fields));
 
   const childProps = {
     form: formName,

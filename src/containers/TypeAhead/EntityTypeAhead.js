@@ -81,14 +81,14 @@ const EntityTypeAhead = (props) => {
         id={props.id}
         isLoading={isLoading}
         labelKey={(option) => props.formatOption(option)}
-        minLength={2}
+        minLength={1}
         onSearch={handleSearch}
         options={options}
         placeholder={"Search for a " + props.type + "..."}
         selected={selected}
         onChange={handleSelect}
         renderMenuItemChildren={(option) => props.formatOption(option)}
-        useCache={true}
+        useCache={false}
         onInputChange={handleInputChange}
         onBlur={handleBlur}
       />

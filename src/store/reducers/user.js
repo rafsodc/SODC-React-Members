@@ -6,7 +6,7 @@ const initialState = {
   fields: {
       firstName: '',
       lastName: '',
-      rank: '',
+      rank: null,
       postNominals: '',
       phoneNumber: '',
       mobileNumber: '',
@@ -15,7 +15,8 @@ const initialState = {
       isShared: false,
       modnetEmail: '',
       password: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
+      captcha: null
     },
     locked: false,
     hidden: false,

@@ -36,10 +36,15 @@ export const passwordResetSubmitFormSchema = () => yup.object().shape({
 })
 
 
-export const userFormSchema = () => yup.object().shape({
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().required(),
-  passwordConfirm: yup.string().oneOf([yup.ref('password'), null], "Passwords must match")
-})
+export const userFormSchema = (existing = true) => {
+  let obj = {
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    email: yup.string().email().required(),
+    passwordConfirm: yup.string().oneOf([yup.ref('password'), null], "Passwords must match")
+  }
+  if(!existing) {
+    obj = updateObject(obj, {password: yup.string().required()});
+  }
+  return yup.object().shape(obj);
+}
