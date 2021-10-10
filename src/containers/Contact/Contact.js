@@ -10,6 +10,7 @@ import Aux from "../../hoc/Aux";
 import {errorFlag, setContactField, setContactHidden, setContactLocked} from '../../store/actions'
 import "../../ReactUI/Forms/Form.css"
 import { submitContactForm } from '../../store/actions/contact';
+import { onCaptchaSubmit } from '../../store/helpers/formActions';
 //import httpServices from "../../services/http/httpServices";
 
 const Contact = () => {
@@ -17,31 +18,22 @@ const Contact = () => {
   const formName = 'contact';
   const dispatch = useDispatch();
   const formState = useSelector(state => state.contactReducer);
+  const captchaError = useSelector(state => state.errorReducer.captcha);
 
   const {
     register,
     handleSubmit,
     errors,
-    //onCaptchaSubmit: onSubmit,
-    //onChange,
-    //onRecaptcha,
-    //data,
-    //captchaError
-  } = useFormBuilder(contactFormSchema) //, formName, httpServices[formName])
-
-  console.log(formState);
+  } = useFormBuilder(contactFormSchema)
 
   const onChange = (event) => dispatch(setContactField({[event.target.name]: event.target.value}));
-  const onSubmit = () => dispatch(submitContactForm(formState.fields));
+  
   const onRecaptcha = (value) => {
     dispatch(setContactField({captcha: value}));
     dispatch(errorFlag('captcha', value === null));
   }
 
-  // @todo - Form error flags should be part of form data
-  //const captchaError = useSelector(state => state.errorReducer.captcha);
-
-  const captchaError = false;
+  const onSubmit = () => dispatch(onCaptchaSubmit(submitContactForm, formState.fields));
 
   const childProps = {
     form: formName,

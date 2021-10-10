@@ -92,7 +92,7 @@ const UserTypeAhead = (props) => {
         selected={selected}
         onChange={handleSelect}
         renderMenuItemChildren={(option) => formatOption(option)}
-        useCache={true}
+        useCache={false}
         onInputChange={handleInputChange}
         onBlur={handleBlur}
       />

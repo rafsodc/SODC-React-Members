@@ -3,7 +3,7 @@ import useFormBuilder from "../../hooks/Forms/useFormBuilder";
 import {userFormSchema} from "../../services/forms/schema";
 import {useDispatch, useSelector} from "react-redux";
 import {Accordion, Card} from "react-bootstrap";
-import {setAccordion, setUserField, setUserLocked, submitUserForm} from "../../store/actions";
+import {clearUnstickyAlerts, setAccordion, setUserField, setUserLocked, submitUserForm} from "../../store/actions";
 import SavedBadge from "../Booking/SavedBadge";
 import ErrorBadge from "../Booking/ErrorBadge";
 import {isEmptyObject} from "../../services/funcs/funcs";
@@ -12,37 +12,40 @@ import Aux from "../../hoc/Aux"
 import PaidBadge from "../Booking/PaidBadge";
 import {useParams} from "react-router";
 import UserForm from "./UserForm";
-import {clearUser, loadUser} from "../../store/actions/user"
+import {errorFlag, clearUser} from "../../store/actions/"
 import Load from "../../ReactUI/Loading/Load";
+import FormSubmitted from "../Form/FormSubmitted"
+import { onCaptchaSubmit } from "../../store/helpers/formActions";
 
-const UserEdit = () => {
+const UserRegister = () => {
 
   const dispatch = useDispatch();
   const formState = useSelector(state => state.userReducer);
-  const authState = useSelector(state=> state.authenticationReducer)
-
-  let { id } = useParams();
-
-  id = id === undefined ? authState.token_data.id : id;
+  const captchaError = useSelector(state => state.errorReducer.captcha);
 
   useEffect(() => {
-    dispatch(loadUser(id));
     return () => dispatch(clearUser());
-  }, [dispatch, id])
+  }, [dispatch])
 
   const {
     register,
     errors,
     handleSubmit,
-  } = useFormBuilder(userFormSchema)
+  } = useFormBuilder( () => userFormSchema(false) )
 
   const onChange = (event) => {
     dispatch(setUserField({[event.target.name]: event.target.value}));
   }
 
-  const onSubmit = () => {
-    dispatch(submitUserForm(formState.fields, formState.fields['@id']))
+  const onRecaptcha = (value) => {
+    dispatch(setUserField({captcha: value}));
+    dispatch(errorFlag('captcha', value === null));
   }
+  
+  const onSubmit = () => dispatch([
+    clearUnstickyAlerts(),
+    onCaptchaSubmit(submitUserForm, formState.fields)
+  ]);
 
   const childProps = {
     errors: errors,
@@ -53,15 +56,19 @@ const UserEdit = () => {
 
   return (
     <Aux>
-      <h1>Account Details</h1>
-      <Load loading={!formState.isLoaded}>
+      <h1>Create Account</h1>
+      <p>Please enter your details below for an account to be created. Your account will then be approved by the Secretary.</p>
+      {/* <Load loading={!formState.isLoaded}> */}
+      <FormSubmitted saved={formState.saved}>
         <UserForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={formState.locked}
-                 childProps={childProps} saved={formState.saved}/>
-      </Load> 
+                 childProps={childProps} saved={formState.saved}
+                 onRecaptcha={onRecaptcha} captchaError={captchaError} recaptcha={true}/>
+      </FormSubmitted>
+      {/* </Load>  */}
     </Aux>
   );
   
 };
 
 
-export default UserEdit;
+export default UserRegister;
