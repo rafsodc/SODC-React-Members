@@ -7,7 +7,7 @@ import AlertWindow from "../AlertWindow/AlertWindow";
 
 const Layout = (props) => (
   <Aux>
-    <Header/>
+    <Header user={props.user} />
     <main>
       <Container className={"h-100 mt-2"}>
         <AlertWindow/>

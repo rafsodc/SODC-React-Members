@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Layout from './ReactUI/Layout/Layout';
+import {useSelector} from "react-redux";
 
 import RenderRoutes from "./containers/Routes/Routes"
 import routes from "./containers/Routes/RouteDefs";
@@ -12,13 +13,16 @@ import {faCaretDown, faCheck} from '@fortawesome/free-solid-svg-icons'
 
 library.add(faCaretDown, faCheck);
 
-function App() {
-  return (
-    <div className="App">
-      <Layout>
+//function App() {
+const App = () => {
+
+  const user = useSelector(state => state.authenticationReducer.token_data);
+  
+  return (<div className="App">
+      <Layout user={user}>
         {/* <Authenticator> */}
         {/* Render the content using routes to determine components */}
-        <RenderRoutes routes={routes} handle404={true}/>
+        <RenderRoutes routes={routes} handle404={true} user={user}/>
         {/* </Authenticator> */}
       </Layout>
     </div>
