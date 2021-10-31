@@ -47,7 +47,7 @@ const Ticket = (props) => {
 
   const subtitle = (props.ticket.fields.ticketType !== "") ? 
     <Aux>{" - "}
-      {props.ticketOptions.find(el => el['@id'] == props.ticket.fields.ticketType).description}
+      {props.ticketOptions.find(el => el['@id'] == props.ticket.fields.ticketType['@id']).description}
     </Aux>: ""
 
   return <Card>
