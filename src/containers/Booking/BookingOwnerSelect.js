@@ -24,7 +24,6 @@ const BookingOwnerSelect = (props) => {
   }, [dispatch, user.iri]);
 
   const handleSelect = (value) => {
-    console.log(value);
     dispatch(setOwner(value))
   }
 

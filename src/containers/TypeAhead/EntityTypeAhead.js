@@ -35,7 +35,6 @@ const EntityTypeAhead = (props) => {
 
     const path = apiPaths[props.type].GET_COLLECTION + "?name=" + query.toLowerCase();
     axios.get(path).then((response) => {
-      console.log(response.data);
       setOptions(response.data['hydra:member']);
     })
     .finally(
@@ -50,7 +49,6 @@ const EntityTypeAhead = (props) => {
     // If value, then change
 
     if(props.handleSelect !== undefined && value[0] !== undefined) {
-      console.log(value[0]['@id']);
       props.handleSelect(value[0]['@id'], props.index);
     } 
   }

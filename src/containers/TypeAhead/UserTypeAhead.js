@@ -35,7 +35,6 @@ const UserTypeAhead = (props) => {
 
     const path = apiPaths.user.GET_COLLECTION + "?name=" + query.toLowerCase();
     axios.get(path).then((response) => {
-      console.log(response.data);
       setOptions(response.data['hydra:member']);
     })
     .finally(

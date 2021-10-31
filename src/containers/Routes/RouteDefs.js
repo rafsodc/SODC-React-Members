@@ -23,6 +23,7 @@ const headerRoutes = [
     exact: true,
     component: Page,
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
     props:
       {
         apiUrl: "pages/2"
@@ -35,6 +36,7 @@ const headerRoutes = [
     exact: true,
     component: Page,
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
     props:
       {
         apiUrl: "pages/1"
@@ -47,6 +49,7 @@ const headerRoutes = [
     exact: true,
     component: Contact,
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
   },
   {
     path: "/register",
@@ -55,6 +58,7 @@ const headerRoutes = [
     exact: true,
     component: UserRegister,
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY'],
   },
   
   
@@ -68,6 +72,7 @@ const footerRoutes = [
     exact: true,
     component: Page,
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
     props:
       {
         apiUrl: "pages/3"
@@ -80,6 +85,7 @@ const footerRoutes = [
     exact: true,
     component: Page,
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
     props:
       {
         apiUrl: "pages/4"
@@ -91,7 +97,9 @@ const footerRoutes = [
     title: "Members' Login",
     exact: true,
     component: Landing,
-    auth: true,
+    roles: ['ROLE_USER'],
+    forceLink: true,
+    auth: true
   },
 ];
 
@@ -102,6 +110,7 @@ const otherRoutes = [
     title: "Event",
     component: EventPage,
     auth: true,
+    roles: ['ROLE_USER']
   },
   {
     path: "/logout",
@@ -109,20 +118,23 @@ const otherRoutes = [
     title: "Log Out",
     exact: true,
     component: Logout,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
   },
   {
     path: "/forgot-password",
     key: "APP_FORGOT_PASSWORD",
     title: "Password Reset",
     exact: true,
-    component: PasswordResetRequest
+    component: PasswordResetRequest,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY'],
   },
   {
     path: "/forgot-password/:token",
     key: "APP_FORGOT_PASSWORD_SUBMIT",
     title: "Password Reset",
     exact: true,
-    component: PasswordResetSubmit
+    component: PasswordResetSubmit,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY'],
   },
   {
     path: "/myaccount/",
@@ -131,6 +143,7 @@ const otherRoutes = [
     component: UserEdit,
     exact: true,
     auth: true,
+    roles: ['ROLE_USER']
   },
   // {
   //   path: "/users/:id",
@@ -154,6 +167,7 @@ const routes = [
     component: RenderRoutes,
     routes: headerRoutes.concat(footerRoutes).concat(otherRoutes),
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
   },
 
 ];
@@ -165,6 +179,7 @@ const bannerRoutes = [
     exact: true,
     component: Banner,
     auth: false,
+    roles: ['IS_AUTHENTICATED_ANONYMOUSLY', 'ROLE_USER'],
   }
 ];
 

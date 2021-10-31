@@ -8,6 +8,7 @@ import Page404 from "../../ReactUI/Page404/Page404";
 import * as actionTypes from "../../store/actions/actionsTypes";
 import {useDispatch} from "react-redux";
 import Authenticator from "../Authentication/Authenticator";
+import { accessByRole } from "../../services/funcs/funcs";
 
 /**
  *  Functions to render routers and children
@@ -36,7 +37,7 @@ const RenderRoutes = React.memo(
     return (
       <Switch>
         {props.routes.map((route) => {
-          return <RouteWithSubRoutes key={route.key} {...route} handle404={props.handle404}/>;
+          return <RouteWithSubRoutes key={route.key} {...route} handle404={props.handle404} user={props.user}/>;
         })}
         {page404}
       </Switch>
@@ -54,20 +55,21 @@ const RouteWithSubRoutes = React.memo(
    * @param {PropsWithChildren} route
    * @returns {JSX.Element}
    */
-  (route) => {
-    // Return the title and a route to the path, whether it's exact, and render the component specified.
+  (props) => {
+
     let routeComponent = <Route
-      path={route.path}
-      exact={route.exact}
-      render={props => <route.component {...props} {...route.props} routes={route.routes}
-                                        handle404={route.handle404}/>}
+      path={props.path}
+      exact={props.exact}
+      render={rprops => <props.component {...rprops} {...props.props} routes={props.routes} user={props.user}
+                                        handle404={props.handle404}/>}
     />
 
-    routeComponent = route.auth ? <Authenticator>{routeComponent}</Authenticator> : routeComponent;
+    //routeComponent = route.auth ? <Authenticator>{routeComponent}</Authenticator> : routeComponent;
+    routeComponent = <Authenticator access={accessByRole(props, props.user.roles)}>{routeComponent}</Authenticator>
     return (
       <Aux>
         {/* Only render the TitleComponent if route.title is set */}
-        <TitleComponent title={route.title} show={route.title}/>
+        <TitleComponent title={props.title} show={props.title}/>
         { routeComponent }
       </Aux>
     );

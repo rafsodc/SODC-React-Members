@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import {DisplayRouteNav} from "../../containers/Routes/Routes";
 import {headerRoutes} from "../../containers/Routes/RouteDefs";
 import LoginLink from './LoginLink';
+import { linkByRole } from '../../services/funcs/funcs';
 
 
 // We can use the 'as' prop to render Nav.Link as a react-router-dom NavLink.
@@ -16,10 +17,10 @@ const headerNavbar = React.memo((props) => (
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <DisplayRouteNav routes={headerRoutes}/>
+          <DisplayRouteNav routes={headerRoutes.filter(route => linkByRole(route, props.user.roles))}/>
         </Nav>
         <Nav>
-          <LoginLink authenticated={props.authenticated} user={props.user}/>
+          <LoginLink authenticated={props.authenticated} user={props.user.email}/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

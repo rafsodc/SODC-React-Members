@@ -18,3 +18,17 @@ export const strToDate = (item, el) => {
   }
   return item;
 }
+
+/**
+ * Returns true if the route contains a role that is in userRoles
+ * @param {obj} route 
+ * @param {[string]} userRoles 
+ * @returns {boolean}
+ */
+export const accessByRole = (route, userRoles) => {
+  return route.roles.filter(role => userRoles.includes(role)).length > 0;
+}
+
+export const linkByRole = (route, userRoles) => {
+  return route.forceLink ? true: accessByRole(route, userRoles);
+  }

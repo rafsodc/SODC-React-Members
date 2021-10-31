@@ -4,6 +4,7 @@ import Login from "../Authentication/Login";
 import {refreshToken} from "../../store/actions/";
 import axios from "../../services/axios/axios";
 import {loadUser} from "../../store/actions/";
+import Page403 from "../../ReactUI/Page403/Page403";
 
 const Authenticator = (props) => {
 
@@ -23,14 +24,22 @@ const Authenticator = (props) => {
         },
           error => Promise.reject(error)
       );
+      console.log(tokenInterceptor);
       dispatch(loadUser(auth.token_data.iri));
     } else {
-      axios.interceptors.request.eject(0);
       dispatch(refreshToken());
     }
+    return axios.interceptors.request.eject(tokenInterceptor);
   }, [dispatch, auth.authenticated, auth.token])
 
-  return auth.authenticated ? props.children : (form.hidden ? "" : <Login />);
+if(props.access) {
+  return props.children
+}
+else if (auth.authenticated) {
+  return <Page403 />
+}
+else
+  return form.hidden ? "" : <Login />;
 }
 
 export default Authenticator;

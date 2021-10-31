@@ -5,7 +5,7 @@ import jwtDecode from "jwt-decode";
 const initialAuthState = {
   authenticated: false,
   token: null,
-  token_data: null,
+  token_data: {roles: ['IS_AUTHENTICATED_ANONYMOUSLY']},
   user: null
 }
 

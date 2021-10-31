@@ -5,17 +5,15 @@ import RenderRoutes from "../../containers/Routes/Routes";
 import {bannerRoutes} from "../../containers/Routes/RouteDefs";
 import apiPaths from "../../store/paths";
 
-const Header = () => {
+const Header = (props) => {
 
   const auth = useSelector(state => state.authenticationReducer);
 
-  const user = auth.token_data === null ?  "" : auth.token_data.email
-
   return (
     <header className={"bg-app-primary"} >
-      <HeaderNavbar authenticated={auth.authenticated} user={user}/>
+      <HeaderNavbar authenticated={auth.authenticated} user={props.user} />
       {/* Render the banner by using routes */}
-      <RenderRoutes routes={bannerRoutes}/>
+      <RenderRoutes routes={bannerRoutes} user={props.user}/>
     </header>
   );
 }
