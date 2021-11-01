@@ -17,17 +17,21 @@ export const submitTicketForm = (data, id, location = null, event, owner) => {
   return [submitForm(actionTypes.ticket.NAME, data, id, location)]
 }
 
-export const loadTickets = (event, owner = null) => dispatch => {
+export const loadTickets = (event, owner = null, typeAsString = true) => dispatch => {
   let query = "?event=" + event;
   query += (owner !== null) ? "&owner=" + owner : "";
   axios.get(apiPaths.ticket.GET_COLLECTION + query).then((response) => {
     const data = response.data['hydra:member'];
-    return dispatch([resetTickets(), addTickets(data)]);
+    return dispatch([resetTickets(), addTickets(data, typeAsString)]);
   });
 }
 
-export const addTickets = (data = []) => {
-  return data.map(item => addTicket(item));
+export const addTickets = (data = [], typeAsString) => {
+  return data.map(item => {
+    // ticketType is received as an object, but we only require the id.
+    const data = typeAsString ? updateObject(item, {ticketType: item.ticketType['@id']}) : item;
+    return addTicket(data)
+  });
 }
 
 export const resetTickets = () => ({

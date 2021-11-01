@@ -24,12 +24,11 @@ const Authenticator = (props) => {
         },
           error => Promise.reject(error)
       );
-      console.log(tokenInterceptor);
       dispatch(loadUser(auth.token_data.iri));
     } else {
       dispatch(refreshToken());
     }
-    return axios.interceptors.request.eject(tokenInterceptor);
+    //return axios.interceptors.request.eject(tokenInterceptor);
   }, [dispatch, auth.authenticated, auth.token])
 
 if(props.access) {

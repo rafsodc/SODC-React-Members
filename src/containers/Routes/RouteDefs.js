@@ -10,6 +10,7 @@ import Logout from "../Authentication/Logout";
 import UserRegister from "../User/UserRegister"
 import PasswordResetRequest from "../Authentication/PasswordResetRequest";
 import PasswordResetSubmit from "../Authentication/PasswordResetSubmit";
+import AttendeeList from "../Admin/AttendeeList";
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request
@@ -60,7 +61,14 @@ const headerRoutes = [
     auth: false,
     roles: ['IS_AUTHENTICATED_ANONYMOUSLY'],
   },
-  
+  {
+    path: "/admin/event/1",
+    key: "APP_ADMIN",
+    title: "Event Admin",
+    exact: true,
+    component: AttendeeList,
+    roles: ['ROLE_ADMIN'],
+  },
   
 ];
 
