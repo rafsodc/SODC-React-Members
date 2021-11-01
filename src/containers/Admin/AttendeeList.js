@@ -15,7 +15,7 @@ const AttendeeList = () => {
   const id = 1;
 
   useEffect(() => {
-    dispatch(loadTickets(`/events/${id}`));
+    dispatch(loadTickets(`/events/${id}`, null, false));
   }, [dispatch]);
 
   const rows = tickets.map(ticket => (
