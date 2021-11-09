@@ -26,6 +26,14 @@ export const loadTickets = (event, owner = null, typeAsString = true) => dispatc
   });
 }
 
+export const loadEventTickets = () => dispatch => {
+  axios.get('/events/1/tickets').then((response) => {
+    const data = response.data['hydra:member'];
+    
+    return dispatch([resetTickets(), addTickets(data, false)]);
+  });
+}
+
 export const addTickets = (data = [], typeAsString) => {
   return data.map(item => {
     // ticketType is received as an object, but we only require the id.

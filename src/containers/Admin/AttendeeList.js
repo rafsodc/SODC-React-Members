@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
 import { boolToStr, floatToCur } from "../../services/funcs/funcs";
-import { loadTickets } from "../../store/actions/ticket";
+import { loadEventTickets } from "../../store/actions/ticket";
 import Table from 'react-bootstrap/Table'
 
 
@@ -15,7 +15,7 @@ const AttendeeList = () => {
   const id = 1;
 
   useEffect(() => {
-    dispatch(loadTickets(`/events/${id}`, null, false));
+    dispatch(loadEventTickets());
   }, [dispatch]);
 
   const rows = tickets.map(ticket => (
@@ -30,6 +30,7 @@ const AttendeeList = () => {
       <td>{floatToCur.format(ticket.fields.ticketType.price)}</td>
       <td>{boolToStr(ticket.fields.paid)}</td>
       <td>{ticket.fields.dietary}</td>
+      <td>{ticket.fields.seatingPreferences.map(preference => preference.fullName).join('\n')}</td>
       <td>{ticket.fields.owner.fullName}</td>
     </tr>
   ));
@@ -46,9 +47,10 @@ const AttendeeList = () => {
     <th>{tickets.filter(ticket => ticket.fields.paid).length}</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
-  const table = <Table><thead><tr><th>{"Last Name"}</th><th>{"First Name"}</th><th>{"Rank"}</th><th>{"Symposium"}</th><th>{"Dinner"}</th><th>{"Serving"}</th><th>{"Guest"}</th><th>{"Amount"}</th><th>{"Paid"}</th><th>{"Dietary Requirements"}</th><th>SODC Account</th></tr></thead><tbody>{rows}</tbody><tfoot>{totals}</tfoot></Table>
+  const table = <Table><thead><tr><th>{"Last Name"}</th><th>{"First Name"}</th><th>{"Rank"}</th><th>{"Symposium"}</th><th>{"Dinner"}</th><th>{"Serving"}</th><th>{"Guest"}</th><th>{"Amount"}</th><th>{"Paid"}</th><th>{"Dietary Requirements"}</th><th>{"Seating Preferences"}</th><th>SODC Account</th></tr></thead><tbody>{rows}</tbody><tfoot>{totals}</tfoot></Table>
 
   return table
 

@@ -9,7 +9,7 @@ const initialTicket = {
     lastname: "",
     dietary: "",
     ticketType: "",
-    seatingPreference: []
+    seatingPreferences: []
   },
   locked: false,
   id: null,
