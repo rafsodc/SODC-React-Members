@@ -10,6 +10,7 @@ const Event = (props) => {
 
   const link = props.bookingLink === true ? <NavLink to={"/events/" + props.id}>Click to book</NavLink>: "";
   const bookingOpen = false && props.isBookingOpen;
+  const tickets = props.showTickets ? <EventTickets id={props.id}/> : "";
 
   return <Card>
     <Accordion.Toggle as={Card.Header} eventKey={props.eventKey}>{props.title} - {longDate.format(props.date)} <BookingBadge show={bookingOpen}/></Accordion.Toggle>
@@ -24,7 +25,7 @@ const Event = (props) => {
           <em>{props.description}</em><br/>{link}<br/><br/>
           <strong>My Tickets</strong>
         </Card.Text>
-        <EventTickets id={props.id}/>
+        {tickets}
       </Card.Body>
     </Accordion.Collapse>
   </Card>
