@@ -17,7 +17,8 @@ const EventList = () => {
 
   if(eventState.events !== null) {
     let transformedEvents = eventState.events.map((event, key) => {
-      return <Event key={key} eventKey={key.toString()} {...event} bookingLink={true} />;
+      // Need to change bookingLink not to be hard coded.
+      return <Event key={key} eventKey={key.toString()} {...event} bookingLink={false} />;
     })
     .reduce((arr, el) => {
       return arr.concat(el)
