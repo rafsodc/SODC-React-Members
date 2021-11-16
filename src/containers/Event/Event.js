@@ -5,6 +5,7 @@ import BookingBadge from "./BookingBadge";
 import {Accordion} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import EventTickets from "./EventTickets";
+import ReactMarkdown from "react-markdown";
 
 const Event = (props) => {
 
@@ -22,7 +23,8 @@ const Event = (props) => {
           Booking Closes: {longDate.format(props.bookingClose)}<br/>
           Principal Speaker: {props.principalSpeaker}<br/>
           Sponsor: {props.sponsor}<br/><br/>
-          <em>{props.description}</em><br/>{link}<br/><br/>
+          <ReactMarkdown source={props.description} />
+          <br/>{link}<br/><br/>
           <strong>My Tickets</strong>
         </Card.Text>
         {tickets}
