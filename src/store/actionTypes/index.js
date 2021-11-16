@@ -9,10 +9,12 @@ import * as contact from "./contact"
 import * as basket from "./basket"
 import * as error from "./error"
 import * as user from "./user"
+import agenda from "./agenda"
 
 const actionTypes = {
   ...event,
   ...authentication,
+  ...agenda,
   booking: booking,
   ticket: ticket,
   typeAhead: typeAhead,

@@ -11,6 +11,7 @@ import UserRegister from "../User/UserRegister"
 import PasswordResetRequest from "../Authentication/PasswordResetRequest";
 import PasswordResetSubmit from "../Authentication/PasswordResetSubmit";
 import AttendeeList from "../Admin/AttendeeList";
+import Agenda from "../Agenda/Agenda"
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request
@@ -117,6 +118,15 @@ const otherRoutes = [
     key: "APP_EVENT_ID",
     title: "Event",
     component: EventPage,
+    auth: true,
+    roles: ['ROLE_USER'],
+    exact: true
+  },
+  {
+    path: "/events/:id/agenda",
+    key: "APP_EVENT_ID_AGENDA",
+    title: "Event Agenda",
+    component: Agenda,
     auth: true,
     roles: ['ROLE_USER']
   },

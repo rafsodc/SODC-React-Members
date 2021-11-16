@@ -22,7 +22,7 @@ const TicketForm = (props) => {
         <FormElement type="input" placeholder="Dietary Requirements" label="Dietary Requirements"
                      name="dietary" {...props.childProps}/>
         <FormElement type="userTypeAhead" placeholder="Seating Preferences" label="Seating Preferences"
-                     name="seatingPreferences" {...props.childProps} />
+                     name="seatingPreference" {...props.childProps} />
                        
                   
       </Form.Group>
