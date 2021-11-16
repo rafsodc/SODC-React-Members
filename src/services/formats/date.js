@@ -6,4 +6,8 @@ const longDate = new Intl.DateTimeFormat("en-GB", {
   weekday: "short"
 });
 
-export {longDate};
+const time = new Intl.DateTimeFormat("en-GB", {
+  timeStyle: "short"
+});
+
+export {longDate, time};

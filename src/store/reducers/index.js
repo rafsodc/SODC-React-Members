@@ -12,8 +12,10 @@ import pageReducer from "./page"
 import contactReducer from "./contact"
 import basketReducer from "./basket"
 import userReducer from "./user"
+import agendaReducer from "./agenda/agenda"
 
 const rootReducer = combineReducers({
+  agendaReducer: agendaReducer,
   ...authenticationReducers,
   alertReducer: alertReducer,
   errorReducer: errorReducer,

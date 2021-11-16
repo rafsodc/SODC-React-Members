@@ -11,6 +11,12 @@ import Authenticator from "./containers/Authentication/Authenticator";
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faCaretDown, faCheck} from '@fortawesome/free-solid-svg-icons'
 
+import {stringFormat} from './services/prototypes/stringFormat';
+
+if (!String.prototype.format) {
+  String.prototype.format = stringFormat
+}
+
 library.add(faCaretDown, faCheck);
 
 //function App() {

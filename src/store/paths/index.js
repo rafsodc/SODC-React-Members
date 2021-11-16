@@ -6,6 +6,7 @@ import * as transaction from "./transaction"
 import * as basket from "./basket"
 import * as rank from "./rank"
 import * as contact from "./contact"
+import * as agenda from "./agenda"
 
 const apiPaths = {
   ...event,
@@ -15,7 +16,8 @@ const apiPaths = {
   transaction: transaction,
   basket: basket,
   rank: rank,
-  contact: contact
+  contact: contact,
+  agenda: agenda
 }
 
 export default apiPaths;
