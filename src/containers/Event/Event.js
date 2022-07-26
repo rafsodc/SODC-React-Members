@@ -9,7 +9,7 @@ import ReactMarkdown from "react-markdown";
 
 const Event = (props) => {
 
-  const link = props.bookingLink === true ? <NavLink to={"/events/" + props.id}>Click to book</NavLink>: "";
+  const link = props.isBookingOpen === true ? <NavLink to={"/events/" + props.id}>Click to book</NavLink>: "";
   const bookingOpen = false && props.isBookingOpen;
   const tickets = props.showTickets ? <EventTickets id={props.id}/> : "";
 
