@@ -14,6 +14,8 @@ const EventTickets = (props) => {
   const dispatch = useDispatch();
   const ticketsState = useSelector(state => state.ticketReducer);
   const authenticationState = useSelector(state => state.authenticationReducer);
+
+  // Remove tickets that are not for Symposium or Dinner (ie 'membership' tickets)
   const tickets = ticketsState.filter(ticket => ticket.fields.ticketType.symposium || ticket.fields.ticketType.dinner)
 
   useEffect(() => {

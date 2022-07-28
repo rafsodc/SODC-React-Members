@@ -13,6 +13,7 @@ import Basket from "../Transaction/Basket";
 import Payment from "../Transaction/Payment";
 import {setResponse } from "../../store/actions/basket";
 import IPGResponse from "../Transaction/IPGResponse";
+import {Form} from "react-bootstrap";
 
 const Booking = (props) => {
 
@@ -93,6 +94,10 @@ const Booking = (props) => {
 
   const order_disabled = !['order', 'payment'].includes(bookingState.tab);
 
+  // Determine if any tickets are not saved
+  const isSaved = ticketState.filter(ticket => !ticket.saved).length === 0;
+  const notSavedNotice = isSaved ? "" :  <Form.Text muted className={"form-warning-desc"}>Please ensure all tickets are saved to continue.</Form.Text>
+
   return (
     <Tabs activeKey={bookingState.tab} onSelect={(key) => handleTabSelect(key)}>
       <Tab eventKey="tickets" title={"Tickets"}><br/>
@@ -102,7 +107,8 @@ const Booking = (props) => {
           {transformedTicketForms}
         </TicketList>
         <br/>
-        <Button onClick={() => handleTabSelect('order')}>Proceed to Order Confirmation</Button>
+        <Button disabled={!isSaved} onClick={() => handleTabSelect('order')}>Proceed to Order Confirmation</Button>
+        {notSavedNotice}
       </Tab>
       <Tab eventKey="order" title={"Order"} disabled={order_disabled}>
         {/* <TransactionList activeKey={bookingState.accordion.transaction} >
