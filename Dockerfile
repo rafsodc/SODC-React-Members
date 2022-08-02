@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:13.12.0-alpine AS react_app_common
+FROM node:18.7-alpine AS react_app_common
 
 # set working directory
 WORKDIR /app
@@ -10,7 +10,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm install 
+#RUN npm install --package-lock-only --legacy-peer-deps true
+RUN npm install --legacy-peer-deps true
 #RUN npm install react-scripts@3.4.1 -g
 
 # add app
