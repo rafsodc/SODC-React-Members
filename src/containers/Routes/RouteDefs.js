@@ -63,7 +63,7 @@ const headerRoutes = [
     roles: ['IS_AUTHENTICATED_ANONYMOUSLY'],
   },
   {
-    path: "/admin/event/1",
+    path: "/admin/event/2",
     key: "APP_ADMIN",
     title: "Event Admin",
     exact: true,
