@@ -26,9 +26,9 @@ export const loadTickets = (event, owner = null, typeAsString = true) => dispatc
   });
 }
 
-export const loadEventTickets = (owner = null) => dispatch => {
+export const loadEventTickets = (eventid, owner = null) => dispatch => {
   const query = (owner !== null) ? "?owner=" + owner : "";
-  axios.get('/events/1/tickets' + query).then((response) => {
+  axios.get("/events/" + eventid + "/tickets" + query).then((response) => {
     const data = response.data['hydra:member'];
     
     return dispatch([resetTickets(), addTickets(data, false)]);
