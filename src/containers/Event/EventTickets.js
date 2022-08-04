@@ -18,8 +18,6 @@ const EventTickets = (props) => {
   // Remove tickets that are not for Symposium or Dinner (ie 'membership' tickets)
   const tickets = ticketsState.filter(ticket => ticket.fields.ticketType.symposium || ticket.fields.ticketType.dinner)
 
-  console.log(authenticationState.token_data.iri);
-
   useEffect(() => {
     dispatch(loadEventTickets(props.id, authenticationState.token_data.iri));
   }, [dispatch]);

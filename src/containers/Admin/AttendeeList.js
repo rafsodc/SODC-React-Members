@@ -12,10 +12,10 @@ const AttendeeList = () => {
 
   const tickets = ticketsState.filter(ticket => ticket.fields.ticketType.symposium || ticket.fields.ticketType.dinner)
   //const { id } = useParams();
-  const id = 1;
+  const id = 2;
 
   useEffect(() => {
-    dispatch(loadEventTickets());
+    dispatch(loadEventTickets(id));
   }, [dispatch]);
 
   const rows = tickets.map(ticket => (
