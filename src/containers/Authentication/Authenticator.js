@@ -26,9 +26,16 @@ const Authenticator = (props) => {
       );
       dispatch(loadUser(auth.token_data.iri));
     } else {
+      tokenInterceptor = axios.interceptors.request.use(
+        config => {
+          config.headers.authorization = null;
+          return config;
+        },
+          error => Promise.reject(error)
+      );
       dispatch(refreshToken());
     }
-    //return axios.interceptors.request.eject(tokenInterceptor);
+
   }, [dispatch, auth.authenticated, auth.token])
 
 if(props.access) {

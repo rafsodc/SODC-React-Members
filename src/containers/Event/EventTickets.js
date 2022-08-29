@@ -19,8 +19,10 @@ const EventTickets = (props) => {
   const tickets = ticketsState.filter(ticket => ticket.fields.ticketType.symposium || ticket.fields.ticketType.dinner)
 
   useEffect(() => {
-    dispatch(loadEventTickets(props.id, authenticationState.token_data.iri));
+    dispatch(loadEventTickets(props.eventId, authenticationState.token_data.iri));
   }, [dispatch]);
+
+  console.log(ticketsState);
 
   const rows = tickets.map(ticket => (
     <tr>

@@ -24,7 +24,8 @@ const Ticket = (props) => {
   } = useFormBuilder( () => ticketFormSchema(props.ticket.fields.paid) )
 
   const onChange = (event) => {
-    dispatch(setTicketField({[event.target.name]: event.target.value}, props.ticket.id));
+    //const eventValue = (event.target.name === 'ticketType') ? { '@id' : event.target.value } : event.target.value;
+    dispatch(setTicketField({[event.target.name]: event.target.value }, props.ticket.id));
   }
 
   const onSubmit = () => {
@@ -38,17 +39,21 @@ const Ticket = (props) => {
     ]);
   }
 
+  // If the ticket.fields.ticketType is an object with '@id', change it to a string
+  if(props.ticket.fields.ticketType.hasOwnProperty('@id')) { props.ticket.fields.ticketType = props.ticket.fields.ticketType['@id'] }
+
   const childProps = {
     errors: errors,
     data: props.ticket.fields,
+    //data: {...props.ticket.fields, ticketType: props.ticket.fields.ticketType['@id']},
     onChange: onChange,
     ref: register
   }
 
   const subtitle = (props.ticket.fields.ticketType !== "") ? 
-    <Aux>{" - "}
-      {props.ticketOptions.find(el => el['@id'] == props.ticket.fields.ticketType).description}
-    </Aux>: ""
+   <Aux>{" - "}
+     {props.ticketOptions.find(el => el['@id'] == props.ticket.fields.ticketType).description}
+   </Aux>: ""
 
   return <Card>
     <Card.Header onClick={props.handleHeaderClick}>

@@ -41,7 +41,10 @@ export const doLogin = (token) => ([
 ]);
 
 export const logout = () => dispatch => {
-  axios.post(apiPaths.authentication.LOGOUT).then(dispatch(doLogout()));
+  // Double request fixes a bug where the JWT is retained - A bit ugly, but works
+  axios.post(apiPaths.authentication.LOGOUT).then(
+    axios.post(apiPaths.authentication.LOGOUT)
+  ).then(dispatch(doLogout()));
 }
 
 const authenticate = (token) => {

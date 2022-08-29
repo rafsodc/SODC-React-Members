@@ -13,6 +13,7 @@ const EventPage = () => {
 
   const dispatch = useDispatch();
   const eventState = useSelector(state => state.eventReducer);
+  
 
   const { id } = useParams();
 
@@ -24,7 +25,7 @@ const EventPage = () => {
     return <Aux>
       <h2>Event Booking</h2>
       <Accordion>
-        <Event {...eventState.event} eventKey={"event"}/>
+        <Event {...eventState.event} showTickets={false} eventKey={"event"}/>
       </Accordion>
       <br/>
       <BookingOwnerSelect disabled={eventState.ownerSelectDisabled}>
