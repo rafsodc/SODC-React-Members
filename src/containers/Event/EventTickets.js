@@ -23,7 +23,7 @@ const EventTickets = (props) => {
   }, [dispatch]);
 
   const rows = tickets.map(ticket => (
-    <tr>
+    <tr key={ticket.id}>
       <td>{ticket.fields.lastname}</td>
       <td>{ticket.fields.firstname}</td>
       <td>{ticket.fields.rank}</td>
