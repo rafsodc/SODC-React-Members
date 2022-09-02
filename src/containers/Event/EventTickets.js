@@ -22,8 +22,6 @@ const EventTickets = (props) => {
     dispatch(loadEventTickets(props.eventId, authenticationState.token_data.iri));
   }, [dispatch]);
 
-  console.log(ticketsState);
-
   const rows = tickets.map(ticket => (
     <tr>
       <td>{ticket.fields.lastname}</td>
