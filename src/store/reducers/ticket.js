@@ -18,6 +18,8 @@ const initialTicket = {
 }
 
 
+
+
 const reducer = (state = [], action) => {
   switch (action.type) {
     case actionTypes.ticket.ADD: return formReducers.addForm(state, action, initialTicket);

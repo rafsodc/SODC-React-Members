@@ -23,7 +23,6 @@ const Agenda = () => {
     dispatch(setAccordion(setKey));
   }
 
-  console.log(agendaState.accordion);
   const agenda = agendaState.agenda.map((agenda, key) => <AgendaItem agenda={agenda} handleHeaderClick={() => handleHeaderClick(agenda['@id'])} id={agenda['@id']} key={agenda['@id']} />)
 
   if (agendaState.loaded)  {

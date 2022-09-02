@@ -56,7 +56,7 @@ const FormElement = React.forwardRef((props, ref) => {
       control = <Aux> {typeAheads} <UserTypeAhead id={"seatingPreference"} index={typeAheads.length} key={typeAheads.length} handleSelect={handleSelect}/> </Aux>
       break;
     case 'password':
-      control = <Form.Control as={"input"} type={"password"} disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref} type={props.type}
+      control = <Form.Control as={"input"} disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref} type={props.type}
                                     placeholder={props.placeholder}
                                     className={props.errors[props.name] && "form-warning-el"}
                                     value={props.data[props.name]} />

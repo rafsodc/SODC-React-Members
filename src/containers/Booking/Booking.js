@@ -4,7 +4,7 @@ import {Button, Tab, Tabs} from "react-bootstrap";
 import Ticket from "../Ticket/Ticket";
 import {addTicket, setAccordion, setTab} from "../../store/actions";
 import TicketList from "../Ticket/TicketList";
-import {loadTickets} from "../../store/actions/ticket";
+import {loadEventTickets} from "../../store/actions/ticket";
 import {} from "../../store/actions";
 import {loadTransactions} from "../../store/actions/transaction";
 import Transaction from "../Transaction/Transaction";
@@ -23,7 +23,7 @@ const Booking = (props) => {
   const transactionState = useSelector(state => state.transactionReducer);
 
   useEffect(() => {
-    dispatch(loadTickets(props.event, bookingState.owner));
+    dispatch(loadEventTickets(props.event, bookingState.owner));
     //dispatch(loadTransactions(props.event, bookingState.owner))
     
   }, [dispatch, bookingState.owner, props.event]);
@@ -42,7 +42,7 @@ const Booking = (props) => {
 
   const handleReturnToTickets = () => {
     dispatch([
-      loadTickets(props.event, bookingState.owner),
+      loadEventTickets(props.event, bookingState.owner),
       setTab('tickets')
     ])
   }

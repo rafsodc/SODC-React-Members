@@ -40,9 +40,9 @@ class ErrorBoundary extends Component {
     this.props.alertOpen(error.message);
   }
 
-  // getDerivedStateFromError(error){
+  //getDerivedStateFromError(error){
   //  // @todo
-  // };
+  //};
 
   // Default is to render props.  @Todo Render a different screen on error?
   render() {

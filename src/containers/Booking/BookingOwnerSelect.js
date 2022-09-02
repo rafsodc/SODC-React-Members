@@ -41,7 +41,7 @@ const BookingOwnerSelect = (props) => {
 
   if(displaySelect ) {
     return <Aux>
-        <UserTypeAhead handleSelect={handleSelect} error={error} selected={user.id}/><br/>
+        <UserTypeAhead handleSelect={handleSelect} error={error} selected={user.id} id={1}/><br/>
         <Button onClick={handleClick}>Select User</Button>
     </Aux>
   }
