@@ -28,7 +28,7 @@ const Authenticator = (props) => {
     } else {
       tokenInterceptor = axios.interceptors.request.use(
         config => {
-          config.headers.authorization = null;
+          //config.headers.authorization = null;
           return config;
         },
           error => Promise.reject(error)
