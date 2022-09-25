@@ -84,6 +84,13 @@ export const doLogout = () => {
   };
 }
 
+export const setInteceptorId = (id) => {
+  return {
+    type: actionTypes.authentication.SET_INTERCEPTOR_ID,
+    id: id
+  }
+}
+
 export const loadUser = (iri) => dispatch => {
   axios.get(iri).then((response) => dispatch(setUser(response.data)));
 }

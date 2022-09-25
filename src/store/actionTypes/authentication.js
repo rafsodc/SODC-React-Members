@@ -3,6 +3,7 @@ const authentication = {
   AUTHENTICATE:  'AUTHENTICATE',
   LOGOUT: 'LOGOUT',
   SET_USER: 'SET_USER',
+  SET_INTERCEPTOR_ID: 'SET_INTERCEPTOR_ID'
 }
 
 const loginForm = {
