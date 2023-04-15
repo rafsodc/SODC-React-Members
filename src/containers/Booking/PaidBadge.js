@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
-import {Badge} from "react-bootstrap";
+import React from 'react'
+import { Badge } from 'react-bootstrap'
 
 const PaidBadge = (props) => {
-  return props.paid ? <Badge variant={"info"}>Paid</Badge>: <Badge variant={"warning"}>Not Paid</Badge>;
+  return props.paid ? <Badge variant={'info'}>Paid</Badge> : <Badge variant={'warning'}>Not Paid</Badge>
 }
 
-export default PaidBadge;
+export default PaidBadge

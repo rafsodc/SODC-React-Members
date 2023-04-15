@@ -1,6 +1,6 @@
 const authentication = {
   NAME: 'authentication',
-  AUTHENTICATE:  'AUTHENTICATE',
+  AUTHENTICATE: 'AUTHENTICATE',
   LOGOUT: 'LOGOUT',
   SET_USER: 'SET_USER',
 }

@@ -1,4 +1,3 @@
+export const LOGIN = '/login'
 
-export const LOGIN = '/login';
-
-export const TICKETS = '/tickets';
+export const TICKETS = '/tickets'

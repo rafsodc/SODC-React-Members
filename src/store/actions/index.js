@@ -2,10 +2,10 @@ export {
   setAlert,
   clearAlert,
   clearUnstickyAlerts
-} from './alert';
+} from './alert'
 export {
   errorFlag
-} from './error';
+} from './error'
 export {
   login,
   logout,
@@ -33,4 +33,4 @@ export {
   setContactLocked,
   setContactHidden
 } from './contact'
-export * from "./user"
+export * from './user'

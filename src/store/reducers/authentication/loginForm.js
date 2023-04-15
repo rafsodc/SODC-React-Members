@@ -1,17 +1,16 @@
-import actionTypes from "../../actionTypes"
-import {createReducer} from "../../helpers/utility";
-import {formReducerObject} from "../../helpers/formReducers"
-
+import actionTypes from '../../actionTypes'
+import { createReducer } from '../../helpers/utility'
+import { formReducerObject } from '../../helpers/formReducers'
 
 const initialLoginFormState = {
   fields: {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   },
   locked: false,
   hidden: true
 }
 
-const reducer = createReducer(initialLoginFormState, formReducerObject(actionTypes.loginForm));
+const reducer = createReducer(initialLoginFormState, formReducerObject(actionTypes.loginForm))
 
-export default reducer;
+export default reducer

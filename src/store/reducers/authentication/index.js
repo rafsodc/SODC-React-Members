@@ -1,10 +1,8 @@
-import {combineReducers} from "redux";
-
-import authenticationReducer from "./authentication";
-import loginFormReducer from "./loginForm";
-import passwordResetRequestFormReducer from "./passwordResetRequestForm";
-import passwordResetSubmitFormReducer from "./passwordResetSubmitForm";
-import passwordResetSubmitReducer from "./passwordResetSubmit";
+import authenticationReducer from './authentication'
+import loginFormReducer from './loginForm'
+import passwordResetRequestFormReducer from './passwordResetRequestForm'
+import passwordResetSubmitFormReducer from './passwordResetSubmitForm'
+import passwordResetSubmitReducer from './passwordResetSubmit'
 
 const reducers = {
   authenticationReducer: authenticationReducer,
@@ -12,6 +10,6 @@ const reducers = {
   passwordResetRequestFormReducer: passwordResetRequestFormReducer,
   passwordResetSubmitFormReducer: passwordResetSubmitFormReducer,
   passwordResetSubmitReducer: passwordResetSubmitReducer
-};
+}
 
-export default reducers;
+export default reducers

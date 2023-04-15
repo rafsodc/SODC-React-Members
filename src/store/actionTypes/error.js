@@ -1,1 +1,1 @@
-export const ERROR_FLAG = 'ERROR_FLAG';
+export const ERROR_FLAG = 'ERROR_FLAG'

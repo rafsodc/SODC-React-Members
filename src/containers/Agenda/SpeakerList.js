@@ -1,12 +1,7 @@
-
-import React, {useEffect} from "react";
-import Accordion from "react-bootstrap";
-import {time} from "../../services/formats/date";
+import React from 'react'
 
 const AgendaItem = (props) => {
 
-  
+}
 
-};
-
-export default AgendaItem;
+export default AgendaItem

@@ -1,36 +1,36 @@
 :root {
-  --sodc-red: #770800;
-  --sodc-blue: #112244;
-  --success-bg: #ddeeff;
-  --success: #112244;
+    --sodc-red: #770800;
+    --sodc-blue: #112244;
+    --success-bg: #ddeeff;
+    --success: #112244;
 }
 
 .bg-app-primary {
-  background-color: var(--sodc-red) !important;
-  color: #fff !important;
+    background-color: var(--sodc-red) !important;
+    color: #fff !important;
 }
 
 .bg-app-secondary {
-  background-color: var(--sodc-blue) !important;
-  color: #fff !important;
+    background-color: var(--sodc-blue) !important;
+    color: #fff !important;
 }
 
 .badge-sodc {
-  background-color: var(--sodc-red) !important;
-  color: #fff !important;
+    background-color: var(--sodc-red) !important;
+    color: #fff !important;
 }
 
 .spinner {
-  color: var(--sodc-red) !important;
+    color: var(--sodc-red) !important;
 }
 
 .loading {
-  height: 10em;
+    height: 10em;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 

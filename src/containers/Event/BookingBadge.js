@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
-import {Badge} from "react-bootstrap";
+import React from 'react'
+import { Badge } from 'react-bootstrap'
 
 const BookingBadge = (props) => {
-  return props.show ? <Badge variant={"sodc"}>Booking Open</Badge> : "";
+  return props.show ? <Badge variant={'sodc'}>Booking Open</Badge> : ''
 }
 
-export default BookingBadge;
+export default BookingBadge

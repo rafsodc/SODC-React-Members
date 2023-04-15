@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const BannerDesktop = React.memo(() => {
   return (
@@ -12,6 +12,6 @@ const BannerDesktop = React.memo(() => {
       </div>
     </div>
   )
-});
+})
 
-export default BannerDesktop;
+export default BannerDesktop

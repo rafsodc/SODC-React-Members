@@ -1,15 +1,14 @@
-import React, {useEffect} from "react";
-import EventList from "../Event/EventList";
-import Aux from "../../hoc/Aux";
+import React from 'react'
+import EventList from '../Event/EventList'
+import Aux from '../../hoc/Aux'
 
 const Landing = () => {
 
-
-  return(<Aux>
+  return (<Aux>
     <h2>SODC Members' Area</h2>
     <h3>Upcoming Events</h3>
     <EventList/>
-  </Aux>);
+  </Aux>)
 }
 
-export default Landing;
+export default Landing

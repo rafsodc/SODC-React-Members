@@ -1,10 +1,4 @@
-import actionTypes from "../actionTypes"
-import uuid from "react-uuid";
-import {addForm, setFormFields} from "../helpers/formActions";
-import axios from "../../services/axios/axios";
-import apiPaths from "../paths";
-import {addTickets} from "./ticket";
-
+import actionTypes from '../actionTypes'
 
 export const setAccordion = (tab, accordian) => {
   return {

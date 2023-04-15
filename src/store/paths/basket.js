@@ -1,1 +1,1 @@
-export const BASKETS = "/baskets";
+export const BASKETS = '/baskets'

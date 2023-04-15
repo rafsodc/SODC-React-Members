@@ -1,12 +1,12 @@
-import React from "react";
-import {Button, Form} from "react-bootstrap";
-import FormElement from "../../ReactUI/Forms/FormElement";
-import FormRecaptcha from "../../ReactUI/Forms/FormRecaptcha";
+import React from 'react'
+import { Button, Form } from 'react-bootstrap'
+import FormElement from '../../ReactUI/Forms/FormElement'
+import FormRecaptcha from '../../ReactUI/Forms/FormRecaptcha'
 
 const ContactForm = (props) => (
 
-  <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={"disabled"}>
-    <fieldset disabled={props.locked && "disabled"}>
+  <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={'disabled'}>
+    <fieldset disabled={props.locked && 'disabled'}>
       <Form.Group controlId="formName">
         <FormElement type="input" placeholder="Enter name" label="Name" name="name" {...props.childProps}/>
       </Form.Group>
@@ -30,6 +30,6 @@ const ContactForm = (props) => (
     </fieldset>
   </Form>
 
-);
+)
 
-export default ContactForm;
+export default ContactForm

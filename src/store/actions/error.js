@@ -1,6 +1,4 @@
-import * as actionTypes from "./actionsTypes";
-import { setAlert } from "./alert";
-import rollbar from "../../services/rollbar/rollbar";
+import * as actionTypes from './actionsTypes'
 
 export const errorFlag = (flag, value) => {
   return {

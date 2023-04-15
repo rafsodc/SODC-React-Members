@@ -1,6 +1,5 @@
-import {createReducer, updateObject} from "../helpers/utility";
-import actionTypes from "../actionTypes";
-import {setParam} from "../helpers/utility";
+import { createReducer, setParam, updateObject } from '../helpers/utility'
+import actionTypes from '../actionTypes'
 
 const initialState = {
   id: null,
@@ -12,18 +11,18 @@ const initialState = {
 }
 
 const setBasket = (state, action) => {
-  const tickets = (action.data.tickets === undefined) ? [] : action.data.tickets;
-  return updateObject(state,  {...action.data, tickets: tickets, loaded: true})
-};
+  const tickets = (action.data.tickets === undefined) ? [] : action.data.tickets
+  return updateObject(state, { ...action.data, tickets: tickets, loaded: true })
+}
 
-const setResponse = (state, action) => setParam(state, updateObject(action, {param: 'response'}));
+const setResponse = (state, action) => setParam(state, updateObject(action, { param: 'response' }))
 
-const setTransaction = (state, action) => setParam(state, updateObject(action, {param: 'transaction'}))
+const setTransaction = (state, action) => setParam(state, updateObject(action, { param: 'transaction' }))
 
 const reducer = createReducer(initialState, {
   [actionTypes.basket.SET_BASKET]: setBasket,
   [actionTypes.basket.SET_TRANSACTION]: setTransaction,
   [actionTypes.basket.SET_RESPONSE]: setResponse,
-});
+})
 
-export default reducer;
+export default reducer

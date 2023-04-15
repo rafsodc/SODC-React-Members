@@ -1,23 +1,23 @@
 //import * as actionTypes from "../actions/actionsTypes";
-import actionTypes from "../actionTypes/"
-import {createReducer, updateObject} from "../helpers/utility";
+import actionTypes from '../actionTypes/'
+import { createReducer, updateObject } from '../helpers/utility'
 
 const initialState = {
   events: null,
   event: null,
   ownerSelectDisabled: false,
-};
+}
 
 const setEvents = (state, action) => {
-  return updateObject(state, {events: action.payload});
+  return updateObject(state, { events: action.payload })
 }
 
 const setEvent = (state, action) => {
-  return updateObject(state, {event: action.payload});
+  return updateObject(state, { event: action.payload })
 }
 
 const addTicket = (state, action) => {
-  return updateObject(state, {userSelectDisabled: true})
+  return updateObject(state, { userSelectDisabled: true })
 }
 
 const reducer = createReducer(initialState, {
@@ -27,4 +27,4 @@ const reducer = createReducer(initialState, {
   [actionTypes.ticket.ADD]: addTicket,
 })
 
-export default reducer;
+export default reducer

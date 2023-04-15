@@ -1,11 +1,11 @@
-import React from "react";
-import {Alert} from "react-bootstrap";
-import "../../resources/css/FormSaved.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import React from 'react'
+import { Alert } from 'react-bootstrap'
+import '../../resources/css/FormSaved.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const FormSaved = (props) => {
-  return props.saved ? <Alert key={"formSaved"} variant={"success"} className="formSaved">
-    <FontAwesomeIcon icon={"check"}/> Form successfully saved</Alert> : "";
+  return props.saved ? <Alert key={'formSaved'} variant={'success'} className="formSaved">
+    <FontAwesomeIcon icon={'check'}/> Form successfully saved</Alert> : ''
 }
 
-export default FormSaved;
+export default FormSaved

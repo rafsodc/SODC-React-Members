@@ -1,2 +1,2 @@
-export const GET_COLLECTION = "/tickets"
-export const POST = "/tickets"
+export const GET_COLLECTION = '/tickets'
+export const POST = '/tickets'

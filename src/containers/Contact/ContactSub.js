@@ -1,9 +1,7 @@
-import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Accordion, Card} from "react-bootstrap";
-import Aux from "../../hoc/Aux";
-
-
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Accordion, Card } from 'react-bootstrap'
+import Aux from '../../hoc/Aux'
 
 const ContactSub = (props) => (
 //
@@ -11,9 +9,9 @@ const ContactSub = (props) => (
     <p>Thank you for your message. We will be in contact with you as soon as possible.</p>
 
     <Accordion>
-      <Card bg={"light"}>
+      <Card bg={'light'}>
         <Accordion.Toggle as={Card.Header} eventKey="0">
-          View submitted message <FontAwesomeIcon icon={"caret-down"}/>
+          View submitted message <FontAwesomeIcon icon={'caret-down'}/>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
@@ -31,6 +29,6 @@ const ContactSub = (props) => (
     </Accordion>
 
   </Aux>
-);
+)
 
-export default ContactSub;
+export default ContactSub

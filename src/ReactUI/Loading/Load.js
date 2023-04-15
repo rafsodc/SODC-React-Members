@@ -1,13 +1,11 @@
-import React from 'react';
-import Spinner from 'react-bootstrap/Spinner';
-import {Col, Container, Row} from "react-bootstrap";
-import Loading from './Loading';
-import Page404 from '../Page404/Page404';
+import React from 'react'
+import Loading from './Loading'
+import Page404 from '../Page404/Page404'
 
 const Load = React.memo((props) => (
-  props.loading ? <Loading /> : 
-    props.notFound ? <Page404 /> :
+  props.loading ? <Loading/> :
+    props.notFound ? <Page404/> :
       props.children
-));
+))
 
-export default Load;
+export default Load

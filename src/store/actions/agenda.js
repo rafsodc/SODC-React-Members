@@ -1,15 +1,14 @@
-import axios from "../../services/axios/axios";
-import actionTypes from "../actionTypes/";
-import apiPaths from "../paths";
-import {strToDate} from "../../services/funcs/funcs";
-import { updateItemInArray } from "../helpers/utility";
+import axios from '../../services/axios/axios'
+import actionTypes from '../actionTypes/'
+import apiPaths from '../paths'
+import { strToDate } from '../../services/funcs/funcs'
 
 export const loadAgenda = (event) => dispatch => {
   axios.get(apiPaths.agenda.EVENT_AGENDA.format(event)).then((response) => {
-    const data = response.data['hydra:member'];
-    const agenda = data.map(agendaItem => strToDate(agendaItem, ["start", "finish"]));
-    return dispatch(setAgenda(agenda));
-  });
+    const data = response.data['hydra:member']
+    const agenda = data.map(agendaItem => strToDate(agendaItem, ['start', 'finish']))
+    return dispatch(setAgenda(agenda))
+  })
 }
 
 export const setAgenda = (data) => {

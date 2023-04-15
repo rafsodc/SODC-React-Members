@@ -1,22 +1,22 @@
-import actionTypes from "../actionTypes"
-import {createReducer, updateObject, setParam} from "../helpers/utility";
+import actionTypes from '../actionTypes'
+import { createReducer, setParam, updateObject } from '../helpers/utility'
 
 const initialState = {
   accordion: {
     ticket: 0,
     transaction: 0
   },
-  tab: "tickets",
+  tab: 'tickets',
   owner: null,
   ownerError: false,
   ownerSelected: false
-};
+}
 
-const setOwner = (state, action) => setParam(state, updateObject(action, {param: 'owner'}));
-const setOwnerError = (state, action) => setParam(state, updateObject(action, {param: 'ownerError'}));
-const setOwnerSelected = (state, action) => setParam(state, updateObject(action, {param: 'ownerSelected'}));
-const setTab = (state, action) => setParam(state, updateObject(action, {param: 'tab'}));
-const setAccordion = (state, action) => updateObject(state, {accordion: updateObject(state.accordion, {[action.tab]: action.data})});
+const setOwner = (state, action) => setParam(state, updateObject(action, { param: 'owner' }))
+const setOwnerError = (state, action) => setParam(state, updateObject(action, { param: 'ownerError' }))
+const setOwnerSelected = (state, action) => setParam(state, updateObject(action, { param: 'ownerSelected' }))
+const setTab = (state, action) => setParam(state, updateObject(action, { param: 'tab' }))
+const setAccordion = (state, action) => updateObject(state, { accordion: updateObject(state.accordion, { [action.tab]: action.data }) })
 
 const reducer = createReducer(initialState, {
   [actionTypes.booking.SET_ACCORDION]: setAccordion,
@@ -24,6 +24,6 @@ const reducer = createReducer(initialState, {
   [actionTypes.booking.SET_OWNER_ERROR]: setOwnerError,
   [actionTypes.booking.SET_OWNER_SELECTED]: setOwnerSelected,
   [actionTypes.booking.SET_TAB]: setTab
-});
+})
 
-export default reducer;
+export default reducer

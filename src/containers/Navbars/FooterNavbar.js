@@ -1,9 +1,9 @@
-import React from 'react';
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import {DisplayRouteNav} from "../Routes/Routes";
-import {footerRoutes} from "../Routes/RouteDefs";
-import "../../resources/css/Footer.css"
+import React from 'react'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import { DisplayRouteNav } from '../Routes/Routes'
+import { footerRoutes } from '../Routes/RouteDefs'
+import '../../resources/css/Footer.css'
 
 const footerNavbar = React.memo(() => {
   return (
@@ -13,6 +13,6 @@ const footerNavbar = React.memo(() => {
       </Nav>
     </Navbar>
   )
-});
+})
 
 export default footerNavbar

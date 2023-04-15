@@ -1,9 +1,9 @@
-import * as actionTypes from "./actionsTypes";
-import {ALERT_SUCCESS} from "../../ReactUI/AlertWindow/alertTypes";
-import uuid from "react-uuid";
+import * as actionTypes from './actionsTypes'
+import { ALERT_SUCCESS } from '../../ReactUI/AlertWindow/alertTypes'
+import uuid from 'react-uuid'
 
-export const setAlert = (heading, message, type = ALERT_SUCCESS, sticky = false, dismissible = false ) => {
-  const key = uuid();
+export const setAlert = (heading, message, type = ALERT_SUCCESS, sticky = false, dismissible = false) => {
+  const key = uuid()
   return {
     type: actionTypes.SET_ALERT,
     alert: {

@@ -1,4 +1,4 @@
-import {addElement, blankObject, updateItemOrArray, updateObject, setParam, removeElementById} from "./utility";
+import { addElement, blankObject, removeElementById, setParam, updateItemOrArray, updateObject } from './utility'
 
 /**
  * Adds a form to an array of forms
@@ -8,14 +8,14 @@ import {addElement, blankObject, updateItemOrArray, updateObject, setParam, remo
  * @returns {*}
  */
 export const addForm = (state, action, newElement) => {
-  if(action.fields !== null) {
-    newElement = updateObject(newElement, {fields: action.fields})
+  if (action.fields !== null) {
+    newElement = updateObject(newElement, { fields: action.fields })
   }
   // Set the key on the newElement
-  const el = updateObject(newElement, {id: action.id, location: action.location, saved: action.saved});
+  const el = updateObject(newElement, { id: action.id, location: action.location, saved: action.saved })
   // Update state
-  return addElement(state, el);
-};
+  return addElement(state, el)
+}
 
 /**
  * Removes a form to an array of forms
@@ -23,9 +23,9 @@ export const addForm = (state, action, newElement) => {
  * @param action Current action data
  * @returns {*}
  */
- export const removeForm = (state, action) => {
-  return removeElementById(state, action.id);
-};
+export const removeForm = (state, action) => {
+  return removeElementById(state, action.id)
+}
 
 /**
  * Sets the data fields for a particular form
@@ -35,10 +35,10 @@ export const addForm = (state, action, newElement) => {
  */
 export const setField = (state, action) => {
   const setSingle = (obj = state) => {
-    const fields = updateObject(obj.fields, action.data);
-    return updateObject(obj, {fields: fields, saved: false});
+    const fields = updateObject(obj.fields, action.data)
+    return updateObject(obj, { fields: fields, saved: false })
   }
-  return updateItemOrArray(state, action, setSingle);
+  return updateItemOrArray(state, action, setSingle)
 }
 
 /**
@@ -48,9 +48,9 @@ export const setField = (state, action) => {
  * @returns {*}
  */
 export const clearForm = (state, action) => {
-  const setSingle = (obj = state) => updateObject(obj, {fields: blankObject(obj.fields)});
+  const setSingle = (obj = state) => updateObject(obj, { fields: blankObject(obj.fields) })
 
-  return updateItemOrArray(state, action, setSingle);
+  return updateItemOrArray(state, action, setSingle)
 }
 
 /**
@@ -61,4 +61,4 @@ export const formReducerObject = (actionType) => ({
   [actionType.SET_LOCKED]: setParam,
   [actionType.SET_HIDDEN]: setParam,
   [actionType.CLEAR]: clearForm
-});
+})

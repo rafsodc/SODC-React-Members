@@ -1,85 +1,84 @@
-import React, {useState, useEffect} from "react";
-import AsyncTypeahead from "react-bootstrap-typeahead/lib/components/AsyncTypeahead";
-import Aux from "../../hoc/Aux";
-import axios from "../../services/axios/axios";
-import apiPaths from "../../store/paths";
-import {Form} from "react-bootstrap";
-import "../../resources/css/TypeAhead.css"
+import React, { useEffect, useState } from 'react'
+import AsyncTypeahead from 'react-bootstrap-typeahead/lib/components/AsyncTypeahead'
+import Aux from '../../hoc/Aux'
+import axios from '../../services/axios/axios'
+import apiPaths from '../../store/paths'
+import { Form } from 'react-bootstrap'
+import '../../resources/css/TypeAhead.css'
 
 const UserTypeAhead = (props) => {
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState([]);
-  const [hasChanged, setHasChanged] = useState(false);
-  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [options, setOptions] = useState([])
+  const [selected, setSelected] = useState([])
+  const [hasChanged, setHasChanged] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    setError(props.error);
-    if(props.selected !== undefined) {
-      setIsLoading(true);
-      const path = apiPaths.user.GET_COLLECTION + "?id=" + props.selected
+    setError(props.error)
+    if (props.selected !== undefined) {
+      setIsLoading(true)
+      const path = apiPaths.user.GET_COLLECTION + '?id=' + props.selected
       axios.get(path).then((response) => {
-        setOptions(response.data['hydra:member']);
-        setSelected(response.data['hydra:member']);
+        setOptions(response.data['hydra:member'])
+        setSelected(response.data['hydra:member'])
       })
-      .finally(
-        setIsLoading(false)
-      );
+        .finally(
+          setIsLoading(false)
+        )
     }
 
-  }, [props.selected, props.error]);
+  }, [props.selected, props.error])
 
   const handleSearch = (query) => {
-    setIsLoading(true);
+    setIsLoading(true)
 
-    const path = apiPaths.user.GET_COLLECTION + "?name=" + query.toLowerCase();
+    const path = apiPaths.user.GET_COLLECTION + '?name=' + query.toLowerCase()
     axios.get(path).then((response) => {
-      setOptions(response.data['hydra:member']);
+      setOptions(response.data['hydra:member'])
     })
-    .finally(
-      setIsLoading(false)
-    );
-  };
+      .finally(
+        setIsLoading(false)
+      )
+  }
 
   const handleSelect = (value) => {
-    setHasChanged(false);
-    setError(false);
-    setSelected(value);
+    setHasChanged(false)
+    setError(false)
+    setSelected(value)
     // If value, then change
     //const uri = value[0] === undefined ? null : value[0]['@id'];
-    if(props.handleSelect !== undefined && value[0] !== undefined) {
-      props.handleSelect(value[0]['@id'], props.index);
-    } 
+    if (props.handleSelect !== undefined && value[0] !== undefined) {
+      props.handleSelect(value[0]['@id'], props.index)
+    }
   }
 
   const handleInputChange = (value) => {
-    if(value === "") {
-      props.handleSelect(null, props.index);
-    }
-    else {
-      setHasChanged(true);
+    if (value === '') {
+      props.handleSelect(null, props.index)
+    } else {
+      setHasChanged(true)
     }
   }
 
   const handleBlur = () => {
-    setError(hasChanged && "Please use the drop down menu to select a user.");
+    setError(hasChanged && 'Please use the drop down menu to select a user.')
   }
 
   // Bypass client-side filtering by returning `true`. Results are already
   // filtered by the search endpoint, so no need to do it again.
-  const filterBy = () => true;
+  const filterBy = () => true
 
   const formatOption = (option) => {
-    const rank = option.rank === undefined ? "" : " (" + option.rank.rank + ")";
-    return option.lastName + ", " + option.firstName + rank;
+    const rank = option.rank === undefined ? '' : ' (' + option.rank.rank + ')'
+    return option.lastName + ', ' + option.firstName + rank
   }
 
   return (
     <Aux>
       <AsyncTypeahead
         clearButton
-        className={error ? "form-warning-el" : ""}
+        className={error ? 'form-warning-el' : ''}
         filterBy={filterBy}
         id={props.id}
         isLoading={isLoading}
@@ -95,9 +94,9 @@ const UserTypeAhead = (props) => {
         onInputChange={handleInputChange}
         onBlur={handleBlur}
       />
-      <Form.Text muted className={"form-warning-desc"}>{error}</Form.Text>
+      <Form.Text muted className={'form-warning-desc'}>{error}</Form.Text>
     </Aux>
-    );
+  )
 }
 
-export default UserTypeAhead;
+export default UserTypeAhead

@@ -1,1 +1,1 @@
-export const GET_COLLECTION = "/ranks"
+export const GET_COLLECTION = '/ranks'

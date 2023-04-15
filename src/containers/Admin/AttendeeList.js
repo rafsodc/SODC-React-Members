@@ -1,22 +1,20 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router";
-import { boolToStr, floatToCur } from "../../services/funcs/funcs";
-import { loadEventTickets } from "../../store/actions/ticket";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { boolToStr, floatToCur } from '../../services/funcs/funcs'
+import { loadEventTickets } from '../../store/actions/ticket'
 import Table from 'react-bootstrap/Table'
 
-
 const AttendeeList = () => {
-  const dispatch = useDispatch();
-  const ticketsState = useSelector(state => state.ticketReducer);
+  const dispatch = useDispatch()
+  const ticketsState = useSelector(state => state.ticketReducer)
 
   const tickets = ticketsState.filter(ticket => ticket.fields.ticketType.symposium || ticket.fields.ticketType.dinner)
   //const { id } = useParams();
-  const iri = "/events/2";
+  const iri = '/events/2'
 
   useEffect(() => {
-    dispatch(loadEventTickets(iri));
-  }, [dispatch]);
+    dispatch(loadEventTickets(iri))
+  }, [dispatch])
 
   const rows = tickets.map(ticket => (
     <tr>
@@ -33,7 +31,7 @@ const AttendeeList = () => {
       <td>{ticket.fields.seatingPreferences.map(preference => preference.fullName).join('\n')}</td>
       <td>{ticket.fields.owner.fullName}</td>
     </tr>
-  ));
+  ))
 
   const totals = <tr>
     <th>Totals</th>
@@ -50,10 +48,29 @@ const AttendeeList = () => {
     <th></th>
   </tr>
 
-  const table = <Table><thead><tr><th>{"Last Name"}</th><th>{"First Name"}</th><th>{"Rank"}</th><th>{"Symposium"}</th><th>{"Dinner"}</th><th>{"Serving"}</th><th>{"Guest"}</th><th>{"Amount"}</th><th>{"Paid"}</th><th>{"Dietary Requirements"}</th><th>{"Seating Preferences"}</th><th>SODC Account</th></tr></thead><tbody>{rows}</tbody><tfoot>{totals}</tfoot></Table>
+  const table = <Table>
+    <thead>
+    <tr>
+      <th>{'Last Name'}</th>
+      <th>{'First Name'}</th>
+      <th>{'Rank'}</th>
+      <th>{'Symposium'}</th>
+      <th>{'Dinner'}</th>
+      <th>{'Serving'}</th>
+      <th>{'Guest'}</th>
+      <th>{'Amount'}</th>
+      <th>{'Paid'}</th>
+      <th>{'Dietary Requirements'}</th>
+      <th>{'Seating Preferences'}</th>
+      <th>SODC Account</th>
+    </tr>
+    </thead>
+    <tbody>{rows}</tbody>
+    <tfoot>{totals}</tfoot>
+  </Table>
 
   return table
 
-};
+}
 
-export default AttendeeList;
+export default AttendeeList

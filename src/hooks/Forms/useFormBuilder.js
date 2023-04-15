@@ -1,16 +1,15 @@
-import {useEffect} from 'react';
-import {useForm} from "react-hook-form";
-import setYup from "../../services/forms/setYup";
-import {isEmptyObject} from "../../services/funcs/funcs";
-import {useDispatch, useSelector} from "react-redux";
-import {clearUnstickyAlerts, setAlert} from "../../store/actions";
-import {ALERT_DANGER} from "../../ReactUI/AlertWindow/alertTypes";
-
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import setYup from '../../services/forms/setYup'
+import { isEmptyObject } from '../../services/funcs/funcs'
+import { useDispatch } from 'react-redux'
+import { clearUnstickyAlerts, setAlert } from '../../store/actions'
+import { ALERT_DANGER } from '../../ReactUI/AlertWindow/alertTypes'
 
 const useFormBuilder = (schema) => {
 
-  const formYupResolver = setYup(schema);
-  const dispatch = useDispatch();
+  const formYupResolver = setYup(schema)
+  const dispatch = useDispatch()
   //const captchaError = useSelector(state => state.errorReducer.captcha);
 
   /*const onSubmit = () => dispatch(saveForm(formName, apiUrl, fields));
@@ -27,22 +26,21 @@ const useFormBuilder = (schema) => {
 
   const myForm = useForm({
     resolver: (formYupResolver),
-    mode: "onBlur",
-    reValidateMode: "onBlur"
-  });
+    mode: 'onBlur',
+    reValidateMode: 'onBlur'
+  })
 
   // Use effect is called whenever the component renders, and there is a change in the dependencies
   useEffect(() => {
     // If this form is being submitted (and hasn't been submitted before) and there are errors then flag an error.
     if (myForm.formState.isSubmitting && !myForm.formState.submitCount && !isEmptyObject(myForm.formState.errors)) {
-      dispatch(clearUnstickyAlerts()); // Clear any alerts that are not sticky alerts
-      dispatch(setAlert("Unable to submit form", "Please ensure all of the fields are completed and no errors are shown below.", ALERT_DANGER));
+      dispatch(clearUnstickyAlerts()) // Clear any alerts that are not sticky alerts
+      dispatch(setAlert('Unable to submit form', 'Please ensure all of the fields are completed and no errors are shown below.', ALERT_DANGER))
     }
 
-  }, [dispatch, myForm.formState.isSubmitting, myForm.formState.submitCount, !isEmptyObject(myForm.formState.errors)]);
+  }, [dispatch, myForm.formState.isSubmitting, myForm.formState.submitCount, !isEmptyObject(myForm.formState.errors)])
 
-  return myForm;
+  return myForm
 }
 
-
-export default useFormBuilder;
+export default useFormBuilder

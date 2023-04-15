@@ -1,22 +1,22 @@
-import actionTypes from "../actionTypes/";
-import axios from './../../services/axios/axios';
-import apiPaths from "../paths";
-import {strToDate} from "../../services/funcs/funcs";
+import actionTypes from '../actionTypes/'
+import axios from './../../services/axios/axios'
+import apiPaths from '../paths'
+import { strToDate } from '../../services/funcs/funcs'
 
 export const loadEvents = () => dispatch => {
   axios.get(apiPaths.FUTURE_EVENTS).then((response) => {
-    const data = response.data['hydra:member'];
-    data.map(item => strToDate(item, ["date", "bookingOpen", "bookingClose"]));
-    return dispatch(setEvents(data));
-  });
+    const data = response.data['hydra:member']
+    data.map(item => strToDate(item, ['date', 'bookingOpen', 'bookingClose']))
+    return dispatch(setEvents(data))
+  })
 }
 
 export const loadEvent = (apiUrl) => dispatch => {
   axios.get(apiUrl).then((response) => {
-    const data = response.data;
-    strToDate(data, ["date", "bookingOpen", "bookingClose"]);
-    return dispatch(setEvent(data));
-  }).catch(error => {});
+    const data = response.data
+    strToDate(data, ['date', 'bookingOpen', 'bookingClose'])
+    return dispatch(setEvent(data))
+  }).catch(error => {})
 }
 
 const setEvents = (events) => {

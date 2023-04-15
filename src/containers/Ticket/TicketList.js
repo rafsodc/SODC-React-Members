@@ -1,16 +1,16 @@
-import React, {useEffect} from "react";
-import {Accordion, Button} from "react-bootstrap";
-import Aux from "../../hoc/Aux";
+import React from 'react'
+import { Accordion, Button } from 'react-bootstrap'
+import Aux from '../../hoc/Aux'
 
 const TicketList = (props) => (
   <Aux>
     <Accordion activeKey={props.activeKey}>
       {props.children}
     </Accordion>
-    <br />
+    <br/>
     <Button onClick={props.handleAddTicket}>Add Ticket</Button>
-    <br />
+    <br/>
   </Aux>
-  );
+)
 
-export default TicketList;
+export default TicketList

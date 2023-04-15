@@ -1,1 +1,1 @@
-export const POST = "/contacts"
+export const POST = '/contacts'

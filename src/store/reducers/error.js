@@ -1,5 +1,5 @@
-import {updateObject} from "../helpers/utility";
-import * as actionTypes from "../actions/actionsTypes";
+import { updateObject } from '../helpers/utility'
+import * as actionTypes from '../actions/actionsTypes'
 
 const initialState = {
   Page: false,
@@ -7,15 +7,16 @@ const initialState = {
 }
 
 const errorFlag = (state, action) => {
-  return updateObject(state, {[action.flag]: action.value});
+  return updateObject(state, { [action.flag]: action.value })
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ERROR_FLAG: return errorFlag(state, action);
+    case actionTypes.ERROR_FLAG:
+      return errorFlag(state, action)
     default:
-      return state;
+      return state
   }
 }
 
-export default reducer;
+export default reducer
