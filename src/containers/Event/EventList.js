@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadEvents } from '../../store/actions/event'
+import { loadEventList } from '../../store/actions/event'
 import Event from './Event'
 import { Accordion } from 'react-bootstrap'
 import Loading from '../../components/Loading/Loading'
@@ -10,12 +10,12 @@ const EventList = () => {
   const dispatch = useDispatch()
   const eventState = useSelector(state => state.eventReducer)
 
-  useEffect(() => dispatch(loadEvents()), [dispatch])
+  useEffect(() => dispatch(loadEventList()), [dispatch])
 
   let content = <Loading/>
 
-  if (eventState.events !== null) {
-    let transformedEvents = eventState.events.map((event, key) => {
+  if (eventState.futureEventList !== null) {
+    let transformedEvents = eventState.futureEventList.map((event, key) => {
       return <Event key={key} eventKey={key.toString()} {...event} showTickets={true}/>
     })
       .reduce((arr, el) => {

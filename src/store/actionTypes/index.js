@@ -1,4 +1,4 @@
-import * as event from './event'
+import event from './event'
 import * as booking from './booking'
 import * as typeAhead from './typeAhead'
 import * as ticket from './ticket'
