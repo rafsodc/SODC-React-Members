@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { boolToStr, floatToCur } from '../../services/funcs/funcs'
+import { boolToStr, floatToCur } from '../../utils/funcs/funcs'
 import { loadEventTickets } from '../../store/actions/ticket'
 import Table from 'react-bootstrap/Table'
 

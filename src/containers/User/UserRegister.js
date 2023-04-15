@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import useFormBuilder from '../../hooks/Forms/useFormBuilder'
-import { userFormSchema } from '../../services/forms/schema'
+import { userFormSchema } from '../../utils/forms/schema'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearUnstickyAlerts, setUserField, submitUserForm } from '../../store/actions'
 import Aux from '../../hoc/Aux'
 import UserForm from './UserForm'
 import { clearUser, errorFlag } from '../../store/actions/'
-import FormSubmitted from '../Form/FormSubmitted'
+import FormSubmitted from '../../components/Form/FormSubmitted'
 import { onCaptchaSubmit } from '../../store/helpers/formActions'
 
 const UserRegister = () => {

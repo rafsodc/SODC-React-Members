@@ -1,4 +1,4 @@
-import axios from './../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import actionTypes from '../actionTypes'
 
 export const loadPage = (apiUrl) => dispatch => {

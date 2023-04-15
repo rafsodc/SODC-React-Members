@@ -1,4 +1,4 @@
-import axios from '../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import apiPaths from '../paths'
 import actionTypes from '../actionTypes'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
-import FormElement from '../../ReactUI/Forms/FormElement'
-import '../../ReactUI/Forms/Form.css'
+import FormElement from '../../components/Form/FormElement'
+import '../../components/Form/Form.css'
 
 const TicketForm = (props) => {
 

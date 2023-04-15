@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Aux from '../../hoc/Aux'
-import Loading from '../../ReactUI/Loading/Loading'
+import Loading from '../../components/Loading/Loading'
 import { useParams } from 'react-router'
 import { loadAgenda, setAccordion } from '../../store/actions/agenda'
 import AgendaItem from './AgendaItem'

@@ -1,7 +1,7 @@
 import actionTypes from '../actionTypes/'
-import axios from './../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import apiPaths from '../paths'
-import { strToDate } from '../../services/funcs/funcs'
+import { strToDate } from '../../utils/funcs/funcs'
 
 export const loadEvents = () => dispatch => {
   axios.get(apiPaths.FUTURE_EVENTS).then((response) => {

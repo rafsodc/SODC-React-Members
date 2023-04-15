@@ -1,6 +1,6 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
-import '../../resources/css/FormSaved.css'
+import '../../assets/css/FormSaved.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const FormSaved = (props) => {

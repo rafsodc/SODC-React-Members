@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Aux from '../../hoc/Aux'
-import Loading from '../../ReactUI/Loading/Loading'
+import Loading from '../../components/Loading/Loading'
 
 const IPGResponse = () => {
 

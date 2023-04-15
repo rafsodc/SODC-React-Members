@@ -1,17 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { contactFormSchema } from '../../services/forms/schema'
-//import useFormBuilder from "../../ReactHelpers/Forms/useFormBuilder";
+import { contactFormSchema } from '../../utils/forms/schema'
+//import useFormBuilder from "../../ReactHelpers/Form/useFormBuilder";
 import useFormBuilder from '../../hooks/Forms/useFormBuilder'
 import ContactForm from './ContactForm'
 import ContactSub from './ContactSub'
 import Aux from '../../hoc/Aux'
 //import withErrorBoundary from "../../ReactHelpers/ErrorBoundaries/withErrorBoundary";
 import { errorFlag, setContactField } from '../../store/actions'
-import '../../ReactUI/Forms/Form.css'
+import '../../components/Form/Form.css'
 import { submitContactForm } from '../../store/actions/contact'
 import { onCaptchaSubmit } from '../../store/helpers/formActions'
-//import httpServices from "../../services/http/httpServices";
+//import httpServices from "../../utils/http/httpServices";
 
 const Contact = () => {
 

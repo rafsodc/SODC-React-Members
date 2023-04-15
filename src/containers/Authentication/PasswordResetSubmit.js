@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import useFormBuilder from '../../hooks/Forms/useFormBuilder'
-import { passwordResetSubmitFormSchema } from '../../services/forms/schema'
+import { passwordResetSubmitFormSchema } from '../../utils/forms/schema'
 import PasswordResetSubmitForm from './PasswordResetSubmitForm'
 import Aux from '../../hoc/Aux'
 import { useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPasswordResetSubmitField, submitPasswordReset } from '../../store/actions'
-import Load from '../../ReactUI/Loading/Load'
+import Load from '../../components/Loading/Load'
 import { checkPasswordResetToken } from '../../store/actions/authentication'
 
 const PasswordResetSubmit = (props) => {

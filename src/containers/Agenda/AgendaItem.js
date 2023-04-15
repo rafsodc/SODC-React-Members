@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion, Card } from 'react-bootstrap'
-import { time } from '../../services/formats/date'
+import { time } from '../../utils/formats/date'
 
 const AgendaItem = (props) => {
 

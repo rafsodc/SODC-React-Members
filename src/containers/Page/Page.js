@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Loading from '../../ReactUI/Loading/Loading'
+import Loading from '../../components/Loading/Loading'
 import ReactMarkdown from 'react-markdown'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearPage, loadPage } from '../../store/actions/page'

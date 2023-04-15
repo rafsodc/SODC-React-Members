@@ -1,6 +1,6 @@
 import React from 'react'
 import useFormBuilder from '../../hooks/Forms/useFormBuilder'
-import { loginFormSchema } from '../../services/forms/schema'
+import { loginFormSchema } from '../../utils/forms/schema'
 import LoginForm from './LoginForm'
 import Aux from '../../hoc/Aux'
 import { useDispatch, useSelector } from 'react-redux'

@@ -1,6 +1,6 @@
 import React from 'react'
 import useFormBuilder from '../../hooks/Forms/useFormBuilder'
-import { passwordResetRequestFormSchema } from '../../services/forms/schema'
+import { passwordResetRequestFormSchema } from '../../utils/forms/schema'
 import PasswordResetRequestForm from './PasswordResetRequestForm'
 import Aux from '../../hoc/Aux'
 import { useDispatch, useSelector } from 'react-redux'

@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { setAlert } from '../../store/actions/'
-import { ALERT_DANGER } from '../../ReactUI/AlertWindow/alertTypes'
-import rollbar from '../../services/rollbar/rollbar'
-import axios from '../../services/axios/axios'
+import { setAlert } from '../../store/actions'
+import { ALERT_DANGER } from '../AlertWindow/alertTypes'
+import rollbar from '../../utils/rollbar/rollbar'
+import axios from '../../utils/axios/axios'
 
 /**
  * ErrorBoundary class that can either be used as a component or as a class that can be extended.

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
-import FormElement from '../../ReactUI/Forms/FormElement'
+import FormElement from '../../components/Form/FormElement'
 
 const PasswordResetSubmitForm = (props) => (
 

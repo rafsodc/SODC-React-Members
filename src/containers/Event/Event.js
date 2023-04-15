@@ -1,5 +1,5 @@
 import React from 'react'
-import { longDate } from '../../services/formats/date'
+import { longDate } from '../../utils/formats/date'
 import { Accordion, Card } from 'react-bootstrap'
 import BookingBadge from './BookingBadge'
 import { NavLink } from 'react-router-dom'

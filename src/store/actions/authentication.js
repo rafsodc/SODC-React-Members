@@ -1,9 +1,9 @@
 import { clearForm, setFormField, setFormHidden, setFormLocked } from '../helpers/formActions'
 import actionTypes from '../actionTypes'
-import axios from '../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import apiPaths from '../paths'
 import { clearUnstickyAlerts, setAlert } from './alert'
-import { ALERT_DANGER, ALERT_SUCCESS } from '../../ReactUI/AlertWindow/alertTypes'
+import { ALERT_DANGER, ALERT_SUCCESS } from '../../components/AlertWindow/alertTypes'
 
 export const setLoginField = (data) => setFormField(actionTypes.loginForm.NAME, data)
 export const setLoginLock = (isLocked) => setFormLocked(actionTypes.loginForm.NAME, isLocked)

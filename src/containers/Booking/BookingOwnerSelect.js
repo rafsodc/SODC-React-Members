@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import Aux from '../../hoc/Aux'
 import { useDispatch, useSelector } from 'react-redux'
-import UserTypeAhead from '../TypeAhead/UserTypeAhead'
+import UserTypeAhead from '../../components/TypeAhead/UserTypeAhead'
 import { Button } from 'react-bootstrap'
 import { setOwner, setOwnerError, setOwnerSelected } from '../../store/actions/booking'
 import { setAlert } from '../../store/actions/alert'
-import { ALERT_DANGER } from '../../ReactUI/AlertWindow/alertTypes'
+import { ALERT_DANGER } from '../../components/AlertWindow/alertTypes'
 
 const BookingOwnerSelect = (props) => {
 

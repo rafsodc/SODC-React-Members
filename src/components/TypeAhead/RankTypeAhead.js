@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../resources/css/TypeAhead.css'
+import '../../assets/css/TypeAhead.css'
 import EntityTypeAhead from './EntityTypeAhead'
 
 const RankTypeAhead = (props) => {

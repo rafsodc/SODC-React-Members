@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import setYup from '../../services/forms/setYup'
-import { isEmptyObject } from '../../services/funcs/funcs'
+import setYup from '../../utils/forms/setYup'
+import { isEmptyObject } from '../../utils/funcs/funcs'
 import { useDispatch } from 'react-redux'
 import { clearUnstickyAlerts, setAlert } from '../../store/actions'
-import { ALERT_DANGER } from '../../ReactUI/AlertWindow/alertTypes'
+import { ALERT_DANGER } from '../../components/AlertWindow/alertTypes'
 
 const useFormBuilder = (schema) => {
 

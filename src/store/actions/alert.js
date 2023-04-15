@@ -1,5 +1,5 @@
 import * as actionTypes from './actionsTypes'
-import { ALERT_SUCCESS } from '../../ReactUI/AlertWindow/alertTypes'
+import { ALERT_SUCCESS } from '../../components/AlertWindow/alertTypes'
 import uuid from 'react-uuid'
 
 export const setAlert = (heading, message, type = ALERT_SUCCESS, sticky = false, dismissible = false) => {

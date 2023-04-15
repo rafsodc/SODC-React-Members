@@ -1,6 +1,6 @@
 import { addForm, removeForm, setFormField, setFormLocked, submitForm } from '../helpers/formActions'
 import actionTypes from '../actionTypes'
-import axios from '../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import apiPaths from '../paths'
 import { updateObject } from '../helpers/utility'
 

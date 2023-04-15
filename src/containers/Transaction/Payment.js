@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTransaction } from '../../store/actions/basket'
 import Aux from '../../hoc/Aux'
-import Loading from '../../ReactUI/Loading/Loading'
+import Loading from '../../components/Loading/Loading'
 import IPG from './IPG.js'
 
 const Payment = (props) => {

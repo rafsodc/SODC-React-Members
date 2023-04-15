@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import useFormBuilder from '../../hooks/Forms/useFormBuilder'
-import { userFormSchema } from '../../services/forms/schema'
+import { userFormSchema } from '../../utils/forms/schema'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserField, submitUserForm } from '../../store/actions'
 import Aux from '../../hoc/Aux'
 import { useParams } from 'react-router'
 import UserForm from './UserForm'
 import { clearUser, loadUser } from '../../store/actions/user'
-import Load from '../../ReactUI/Loading/Load'
+import Load from '../../components/Loading/Load'
 
 const UserEdit = () => {
 

@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { DisplayRouteNav } from '../Routes/Routes'
 import { footerRoutes } from '../Routes/RouteDefs'
-import '../../resources/css/Footer.css'
+import '../../assets/css/Footer.css'
 
 const footerNavbar = React.memo(() => {
   return (

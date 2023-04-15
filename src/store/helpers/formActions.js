@@ -1,9 +1,9 @@
 import actionTypes from '../actionTypes'
 import { v4 } from 'uuid'
 import apiPaths from '../paths'
-import axios from '../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import { setAlert } from '../actions/alert'
-import { ALERT_DANGER } from '../../ReactUI/AlertWindow/alertTypes'
+import { ALERT_DANGER } from '../../components/AlertWindow/alertTypes'
 
 export const addForm = (formName, fields = null) => {
   const id = v4()

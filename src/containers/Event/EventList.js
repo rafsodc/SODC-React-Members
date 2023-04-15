@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadEvents } from '../../store/actions/event'
 import Event from './Event'
 import { Accordion } from 'react-bootstrap'
-import Loading from '../../ReactUI/Loading/Loading'
+import Loading from '../../components/Loading/Loading'
 
 const EventList = () => {
 

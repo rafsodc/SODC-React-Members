@@ -8,7 +8,7 @@ import {
 } from '../helpers/formActions'
 import actionTypes from '../actionTypes'
 import paths from '../paths'
-import axios from '../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 
 export const setUserField = (data) => setFormField(actionTypes.user.NAME, data)
 export const setUserLocked = (isLocked) => setFormLocked(actionTypes.user.NAME, isLocked)

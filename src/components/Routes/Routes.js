@@ -4,11 +4,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Nav from 'react-bootstrap/Nav'
 import TitleComponent from '../../hoc/TitleComponent'
 import Aux from '../../hoc/Aux'
-import Page404 from '../../ReactUI/Page404/Page404'
+import Page404 from '../Page404/Page404'
 import * as actionTypes from '../../store/actions/actionsTypes'
 import { useDispatch } from 'react-redux'
-import Authenticator from '../Authentication/Authenticator'
-import { accessByRole } from '../../services/funcs/funcs'
+import Authenticator from '../../containers/Authentication/Authenticator'
+import { accessByRole } from '../../utils/funcs/funcs'
 
 /**
  *  Functions to render routers and children

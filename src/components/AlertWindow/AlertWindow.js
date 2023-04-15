@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AlertBox from './AlertBox'
-import { clearAlert } from '../../store/actions/'
+import { clearAlert } from '../../store/actions'
 
 const AlertWindow = () => {
 

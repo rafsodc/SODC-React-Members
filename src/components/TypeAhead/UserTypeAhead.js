@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import AsyncTypeahead from 'react-bootstrap-typeahead/lib/components/AsyncTypeahead'
 import Aux from '../../hoc/Aux'
-import axios from '../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import apiPaths from '../../store/paths'
 import { Form } from 'react-bootstrap'
-import '../../resources/css/TypeAhead.css'
+import '../../assets/css/TypeAhead.css'
 
 const UserTypeAhead = (props) => {
 

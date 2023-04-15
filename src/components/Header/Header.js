@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import HeaderNavbar from '../../containers/Navbars/HeaderNavbar'
-import RenderRoutes from '../../containers/Routes/Routes'
-import { bannerRoutes } from '../../containers/Routes/RouteDefs'
+import HeaderNavbar from '../Navbars/HeaderNavbar'
+import RenderRoutes from '../Routes/Routes'
+import { bannerRoutes } from '../Routes/RouteDefs'
 
 const Header = (props) => {
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../resources/css/BannerMobile.css'
+import '../../assets/css/BannerMobile.css'
 import FitText from 'react-fittext'
 
 const BannerMobile = React.memo(() => {

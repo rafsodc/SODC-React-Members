@@ -10,8 +10,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import thunk from 'redux-thunk'
 import multi from 'redux-multi'
-import axios from './services/axios/axios'
-import ErrorBoundary from './containers/Errors/ErrorBoundary'
+import axios from './utils/axios/axios'
+import ErrorBoundary from './components/Errors/ErrorBoundary'
 
 const store = createStore(reducer, applyMiddleware(thunk, multi))
 

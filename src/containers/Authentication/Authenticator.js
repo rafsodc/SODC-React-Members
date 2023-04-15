@@ -2,8 +2,8 @@ import React, { useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Login from '../Authentication/Login'
 import { loadUser, refreshToken } from '../../store/actions/'
-import axios from '../../services/axios/axios'
-import Page403 from '../../ReactUI/Page403/Page403'
+import axios from '../../utils/axios/axios'
+import Page403 from '../../components/Page403/Page403'
 
 const Authenticator = (props) => {
 

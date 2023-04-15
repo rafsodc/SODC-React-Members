@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
-import FormElement from '../../ReactUI/Forms/FormElement'
-import FormSaved from '../../ReactUI/Forms/FormSaved'
-import FormRecaptcha from '../../ReactUI/Forms/FormRecaptcha'
+import FormElement from '../../components/Form/FormElement'
+import FormSaved from '../../components/Form/FormSaved'
+import FormRecaptcha from '../../components/Form/FormRecaptcha'
 
 const UserForm = (props) => {
 

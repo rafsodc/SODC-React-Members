@@ -1,6 +1,6 @@
 import React from 'react'
 import Aux from '../../hoc/Aux'
-import FooterNavbar from '../../containers/Navbars/FooterNavbar'
+import FooterNavbar from '../Navbars/FooterNavbar'
 import { Container } from 'react-bootstrap'
 import Header from '../Header/Header'
 import AlertWindow from '../AlertWindow/AlertWindow'

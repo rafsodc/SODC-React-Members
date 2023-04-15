@@ -1,7 +1,7 @@
-import axios from '../../services/axios/axios'
+import axios from '../../utils/axios/axios'
 import actionTypes from '../actionTypes/'
 import apiPaths from '../paths'
-import { strToDate } from '../../services/funcs/funcs'
+import { strToDate } from '../../utils/funcs/funcs'
 
 export const loadAgenda = (event) => dispatch => {
   axios.get(apiPaths.agenda.EVENT_AGENDA.format(event)).then((response) => {

@@ -1,16 +1,16 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import Layout from './ReactUI/Layout/Layout'
+import Layout from './components/Layout/Layout'
 import { useSelector } from 'react-redux'
 
-import RenderRoutes from './containers/Routes/Routes'
-import routes from './containers/Routes/RouteDefs'
+import RenderRoutes from './components/Routes/Routes'
+import routes from './components/Routes/RouteDefs'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-import { stringFormat } from './services/prototypes/stringFormat'
+import { stringFormat } from './utils/prototypes/stringFormat'
 
 if (!String.prototype.format) {
   String.prototype.format = stringFormat
