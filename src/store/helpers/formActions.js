@@ -47,6 +47,11 @@ const setFormSaved = (formName, saved, id = null) => ({
   type: actionTypes[formName].SET_SAVED,
   param: 'saved',
   data: saved,
+  object: {
+    form: {
+      saved: saved
+    }
+  },
   id: id
 })
 

@@ -14,8 +14,10 @@ const EventList = () => {
 
   let content = <Loading/>
 
-  if (eventState.futureEventList !== null) {
-    let transformedEvents = eventState.futureEventList.map((event, key) => {
+  console.log(eventState)
+
+  if (eventState.list !== null) {
+    let transformedEvents = eventState.list.map((event, key) => {
       return <Event key={key} eventKey={key.toString()} {...event} showTickets={true}/>
     })
       .reduce((arr, el) => {

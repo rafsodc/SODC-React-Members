@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {loadEvent} from '../../store/actions/event'
+import {clearEvent, loadEvent} from '../../store/actions/event'
 import Event from './Event'
 import {Accordion} from 'react-bootstrap'
 import Loading from '../../components/Loading/Loading'
@@ -15,7 +15,10 @@ const EventPage = () => {
     const {id} = useParams()
 
     useEffect(() => {
-        dispatch(loadEvent(`/events/${id}`))
+        dispatch(loadEvent(`/events/${id}`));
+        return () => {
+          dispatch(clearEvent())
+        }
     }, [dispatch, id])
 
     if (!event) {

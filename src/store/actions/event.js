@@ -12,11 +12,11 @@ import {
 } from '../helpers/formActions'
 
 export const loadEventList = (future = true) => dispatch => {
-  let path = future ? apiPaths.FUTURE_EVENTS : apiPaths.EVENTS
+  let path = future ? apiPaths.event.FUTURE_EVENTS : apiPaths.event.EVENTS
   axios.get(path).then((response) => {
     const data = response.data['hydra:member']
     data.map(item => strToDate(item, ['date', 'bookingOpen', 'bookingClose']))
-    return dispatch(setEventList(future, data))
+    return dispatch(setEventList(data))
   })
 }
 
@@ -28,13 +28,10 @@ export const loadEvent = (apiUrl) => dispatch => {
   }).catch(error => {})
 }
 
-const setEventList = (future, events) => {
-  let actionType = future ? actionTypes.event.SET_FUTURE_LIST:actionTypes.event.SET_LIST
-  return {
-    type: actionType,
+const setEventList = (events) => ({
+    type: actionTypes.event.SET_LIST,
     data: events,
-  }
-}
+  })
 
 const setEvent = (event) => {
   return {

@@ -1,3 +1,5 @@
+import {merge} from 'merge'
+
 export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,
@@ -68,6 +70,11 @@ export const blankObject = (oldObject) => {
 export const setParam = (state, action) => {
   const setSingle = (obj = state) => updateObject(obj, { [action.param]: action.data })
   return updateItemOrArray(state, action, setSingle)
+}
+
+export const mergeObject = (state, action) => {
+  const setSingle = (obj = state) =>  merge.recursive(true, state, action.object);
+  return updateItemOrArray(state, action, setSingle());
 }
 
 export const createReducer = (initialState, handlers) => (state = initialState, action) => {
