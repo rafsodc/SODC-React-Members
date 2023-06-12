@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
-const UserEdit = () => {
+const UsersApprove = () => {
 
     return(<p>Content</p>);
 }
 
-export default UserEdit
+export default UsersApprove
