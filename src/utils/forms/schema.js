@@ -47,3 +47,14 @@ export const userFormSchema = (existing = true) => {
   }
   return yup.object().shape(obj)
 }
+
+export const eventFormSchema = () => yup.object().shape({
+    title: yup.string().required(),
+    date: yup.date().required(),
+    bookingOpen: yup.date().required(),
+    bookingClose: yup.date().required(),
+    venue: yup.string().required(),
+    description: yup.string(),
+    principalSpeaker: yup.string(),
+    sponsor: yup.string(),
+})
