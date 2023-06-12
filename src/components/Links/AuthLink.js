@@ -8,7 +8,7 @@ const AuthLink = (props) => {
     const authed = route.roles.some(r => userRoles.includes(r));
 
     return (
-        authed ? <NavLink to={route.path}>{route.title}</NavLink> : ""
+        authed ? <p><NavLink to={route.path}>{route.title}</NavLink></p> : ""
     )
 }
 
