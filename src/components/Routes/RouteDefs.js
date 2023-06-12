@@ -12,6 +12,7 @@ import PasswordResetSubmit from '../../containers/Authentication/PasswordResetSu
 import Agenda from '../../containers/Agenda/Agenda'
 import Admin from "../../containers/Admin/Admin";
 import UsersApprove from "../../containers/User/UsersApprove";
+import EventEdit from '../../containers/Event/EventEdit'
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request, and have a const for reach route, and then refer to constant in each object
@@ -23,6 +24,17 @@ const APP_USERS_APPROVE =
         key: 'APP_USERS_APPROVE',
         title: 'Approve Users',
         component: UsersApprove,
+        exact: true,
+        auth: true,
+        roles:['ROLE_ADMIN']
+    }
+
+const APP_EVENT_ADD =
+    {
+        path: '/events/add',
+        key: 'APP_EVENT_ADD',
+        title: 'Add Event',
+        component: EventEdit,
         exact: true,
         auth: true,
         roles:['ROLE_ADMIN']
@@ -124,6 +136,8 @@ const footerRoutes = [
 ]
 
 const otherRoutes = [
+    APP_USERS_APPROVE,
+    APP_EVENT_ADD,
     {
         path: '/events/:id',
         key: 'APP_EVENT_ID',
@@ -140,6 +154,14 @@ const otherRoutes = [
         component: Agenda,
         auth: true,
         roles: ['ROLE_USER']
+    },
+    {
+        path: '/events/:id/edit',
+        key: 'APP_EVENT_ID_EDIT',
+        title: 'Event Edit',
+        component: EventEdit,
+        auth: true,
+        roles: ['ROLE_ADMIN']
     },
     {
         path: '/logout',
@@ -173,8 +195,7 @@ const otherRoutes = [
         exact: true,
         auth: true,
         roles: ['ROLE_USER']
-    },
-    APP_USERS_APPROVE,
+    }
 
     // {
     //   path: "/users/:id",
@@ -217,4 +238,4 @@ const bannerRoutes = [
 ]
 
 export default routes
-export {bannerRoutes, headerRoutes, footerRoutes, APP_USERS_APPROVE}
+export {bannerRoutes, headerRoutes, footerRoutes, APP_USERS_APPROVE, APP_EVENT_ADD}
