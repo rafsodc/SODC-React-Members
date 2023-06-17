@@ -1,7 +1,7 @@
 //import * as actionTypes from "../actions/actionsTypes";
 import actionTypes from '../actionTypes/'
 import {createReducer, updateObject, setParam, mergeObject} from '../helpers/utility'
-import {setField} from "../helpers/formReducers";
+
 
 const initialItemState = {
   title: "",
@@ -22,7 +22,8 @@ const initialState = {
     locked: false,
     hidden: false,
     saved: false,
-    isLoaded: false
+    isLoaded: false,
+    location: null,
   },
   ownerSelectDisabled: false,
 }
@@ -35,15 +36,16 @@ const setLocked = (state, action) => setParam(state, updateObject(action, { para
 const setHidden = (state, action) => setParam(state, updateObject(action, { param: 'hidden' }))
 const setSaved = (state, action) => mergeObject(state, action)
 const setIsLoaded = (state, action) => setParam(state, updateObject(action, { param: 'isLoaded' }))
+const setField = (state, action) => mergeObject(state, action)
 
 const reducer = createReducer(initialState, {
   [actionTypes.event.SET_LIST]: setEventList,
-  [actionTypes.event.SET_FIELD]: setField,
+  [actionTypes.event.SET_FIELD]: mergeObject,
   [actionTypes.event.SET_LOCKED]: setLocked,
   [actionTypes.event.SET_HIDDEN]: setHidden,
-  [actionTypes.event.SET_SAVED]: setSaved,
+  [actionTypes.event.SET_SAVED]: mergeObject,
   [actionTypes.event.SET_IS_LOADED]: setIsLoaded,
-  [actionTypes.event.SET]: setEvent,
+  [actionTypes.event.SET]: mergeObject,
   [actionTypes.event.CLEAR]: clear,
   [actionTypes.ticket.ADD]: setOwnerSelectDisabled,
 })

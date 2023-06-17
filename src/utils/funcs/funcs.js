@@ -12,8 +12,22 @@ export const strToDate = (item, el) => {
     for (key of el) {
       item[key] = Date.parse(item[key])
     }
-  } else {
+  } 
+  else {
     item[el] = Date.parse(item[el])
+  }
+  return item
+}
+
+export const strToISODate = (item, el) => {
+  if (typeof (el) === 'object') {
+    let key
+    for (key of el) {
+      item[key] = item[key].split('T')[0]
+    }
+  } 
+  else {
+    item[el] = Date.parse(item[el]).toISOString().split('T')[0]
   }
   return item
 }

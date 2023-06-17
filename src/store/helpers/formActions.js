@@ -26,6 +26,13 @@ export const removeForm = (formName, id) => ({
 export const setFormField = (formName, data, id = null) => ({
   type: actionTypes[formName].SET_FIELD,
   data: data,
+  object: {
+    form: {
+      fields: {
+        ...data
+      }
+    }
+  },
   id: id
 })
 

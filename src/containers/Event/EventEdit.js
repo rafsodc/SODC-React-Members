@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import EventForm from '../../components/Form/EventForm'
 import {eventFormSchema} from "../../utils/forms/schema";
-import {clearEvent, loadEvent, setEventField, submitEventForm} from "../../store/actions/event";
+import {clearEvent, loadEventForm, setEventField, submitEventForm} from "../../store/actions/event";
 import {clearUnstickyAlerts} from "../../store/actions";
 import FormSubmitted from "../../components/Form/FormSubmitted";
 import useFormBuilder from "../../hooks/Forms/useFormBuilder";
@@ -14,11 +14,14 @@ const EventEdit = () =>  {
     let { id } = useParams()
 
     const dispatch = useDispatch()
-    const formState = useSelector(state => state.eventReducer)
+    const formState = useSelector(state => state.eventReducer.form)
+
+    // console.log(formState)
+    // console.log(id)
   
     useEffect(() => {
-      let returnFunc = id ===  undefined ? clearEvent() : loadEvent(apiPaths.event.EVENTS + '/' + id)
-      return () => dispatch(returnFunc)
+      dispatch(id ===  undefined ? clearEvent() : loadEventForm(apiPaths.event.EVENTS + '/' + id + '/form'))
+      //return (dispatch(clearEvent()))
     }, [dispatch])
 
     const onChange = (event) => {
@@ -39,6 +42,8 @@ const EventEdit = () =>  {
         onChange: onChange,
         ref: register
     }
+
+    //console.log(formState)
   
     return (
       <>

@@ -1,4 +1,4 @@
-import {merge} from 'merge'
+import merge from 'merge'
 
 export const updateObject = (oldObject, updatedProperties) => {
   return {
@@ -73,8 +73,13 @@ export const setParam = (state, action) => {
 }
 
 export const mergeObject = (state, action) => {
-  const setSingle = (obj = state) =>  merge.recursive(true, state, action.object);
-  return updateItemOrArray(state, action, setSingle());
+  console.log(action)
+  const setSingle = (obj = state) =>  {
+    const temp = merge.recursive(true, state, action.object)
+    console.log(temp)
+    return temp
+  };
+  return updateItemOrArray(state, action, setSingle);
 }
 
 export const createReducer = (initialState, handlers) => (state = initialState, action) => {
@@ -88,6 +93,21 @@ export const createReducer = (initialState, handlers) => (state = initialState, 
   } else {
     return state
   }
+}
+
+export const dataHandler = (responseData) => {
+
+  const location = responseData['@id'];
+
+    let data = {};
+
+    Object.keys(responseData).filter(property => {
+      if (property.charAt(0) !== '@') {
+        data[property] = responseData[property]
+      }
+    });
+
+    return {location: location, data: data}
 }
 
 
