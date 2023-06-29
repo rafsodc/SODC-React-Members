@@ -1,4 +1,6 @@
+import { passwordResetSubmitFormSchema } from '../../utils/forms/schema'
 import { addElement, blankObject, removeElementById, setParam, updateItemOrArray, updateObject } from './utility'
+import merge from 'merge'
 
 /**
  * Adds a form to an array of forms
@@ -53,12 +55,56 @@ export const clearForm = (state, action) => {
   return updateItemOrArray(state, action, setSingle)
 }
 
+export const formSettings = {
+  isLocked: false,
+  isHidden: false,
+  isSaved: false,
+  isLoaded: false,
+  location: null,
+}
+
 /**
  * Default reducer object for forms
  */
 export const formReducerObject = (actionType) => ({
-  [actionType.SET_FIELD]: setField,
-  [actionType.SET_LOCKED]: setParam,
-  [actionType.SET_HIDDEN]: setParam,
+  [actionType.SET_FIELD]: {fn: setValue, args: ['form']},
+  [actionType.SET_LOCKED]: {fn: setValue, args: ['settings', 'isLocked']},
+  [actionType.SET_HIDDEN]: {fn: setValue, args: ['settings', 'isHidden']},
+  [actionType.SET_SAVED]: {fn: setValue, args: ['settings', 'isSaved']},
+  [actionType.SET_LOADED]: {fn: setValue, args: ['settings', 'isLoaded']},
+  [actionType.SET_LOCATION]: {fn: setValue, args: ['settings', 'location']},
   [actionType.CLEAR]: clearForm
 })
+
+//// New Reducers Below
+
+export const setValue = (state, action, section, property = null) => {
+  // Store value and id from action
+  const {value, id} = action
+
+  // If property isn't set by function params, get it from action
+  property = property === null ? action.property : property
+
+  // Build data object
+  let data = {}
+  if(id === null) {
+    data = {
+      [section]: {[property]: value}
+    }
+  }
+  else {
+    data = {
+      [section]: {[id]: {[property]: value}}
+    }
+  }
+
+  // Merge data object with state
+  return merge.recursive(true, state, data) 
+}
+
+
+// const formReducers = {
+//   setFormField: setFormField
+// }
+
+// export default formReducers

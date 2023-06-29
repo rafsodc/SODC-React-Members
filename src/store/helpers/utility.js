@@ -1,4 +1,6 @@
 import merge from 'merge'
+import actionTypes from '../actionTypes'
+
 
 export const updateObject = (oldObject, updatedProperties) => {
   return {
@@ -73,17 +75,14 @@ export const setParam = (state, action) => {
 }
 
 export const mergeObject = (state, action) => {
-  console.log(action)
   const setSingle = (obj = state) =>  {
     const temp = merge.recursive(true, state, action.object)
-    console.log(temp)
     return temp
   };
   return updateItemOrArray(state, action, setSingle);
 }
 
 export const createReducer = (initialState, handlers) => (state = initialState, action) => {
-
   if (handlers.hasOwnProperty(action.type)) {
     if (typeof (handlers[action.type]) === 'function') {
       return handlers[action.type](state, action)

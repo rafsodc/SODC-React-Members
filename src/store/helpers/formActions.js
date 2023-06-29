@@ -5,40 +5,38 @@ import axios from '../../utils/axios/axios'
 import { setAlert } from '../actions/alert'
 import { ALERT_DANGER } from '../../components/AlertWindow/alertTypes'
 
-export const addForm = (formName, fields = null) => {
-  const id = v4()
-  const location = (fields !== null) ? fields['@id'] : null
-  const saved = (fields !== null) ? true : false
-  return {
+export const addForm = (formName, data = null, location = null) => ({
     type: actionTypes[formName].ADD,
-    id: id,
-    fields: fields,
+    data: data,
     location: location,
-    saved: saved
-  }
-}
+    saved: location !== null
+  })
+
 
 export const removeForm = (formName, id) => ({
   type: actionTypes[formName].REMOVE,
   id: id
 })
 
-export const setFormField = (formName, data, id = null) => ({
+/**
+ * 
+ * @param {*} formName 
+ * @param {*} property 
+ * @param {*} value 
+ * @param {*} id 
+ * @returns 
+ * 
+ * @todo remove field
+ */
+export const setFormField = (formName, property, value, id = null) => ({
   type: actionTypes[formName].SET_FIELD,
-  data: data,
-  object: {
-    form: {
-      fields: {
-        ...data
-      }
-    }
-  },
+  property: property,
+  value: value,
   id: id
 })
 
 export const setFormLocked = (formName, locked, id = null) => ({
   type: actionTypes[formName].SET_LOCKED,
-  param: 'locked',
   data: locked,
   id: id
 })
@@ -52,14 +50,17 @@ export const setFormHidden = (formName, hidden, id = null) => ({
 
 const setFormSaved = (formName, saved, id = null) => ({
   type: actionTypes[formName].SET_SAVED,
+  section: 'settings',
+  property: 'saved',
+  value: true,
+  id: id,
   param: 'saved',
   data: saved,
   object: {
     form: {
       saved: saved
     }
-  },
-  id: id
+  }
 })
 
 const setFormLocation = (formName, location, id = null) => ({
