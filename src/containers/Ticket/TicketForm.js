@@ -2,9 +2,10 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import FormElement from '../../components/Form/FormElement'
 import '../../components/Form/Form.css'
+import FormSaved from '../../components/Form/FormSaved'
 
 const TicketForm = (props) => {
-
+  
   const formatTicketTypes = (ticketTypes) => ticketTypes.map((ticket) => ({
     value: ticket['@id'],
     description: ticket.description + ' - £' + ticket.price
@@ -33,6 +34,8 @@ const TicketForm = (props) => {
       <Button variant="danger" onClick={props.handleRemove} disabled={props.childProps.data.paid}>
         Remove
       </Button>
+
+      <FormSaved saved={props.showSavedBanner}/>
 
 
     </fieldset>

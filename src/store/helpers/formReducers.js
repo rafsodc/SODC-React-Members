@@ -6,17 +6,21 @@ import merge from 'merge'
  * Adds a form to an array of forms
  * @param state Current state
  * @param action Current action data
- * @param newElement New element to be added
+ * @param initialItemState Initial state for item
  * @returns {*}
  */
-export const addForm = (state, action, newElement) => {
-  if (action.fields !== null) {
-    newElement = updateObject(newElement, { fields: action.fields })
+export const addForm = (state, action, initialItemState) => {
+  const data = merge.recursive(true, initialItemState, action.data)
+  const settings = merge.recursive(true, formSettings, action.settings)
+  const obj = {
+    form: {
+      [data.uuid]: data
+    },
+    settings: {
+      [data.uuid]: settings
+    }
   }
-  // Set the key on the newElement
-  const el = updateObject(newElement, { id: action.id, location: action.location, saved: action.saved })
-  // Update state
-  return addElement(state, el)
+  return merge.recursive(true, state, obj)
 }
 
 /**
@@ -55,12 +59,16 @@ export const clearForm = (state, action) => {
   return updateItemOrArray(state, action, setSingle)
 }
 
+/**
+ * Default settings for forms
+ */
 export const formSettings = {
   isLocked: false,
   isHidden: false,
   isSaved: false,
   isLoaded: false,
   location: null,
+  showSavedBanner: false
 }
 
 /**
@@ -71,6 +79,7 @@ export const formReducerObject = (actionType) => ({
   [actionType.SET_LOCKED]: {fn: setValue, args: ['settings', 'isLocked']},
   [actionType.SET_HIDDEN]: {fn: setValue, args: ['settings', 'isHidden']},
   [actionType.SET_SAVED]: {fn: setValue, args: ['settings', 'isSaved']},
+  [actionType.SET_SAVED_BANNER]: {fn: setValue, args: ['settings', 'showSavedBanner']},
   [actionType.SET_LOADED]: {fn: setValue, args: ['settings', 'isLoaded']},
   [actionType.SET_LOCATION]: {fn: setValue, args: ['settings', 'location']},
   [actionType.CLEAR]: clearForm
@@ -98,6 +107,7 @@ export const setValue = (state, action, section, property = null) => {
     }
   }
 
+  //console.log(merge.recursive(true, state, data) )
   // Merge data object with state
   return merge.recursive(true, state, data) 
 }
