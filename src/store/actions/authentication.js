@@ -5,7 +5,7 @@ import apiPaths from '../paths'
 import { clearUnstickyAlerts, setAlert } from './alert'
 import { ALERT_DANGER, ALERT_SUCCESS } from '../../components/AlertWindow/alertTypes'
 
-export const setLoginField = (data) => setFormField(actionTypes.loginForm.NAME, data)
+export const setLoginField = (property, value) => setFormField(actionTypes.loginForm.NAME, property, value)
 export const setLoginLock = (isLocked) => setFormLocked(actionTypes.loginForm.NAME, isLocked)
 export const setLoginHidden = (isHidden) => setFormHidden(actionTypes.loginForm.NAME, isHidden)
 const clearLogin = () => clearForm(actionTypes.loginForm.NAME)
@@ -95,7 +95,7 @@ export const setUser = (user) => ({
 
 //////
 
-export const setPasswordResetRequestField = (data) => setFormField(actionTypes.passwordResetRequestForm.NAME, data)
+export const setPasswordResetRequestField = (property, value) => setFormField(actionTypes.passwordResetRequestForm.NAME, property, value)
 export const setPasswordResetRequestLocked = (isLocked) => setFormLocked(actionTypes.passwordResetRequestForm.NAME, isLocked)
 export const setPasswordResetRequestHidden = (isHidden) => setFormHidden(actionTypes.passwordResetRequestForm.NAME, isHidden)
 const clearPasswordResetRequest = () => clearForm(actionTypes.passwordResetRequestForm.NAME)
@@ -125,7 +125,7 @@ export const passwordResetRequest = (data) => dispatch => {
 
 //////
 
-export const setPasswordResetSubmitField = (data) => setFormField(actionTypes.passwordResetSubmitForm.NAME, data)
+export const setPasswordResetSubmitField = (property, value) => setFormField(actionTypes.passwordResetSubmitForm.NAME, property, value)
 export const setPasswordResetSubmitLocked = (isLocked) => setFormLocked(actionTypes.passwordResetSubmitForm.NAME, isLocked)
 export const setPasswordResetSubmitHidden = (isHidden) => setFormHidden(actionTypes.passwordResetSubmitForm.NAME, isHidden)
 const clearPasswordResetSubmit = () => clearForm(actionTypes.passwordResetSubmitForm.NAME)
