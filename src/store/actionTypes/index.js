@@ -10,6 +10,7 @@ import * as basket from './basket'
 import * as error from './error'
 import * as user from './user'
 import agenda from './agenda'
+import * as layout from './layout'
 
 const actionTypes = {
   ...event,
@@ -23,7 +24,8 @@ const actionTypes = {
   contact: contact,
   basket: basket,
   error: error,
-  user: user
+  user: user,
+  layout: layout
 }
 
 export default actionTypes

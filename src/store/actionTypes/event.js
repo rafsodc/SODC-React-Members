@@ -13,9 +13,17 @@ const event = {
     SET_LOCKED: 'SET_EVENT_LOCKED',
     SET_HIDDEN: 'SET_EVENT_HIDDEN',
     SET_SAVED: 'SET_EVENT_SAVED',
-    SET_IS_LOADED: 'SET_EVENT_IS_LOADED'
+    SET_IS_LOADED: 'SET_EVENT_IS_LOADED',
+    SET_ACCORDIAN: 'SET_EVENT_ACCORDIAN',
+    SET_FORM: 'SET_EVENT_FORM'
+}
+
+const ticketType = {
+    NAME: 'ticketType',
+    ADD_FORM: 'ADD_TICKET_TYPE_FORM'
 }
 
 export default {
-    event: event
+    event: event,
+    ticketType: ticketType
 }

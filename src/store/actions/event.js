@@ -8,9 +8,12 @@ import {
   setFormHidden,
   setFormIsLoaded,
   setFormLocked,
-  submitForm
+  submitForm,
+  addForm
 } from '../helpers/formActions'
 import { dataHandler } from '../helpers/utility'
+
+export const addTicketType = (fields = null) => addForm(actionTypes.ticketType.NAME, fields)
 
 export const loadEventList = (future = true) => dispatch => {
   let path = future ? apiPaths.event.FUTURE_EVENTS : apiPaths.event.EVENTS
@@ -23,10 +26,8 @@ export const loadEventList = (future = true) => dispatch => {
 
 export const loadEventItem = (apiUrl) => dispatch => {
   axios.get(apiUrl).then((response) => {
-    const data = response.data
-    strToDate(data, ['date', 'bookingOpen', 'bookingClose'])
-    const object = {item:data}
-    return dispatch(setEvent(object))
+    const event = strToDate(response.data, ['date', 'bookingOpen', 'bookingClose'])
+    dispatch(setEvent(event))
   }).catch(error => {})
 }
 
@@ -36,33 +37,30 @@ export const loadEventForm = (apiUrl) => dispatch => {
     const {location, data} = dataHandler(response.data);
     strToISODate(data, ['date', 'bookingOpen', 'bookingClose'])
     //console.log(data)
-    return dispatch(setEvent({form: {fields: data, location: location}}))
+    return dispatch(setForm(data, location))
   }).catch(error => {console.log(error)})
 }
-
-// export const loadEventForm = (apiUrl) => dispatch => {
-//   //const {location, data} = loadHelper(apiUrl)
-//   //console.log(data)
-//   //console.log(location)
-//   console.log(loadHelper(apiUrl))
-//   // axios.get(apiUrl).then((response) => {
-//   //   const data = response.data
-//   //   strToDate(data, ['date', 'bookingOpen', 'bookingClose'])
-//   //   const object = form ? {form:{fields:data, location:data['@id']}} : {item:data}
-//   //   return dispatch(setEvent(object))
-//   // }).catch(error => {})
-// }
 
 const setEventList = (events) => ({
     type: actionTypes.event.SET_LIST,
     data: events,
   })
 
-const setEvent = (object) => {
-  console.log(object)
-  return {
+const setEvent = (event) => ({
     type: actionTypes.event.SET,
-    object: object,
+    value: event,
+})
+
+const setForm = (form, location) => ({
+    type: actionTypes.event.SET_FORM,
+    form: form,
+    location: location
+})
+
+export const setEventAccordion = (value) => {
+  return {
+    type: actionTypes.event.SET_ACCORDION,
+    value: value
   }
 }
 
@@ -72,7 +70,7 @@ export const submitEventForm = (data, location = null) => {
 
 export const clearEvent = () => clearForm(actionTypes.event.NAME)
 
-export const setEventField = (data) => setFormField(actionTypes.event.NAME, data)
+export const setEventField = (property, value) => setFormField(actionTypes.event.NAME, property, value)
 
 //export const setEventLocked = (isLocked) => setFormLocked(actionTypes.user.NAME, isLocked)
 //export const setEventHidden = (isHidden) => setFormHidden(actionTypes.user.NAME, isHidden)
