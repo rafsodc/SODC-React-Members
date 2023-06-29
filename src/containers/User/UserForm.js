@@ -7,7 +7,8 @@ import FormRecaptcha from '../../components/Form/FormRecaptcha'
 const UserForm = (props) => {
 
   const optionsYesNo = [{ value: true, description: 'Yes' }, { value: false, description: 'No' }]
-  const recaptcha = props.recaptcha ? <FormRecaptcha onRecaptcha={props.onRecaptcha} error={props.captchaError}/> : ''
+  const recaptcha = props.register ? <FormRecaptcha onRecaptcha={props.onRecaptcha} error={props.captchaError}/> : ''
+  const passwordText = props.register ? "password" : "new password (leave blank to keep existing password)"
 
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={'disabled'}>
     <fieldset disabled={props.locked && 'disabled'}>
@@ -32,9 +33,9 @@ const UserForm = (props) => {
                      name="workDetails" {...props.childProps}/>
         <FormElement type="select" label="Share contact details with other members?" name="isShared"
                      options={optionsYesNo} {...props.childProps}/>
-        <FormElement type="password" placeholder="Enter new password (leave blank to keep existing password)"
-                     label="Update password:" name="password" {...props.childProps} />
-        <FormElement type="password" placeholder="Confirm new password (leave blank to keep existing password)"
+        <FormElement type="password" placeholder={"Enter " + passwordText}
+                     label="Password:" name="password" {...props.childProps} />
+        <FormElement type="password" placeholder={"Confirm " + passwordText}
                      label="Confirm password:" name="passwordConfirm" {...props.childProps} />
         {recaptcha}
       </Form.Group>

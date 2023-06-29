@@ -37,7 +37,7 @@ export const setFormField = (formName, property, value, id = null) => ({
 
 export const setFormLocked = (formName, locked, id = null) => ({
   type: actionTypes[formName].SET_LOCKED,
-  data: locked,
+  value: locked,
   id: id
 })
 
