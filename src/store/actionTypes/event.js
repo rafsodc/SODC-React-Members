@@ -20,7 +20,9 @@ const event = {
 
 const ticketType = {
     NAME: 'ticketType',
-    ADD_FORM: 'ADD_TICKET_TYPE_FORM'
+    ADD_FORM: 'ADD_TICKET_TYPE_FORM',
+    CLEAR_ALL: 'CLEAR_TICKET_TYPES',
+    ADD: 'ADD_TICKET_TYPE'
 }
 
 export default {

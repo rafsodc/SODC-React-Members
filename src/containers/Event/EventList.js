@@ -14,8 +14,6 @@ const EventList = () => {
 
   let content = <Loading/>
 
-  console.log(eventState)
-
   if (eventState.list !== null) {
     let transformedEvents = eventState.list.map((event, key) => {
       return <Event key={key} eventKey={key.toString()} {...event} showTickets={true}/>

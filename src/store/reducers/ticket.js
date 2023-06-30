@@ -16,8 +16,8 @@ const initialItemState = {
 }
 
 const initialState = {
-  form: {},
-  settings: {}
+  form: [],
+  settings: [],
 }
 
 const clearAll = (state, action) => initialState

@@ -15,8 +15,6 @@ const UserRegister = () => {
   const {form, settings} = useSelector(state => state.userReducer)
   const captchaError = useSelector(state => state.errorReducer.captcha)
 
-  console.log(settings)
-
   useEffect(() => {
     return () => dispatch(clearUser())
   }, [dispatch])

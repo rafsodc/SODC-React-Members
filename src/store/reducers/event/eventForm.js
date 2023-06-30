@@ -6,16 +6,6 @@ import merge from 'merge'
 import { setFormField } from '../../helpers/formActions'
 import { initialItemState } from './event'
 
-const initialTicketTypeItemState = {
-  description: "",
-  symposium: false,
-  dinner: false,
-  serving: false,
-  student: false,
-  guest: false,
-  price: 0
-}
-
 const initialState = {
   form: {...initialItemState},
   settings: formSettings,

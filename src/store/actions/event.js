@@ -12,6 +12,7 @@ import {
   addForm
 } from '../helpers/formActions'
 import { dataHandler } from '../helpers/utility'
+import { setTicketTypeForm } from './ticketTypes'
 
 export const addTicketType = (fields = null) => addForm(actionTypes.ticketType.NAME, fields)
 
@@ -35,9 +36,9 @@ export const loadEventForm = (apiUrl) => dispatch => {
   //console.log(apiUrl)
   axios.get(apiUrl).then((response) => {
     const {location, data} = dataHandler(response.data);
-    strToISODate(data, ['date', 'bookingOpen', 'bookingClose'])
-    //console.log(data)
-    return dispatch(setForm(data, location))
+    const parsedData = strToISODate(data, ['date', 'bookingOpen', 'bookingClose'])
+    dispatch(setEventForm(parsedData, location))
+    dispatch(setTicketTypeForm(data.ticketTypes))
   }).catch(error => {console.log(error)})
 }
 
@@ -51,10 +52,15 @@ const setEvent = (event) => ({
     value: event,
 })
 
-const setForm = (form, location) => ({
+export const setEventSaved = (saved) => ({
+  type: actionTypes.event.SET_SAVED,
+  value: saved,
+})
+
+const setEventForm = (form, location) => ({
     type: actionTypes.event.SET_FORM,
     form: form,
-    location: location
+    settings: {location: location}
 })
 
 export const setEventAccordion = (value) => {

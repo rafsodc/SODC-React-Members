@@ -75,6 +75,7 @@ export const formSettings = {
  * Default reducer object for forms
  */
 export const formReducerObject = (actionType) => ({
+  [actionType.SET_FORM]: setForm,
   [actionType.SET_FIELD]: {fn: setValue, args: ['form']},
   [actionType.SET_LOCKED]: {fn: setValue, args: ['settings', 'isLocked']},
   [actionType.SET_HIDDEN]: {fn: setValue, args: ['settings', 'isHidden']},
@@ -87,6 +88,8 @@ export const formReducerObject = (actionType) => ({
 
 //// New Reducers Below
 
+const setForm = (state, action) => merge.recursive(true, state, action)
+
 export const setValue = (state, action, section, property = null) => {
   // Store value and id from action
   const {value, id} = action
@@ -96,7 +99,7 @@ export const setValue = (state, action, section, property = null) => {
 
   // Build data object
   let data = {}
-  if(id === null) {
+  if(id === null || id === undefined) {
     data = {
       [section]: {[property]: value}
     }

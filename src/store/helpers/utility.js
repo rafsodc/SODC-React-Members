@@ -101,7 +101,7 @@ export const dataHandler = (responseData) => {
     let data = {};
 
     Object.keys(responseData).filter(property => {
-      if (property.charAt(0) !== '@') {
+      if (property.charAt(0) !== '@' ) {
         data[property] = responseData[property]
       }
     });

@@ -3,17 +3,6 @@ import actionTypes from '../../actionTypes'
 import {createReducer, updateObject, setParam} from '../../helpers/utility'
 import merge from 'merge'
 
-
-const initialTicketTypeItemState = {
-  description: "",
-  symposium: false,
-  dinner: false,
-  serving: false,
-  student: false,
-  guest: false,
-  price: 0
-}
-
 export const initialItemState = {
   title: "",
   date: "",
@@ -22,8 +11,7 @@ export const initialItemState = {
   venue: "",
   description: "",
   principalSpeaker: "",
-  sponsor: "",
-  ticketTypes: []
+  sponsor: ""
 }
 
 const initialState = {

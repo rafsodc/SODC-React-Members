@@ -12,7 +12,7 @@ import PasswordResetSubmit from '../../containers/Authentication/PasswordResetSu
 import Agenda from '../../containers/Agenda/Agenda'
 import Admin from "../../containers/Admin/Admin";
 import UsersApprove from "../../containers/User/UsersApprove";
-import EventEdit from '../../containers/Event/EventEdit'
+import EventEdit from '../../containers/Event/Admin/EventEdit'
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request, and have a const for reach route, and then refer to constant in each object
