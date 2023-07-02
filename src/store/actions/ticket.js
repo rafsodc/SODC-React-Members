@@ -14,11 +14,10 @@ export const removeTicket = (id) => removeForm(actionTypes.ticket.NAME, id)
 
 export const submitTicketForm = (data, location = null, event, owner) => {
   if (location === null) {
-    data = updateObject(data, { owner: owner, event: event})
+    data = {...data, owner: owner, event: event}
   }
   // Set the ticketType to the ticketType id
   //data = updateObject(data, {ticketType: data.ticketType['@id']})
-  /** Not sure why this is in an array - @todo check */
   return submitForm(actionTypes.ticket.NAME, data, data.uuid, location)
 }
 

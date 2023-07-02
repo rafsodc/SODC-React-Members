@@ -1,6 +1,7 @@
 import { passwordResetSubmitFormSchema } from '../../utils/forms/schema'
 import { addElement, blankObject, removeElementById, setParam, updateItemOrArray, updateObject } from './utility'
 import merge from 'merge'
+import { v4 } from 'uuid'
 
 /**
  * Adds a form to an array of forms
@@ -10,8 +11,12 @@ import merge from 'merge'
  * @returns {*}
  */
 export const addForm = (state, action, initialItemState) => {
-  const data = merge.recursive(true, initialItemState, action.data)
+
+  let data = merge.recursive(true, initialItemState, action.data)
   const settings = merge.recursive(true, formSettings, action.settings)
+  const uuid = settings.location === null ? v4() : data.uuid
+  data = merge.recursive(true, data, {uuid: uuid})
+  
   const obj = {
     form: {
       [data.uuid]: data
@@ -20,6 +25,7 @@ export const addForm = (state, action, initialItemState) => {
       [data.uuid]: settings
     }
   }
+  console.log(data)
   return merge.recursive(true, state, obj)
 }
 
@@ -91,6 +97,7 @@ export const formReducerObject = (actionType) => ({
 const setForm = (state, action) => merge.recursive(true, state, action)
 
 export const setValue = (state, action, section, property = null) => {
+
   // Store value and id from action
   const {value, id} = action
 

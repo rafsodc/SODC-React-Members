@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion, Button } from 'react-bootstrap'
-import Aux from '../../hoc/Aux'
+import Aux from '../../../hoc/Aux'
 
 const TicketTypeList = (props) => (
   <Aux>

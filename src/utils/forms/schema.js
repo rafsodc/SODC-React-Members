@@ -19,6 +19,17 @@ export const ticketFormSchema = (paid = false) => {
   return yup.object().shape(obj)
 }
 
+export const ticketTypeFormSchema = () => yup.object().shape({
+  description: yup.string().required(),
+  dinner: yup.boolean(),
+  symposium: yup.boolean(),
+  serving: yup.boolean(),
+  retired: yup.boolean(),
+  student: yup.boolean(),
+  guest: yup.boolean(),
+  price: yup.number(),
+})
+
 export const contactFormSchema = () => yup.object().shape({
   name: yup.string().required(),
   email: yup.string().email().required(),

@@ -66,6 +66,15 @@ const FormElement = React.forwardRef((props, ref) => {
                         className={props.errors[props.name] && 'form-warning-el'}
                         value={props.data[props.name]}/>
         break
+      case 'switch':
+        control =
+          <Form.Check disabled={props.disabled} onChange={props.onChange} name={props.name}
+                        ref={ref} type={'checkbox'}
+                        placeholder={props.placeholder}
+                        className={props.errors[props.name] && 'form-warning-el'} 
+                        checked={props.data[props.name]}
+                        />
+        break
       default:
         control =
           <Form.Control disabled={props.disabled} onChange={props.onChange} name={props.name}

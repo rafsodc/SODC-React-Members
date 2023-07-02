@@ -1,9 +1,12 @@
 import React from 'react'
 import useFormBuilder from '../../../hooks/Forms/useFormBuilder'
-import { ticketFormSchema } from '../../../utils/forms/schema'
+import { ticketTypeFormSchema } from '../../../utils/forms/schema'
 import { useDispatch } from 'react-redux'
 import { Accordion, Card } from 'react-bootstrap'
 import SavedBadge from '../../Booking/SavedBadge'
+import { deleteTicketType, setTicketTypeField, setTicketTypeSaved, setTicketTypeSavedBanner, submitTicketTypeForm } from '../../../store/actions/ticketTypes'
+import { setAccordion } from '../../../store/actions/layout'
+import TicketTypeForm from './TicketTypeForm'
 
 const TicketType = (props) => {
 
@@ -13,41 +16,42 @@ const TicketType = (props) => {
     register,
     errors,
     handleSubmit,
-  } = useFormBuilder(() => ticketFormSchema(props.ticket.paid))
+  } = useFormBuilder(() => ticketTypeFormSchema())
 
   const onChange = (event) => {
-    //dispatch(setTicketField(event.target.name, event.target.value, props.ticket.uuid))
-    //dispatch(setTicketSaved(false, props.ticket.uuid))
-    //dispatch(setTicketSavedBaner(false, props.ticket.uuid))
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+    dispatch(setTicketTypeField(event.target.name, value, props.form.uuid))
+    dispatch(setTicketTypeSaved(false, props.form.uuid))
+    dispatch(setTicketTypeSavedBanner(false, props.form.uuid))
   }
 
   const onSubmit = () => {
-    //dispatch(submitTicketForm(props.ticket, props.settings.location, props.event, props.owner))
+    dispatch(submitTicketTypeForm(props.form, props.settings.location, props.event))
   }
 
   const handleRemove = () => {
-    // dispatch([
-    //   //deleteTicket(props.ticket.id, props.ticket.location),
-    //   //setAccordion('ticket', 0)
-    // ])
+    dispatch([
+      deleteTicketType(props.form.uuid, props.settings.location),
+      setAccordion(0)
+    ])
   }
 
   const childProps = {
     errors: errors,
-    data: props.ticketType,
+    data: props.form,
     onChange: onChange,
     ref: register
   }
 
   return <Card>
     <Card.Header onClick={props.handleHeaderClick}>
-      {props.ticketType.description}<SavedBadge saved={props.settings.isSaved}/> 
+      {props.form.description}<SavedBadge saved={props.settings.isSaved}/> 
     </Card.Header>
     <Accordion.Collapse eventKey={props.ticketTypeKey}>
       <Card.Body>
-        {/* <TicketTypeForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={props.settings.isLocked}
+        <TicketTypeForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={props.settings.isLocked}
                     childProps={childProps} saved={props.settings.isSaved} showSavedBanner={props.settings.showSavedBanner}
-                    handleRemove={handleRemove}/> */}
+                    handleRemove={handleRemove}/>
       </Card.Body>
     </Accordion.Collapse>
   </Card>

@@ -1,29 +1,22 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
-import FormElement from '../../components/Form/FormElement'
-import '../../components/Form/Form.css'
+import FormElement from '../../../components/Form/FormElement'
+import '../../../components/Form/Form.css'
 
 const TicketTypeForm = (props) => {
-
-  const formatTicketTypes = (ticketTypes) => ticketTypes.map((ticket) => ({
-    value: ticket['@id'],
-    description: ticket.description + ' - £' + ticket.price
-  }))
 
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={'disabled'}>
     <fieldset disabled={props.locked && 'disabled'}>
       <Form.Group>
-        <FormElement type="select" placeholder="Select Ticket" label="Ticket" name="ticketType" {...props.childProps}
-                     options={formatTicketTypes(props.ticketOptions)} disabled={props.paid}/>
-        <FormElement type="input" placeholder="Rank" label="Rank" name="rank" {...props.childProps}/>
-        <FormElement type="input" placeholder="First Name" label="First Name" name="firstname" {...props.childProps}/>
-        <FormElement type="input" placeholder="Last Name" label="Last Name" name="lastname" {...props.childProps}/>
-        <FormElement type="input" placeholder="Dietary Requirements" label="Dietary Requirements"
-                     name="dietary" {...props.childProps}/>
-        <FormElement type="userTypeAhead" placeholder="Seating Preferences" label="Seating Preferences"
-                     name="seatingPreferences" {...props.childProps} />
+        <FormElement type="input" placeholder="Description" label="Description" name="description" {...props.childProps}/>
 
-
+        <FormElement type="switch" placeholder="Dinner" label="Dinner" name="dinner" {...props.childProps}/>
+        <FormElement type="switch" placeholder="Symposium" label="Symposium" name="symposium" {...props.childProps}/>
+        <FormElement type="switch" placeholder="Guest" label="Guest" name="guest" {...props.childProps}/>
+        <FormElement type="switch" placeholder="Serving" label="Serving" name="serving" {...props.childProps}/>
+        <FormElement type="switch" placeholder="Student" label="Student" name="student" {...props.childProps}/>
+        <FormElement type="switch" placeholder="Retired" label="Retired" name="retired" {...props.childProps}/>
+        <FormElement type="input" placeholder="Price" label="Price" name="price" {...props.childProps}/>
       </Form.Group>
 
       <Button variant="primary" type="submit" disabled={props.saved && 'disabled'}>

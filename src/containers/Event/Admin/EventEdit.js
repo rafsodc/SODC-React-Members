@@ -3,16 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import EventForm from './EventForm'
 import {eventFormSchema} from "../../../utils/forms/schema";
 import {clearEvent, loadEventForm, setEventField, submitEventForm, setEventSaved} from "../../../store/actions/event";
-import {clearUnstickyAlerts} from "../../../store/actions";
-import FormSubmitted from "../../../components/Form/FormSubmitted";
 import useFormBuilder from "../../../hooks/Forms/useFormBuilder";
 import { useParams } from 'react-router'
 import apiPaths from "../../../store/paths";
-import TicketTypeEdit from './TicketTypeEdit';
-import {Accordion} from 'react-bootstrap';
-import TicketTypes from './TicketType';
 import TicketType from './TicketType';
 import { setAccordion } from '../../../store/actions/layout';
+import TicketTypeList from './TicketTypeList';
+import { addTicketType } from '../../../store/actions/ticketTypes';
 
 const EventEdit = () =>  {
 
@@ -52,11 +49,18 @@ const EventEdit = () =>  {
       dispatch(setAccordion(setKey))
     }
 
+    const handleAddTicketType = () => {
+        dispatch([
+          addTicketType(),
+          setAccordion(Object.entries(ticketTypes.form).length + 1)
+        ])
+    }
+
     //const ticketTypes = settings.location && <TicketTypes event={settings.location} ticketTypes={ticketTypes} accordion={accordion}/>;
 
     const transformedTicketForms = Object.entries(ticketTypes.form).map((ticketType, key) => {
       return <TicketType
-        ticket={ticketType[1]}
+        form={ticketType[1]}
         settings={ticketTypes.settings[ticketType[0]]}
         key={key}
         ticketTypeKey={(key + 1)}
@@ -67,12 +71,17 @@ const EventEdit = () =>  {
       .reduce((arr, el) => {
         return arr.concat(el)
       }, [])
+
+    const ticketTypeList = settings.location !== null ? <TicketTypeList activeKey={accordion} handleAddTicketType={handleAddTicketType}>{transformedTicketForms}
+    </TicketTypeList> : ''
   
     return (
       <>
         <h1>Create Event</h1>
           <EventForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={settings.isLocked}
                    childProps={childProps} saved={settings.isSaved} />
+          
+          {ticketTypeList}
        </>
     )
 

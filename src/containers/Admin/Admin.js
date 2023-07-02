@@ -11,7 +11,7 @@ const Admin = () => {
         <>
             <h2>Website Admin</h2>
             <AuthLink route={APP_EVENT_ADD} userRoles={authState.token_data.roles}/>
-            <AuthLink route={APP_USERS_APPROVE} userRoles={authState.token_data.roles}/>
+            {/* <AuthLink route={APP_USERS_APPROVE} userRoles={authState.token_data.roles}/> */}
         </>
     )
 }
