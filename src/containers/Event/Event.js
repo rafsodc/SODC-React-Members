@@ -1,36 +1,71 @@
-import React from 'react'
-import { longDate } from '../../utils/formats/date'
-import { Accordion, Card } from 'react-bootstrap'
-import BookingBadge from './BookingBadge'
-import { NavLink } from 'react-router-dom'
-import EventTickets from './EventTickets'
-import ReactMarkdown from 'react-markdown'
+import React, {memo, useMemo} from 'react';
+import {longDate} from '../../utils/formats/date';
+import {Accordion, Card} from 'react-bootstrap';
+import BookingBadge from './BookingBadge';
+import {NavLink} from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import EventTickets from './EventTickets';
 
 const Event = (props) => {
+    const {
+        id,
+        title,
+        isBookingOpen,
+        showTickets,
+        eventKey,
+        bookingOpen,
+        bookingClose,
+        description,
+        date,
+        venue,
+        principalSpeaker,
+        sponsor
+    } = props;
 
-  const link = props.isBookingOpen === true ? <NavLink to={'/events/' + props.id}>Click to book</NavLink> : ''
-  const bookingOpen = false && props.isBookingOpen
-  const tickets = props.showTickets ? <EventTickets eventId={'/events/' + props.id}/> : ''
+    const formattedBookingOpenDate = useMemo(
+        () => longDate.format(bookingOpen),
+        [bookingOpen]
+    );
+    const formattedBookingCloseDate = useMemo(
+        () => longDate.format(bookingClose),
+        [bookingClose]
+    );
 
-  return <Card>
-    <Accordion.Toggle as={Card.Header} eventKey={props.eventKey}>{props.title} - {longDate.format(props.date)}
-      <BookingBadge show={bookingOpen}/></Accordion.Toggle>
-    <Accordion.Collapse eventKey={props.eventKey}>
-      <Card.Body>
-        <Card.Subtitle>Venue: {props.venue}</Card.Subtitle>
-        <Card.Text as="div"><br/>
-          Booking Opens: {longDate.format(props.bookingOpen)}<br/>
-          Booking Closes: {longDate.format(props.bookingClose)}<br/>
-          Principal Speaker: {props.principalSpeaker}<br/>
-          Sponsor: {props.sponsor}<br/><br/>
-          <ReactMarkdown source={props.description}/>
-          <br/>{link}<br/><br/>
-          <strong>My Tickets</strong>
-        </Card.Text>
-        {tickets}
-      </Card.Body>
-    </Accordion.Collapse>
-  </Card>
-}
+    return (
+        <Card>
+            <Accordion.Toggle as={Card.Header} eventKey={eventKey}>
+                {title} - {longDate.format(date)}
+                <BookingBadge show={isBookingOpen}/>
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey={eventKey}>
+                <Card.Body>
+                    <Card.Subtitle>Venue: {venue}</Card.Subtitle>
+                    <Card.Text as="div">
+                        <br/>
+                        Booking Opens: {formattedBookingOpenDate}
+                        <br/>
+                        Booking Closes: {formattedBookingCloseDate}
+                        <br/>
+                        Principal Speaker: {principalSpeaker}
+                        <br/>
+                        Sponsor: {sponsor}
+                        <br/>
+                        <br/>
+                        <ReactMarkdown source={description}/>
+                        <br/>
+                        {isBookingOpen && (
+                            <>
+                                <NavLink to={`/events/${id}`}>Click to book</NavLink>
+                                <br/>
+                            </>
+                        )}
+                        <strong>My Tickets</strong>
+                    </Card.Text>
+                    {showTickets && <EventTickets eventId={`/events/${id}`}/>}
+                </Card.Body>
+            </Accordion.Collapse>
+        </Card>
+    );
+};
 
-export default Event
+export default memo(Event);

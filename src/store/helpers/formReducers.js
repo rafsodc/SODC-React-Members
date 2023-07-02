@@ -1,20 +1,32 @@
+import { passwordResetSubmitFormSchema } from '../../utils/forms/schema'
 import { addElement, blankObject, removeElementById, setParam, updateItemOrArray, updateObject } from './utility'
+import merge from 'merge'
+import { v4 } from 'uuid'
 
 /**
  * Adds a form to an array of forms
  * @param state Current state
  * @param action Current action data
- * @param newElement New element to be added
+ * @param initialItemState Initial state for item
  * @returns {*}
  */
-export const addForm = (state, action, newElement) => {
-  if (action.fields !== null) {
-    newElement = updateObject(newElement, { fields: action.fields })
+export const addForm = (state, action, initialItemState) => {
+
+  let data = merge.recursive(true, initialItemState, action.data)
+  const settings = merge.recursive(true, formSettings, action.settings)
+  const uuid = settings.location === null ? v4() : data.uuid
+  data = merge.recursive(true, data, {uuid: uuid})
+  
+  const obj = {
+    form: {
+      [data.uuid]: data
+    },
+    settings: {
+      [data.uuid]: settings
+    }
   }
-  // Set the key on the newElement
-  const el = updateObject(newElement, { id: action.id, location: action.location, saved: action.saved })
-  // Update state
-  return addElement(state, el)
+  console.log(data)
+  return merge.recursive(true, state, obj)
 }
 
 /**
@@ -54,11 +66,65 @@ export const clearForm = (state, action) => {
 }
 
 /**
+ * Default settings for forms
+ */
+export const formSettings = {
+  isLocked: false,
+  isHidden: false,
+  isSaved: false,
+  isLoaded: false,
+  location: null,
+  showSavedBanner: false
+}
+
+/**
  * Default reducer object for forms
  */
 export const formReducerObject = (actionType) => ({
-  [actionType.SET_FIELD]: setField,
-  [actionType.SET_LOCKED]: setParam,
-  [actionType.SET_HIDDEN]: setParam,
+  [actionType.SET_FORM]: setForm,
+  [actionType.SET_FIELD]: {fn: setValue, args: ['form']},
+  [actionType.SET_LOCKED]: {fn: setValue, args: ['settings', 'isLocked']},
+  [actionType.SET_HIDDEN]: {fn: setValue, args: ['settings', 'isHidden']},
+  [actionType.SET_SAVED]: {fn: setValue, args: ['settings', 'isSaved']},
+  [actionType.SET_SAVED_BANNER]: {fn: setValue, args: ['settings', 'showSavedBanner']},
+  [actionType.SET_LOADED]: {fn: setValue, args: ['settings', 'isLoaded']},
+  [actionType.SET_LOCATION]: {fn: setValue, args: ['settings', 'location']},
   [actionType.CLEAR]: clearForm
 })
+
+//// New Reducers Below
+
+const setForm = (state, action) => merge.recursive(true, state, action)
+
+export const setValue = (state, action, section, property = null) => {
+
+  // Store value and id from action
+  const {value, id} = action
+
+  // If property isn't set by function params, get it from action
+  property = property === null ? action.property : property
+
+  // Build data object
+  let data = {}
+  if(id === null || id === undefined) {
+    data = {
+      [section]: {[property]: value}
+    }
+  }
+  else {
+    data = {
+      [section]: {[id]: {[property]: value}}
+    }
+  }
+
+  //console.log(merge.recursive(true, state, data) )
+  // Merge data object with state
+  return merge.recursive(true, state, data) 
+}
+
+
+// const formReducers = {
+//   setFormField: setFormField
+// }
+
+// export default formReducers

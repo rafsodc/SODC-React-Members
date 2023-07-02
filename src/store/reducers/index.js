@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 
 import alertReducer from './alert'
 import errorReducer from './error'
-import eventReducer from './event'
+import eventReducer from './event/'
 import bookingReducer from './booking'
 import ticketReducer from './ticket'
 import typeAheadReducer from './typeAhead'
@@ -13,13 +13,14 @@ import contactReducer from './contact'
 import basketReducer from './basket'
 import userReducer from './user'
 import agendaReducer from './agenda/agenda'
+import layoutReducer from './layout'
 
 const rootReducer = combineReducers({
   agendaReducer: agendaReducer,
   ...authenticationReducers,
   alertReducer: alertReducer,
   errorReducer: errorReducer,
-  eventReducer: eventReducer,
+  ...eventReducer,
   bookingReducer: bookingReducer,
   ticketReducer: ticketReducer,
   typeAheadReducer: typeAheadReducer,
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   pageReducer: pageReducer,
   contactReducer: contactReducer,
   basketReducer: basketReducer,
-  userReducer: userReducer
+  userReducer: userReducer,
+  layoutReducer: layoutReducer
 })
 
 export default rootReducer

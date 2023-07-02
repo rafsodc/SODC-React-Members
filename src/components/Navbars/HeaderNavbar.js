@@ -12,7 +12,7 @@ import { linkByRole } from '../../utils/funcs/funcs'
 
 const headerNavbar = React.memo((props) => (
     <Navbar bg="app-primary" variant="dark" expand="lg">
-      <Navbar.Brand as={NavLink} to={'/'}>RAF SODC</Navbar.Brand>
+      <Navbar.Brand as={NavLink} to={'/'}>Web Site</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">

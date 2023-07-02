@@ -1,2 +1,9 @@
-export const EVENTS = '/events'
-export const FUTURE_EVENTS = '/events?future=true'
+const event = {
+  EVENTS: '/events',
+  FUTURE_EVENTS: '/events?future=true',
+  POST: '/events'
+}
+
+export default {
+  event: event
+}

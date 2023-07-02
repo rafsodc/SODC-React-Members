@@ -58,17 +58,26 @@ const FormElement = React.forwardRef((props, ref) => {
           <Aux> {typeAheads} <UserTypeAhead id={'seatingPreference'} index={typeAheads.length} key={typeAheads.length}
                                             handleSelect={handleSelect}/> </Aux>
         break
-      case 'password':
+      case 'textarea':
         control =
-          <Form.Control as={'input'} disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref}
+          <Form.Control rows={5} disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref}
                         type={props.type}
                         placeholder={props.placeholder}
                         className={props.errors[props.name] && 'form-warning-el'}
                         value={props.data[props.name]}/>
         break
+      case 'switch':
+        control =
+          <Form.Check disabled={props.disabled} onChange={props.onChange} name={props.name}
+                        ref={ref} type={'checkbox'}
+                        placeholder={props.placeholder}
+                        className={props.errors[props.name] && 'form-warning-el'} 
+                        checked={props.data[props.name]}
+                        />
+        break
       default:
         control =
-          <Form.Control as={props.type} rows={5} disabled={props.disabled} onChange={props.onChange} name={props.name}
+          <Form.Control disabled={props.disabled} onChange={props.onChange} name={props.name}
                         ref={ref} type={props.type}
                         placeholder={props.placeholder}
                         className={props.errors[props.name] && 'form-warning-el'}

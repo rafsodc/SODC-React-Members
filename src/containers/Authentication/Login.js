@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom'
 const Login = (props) => {
   const formName = 'login'
   const dispatch = useDispatch()
-  const formState = useSelector(state => state.loginFormReducer)
+  const {form, settings} = useSelector(state => state.loginFormReducer)
 
   const {
     register,
@@ -19,27 +19,27 @@ const Login = (props) => {
   } = useFormBuilder(loginFormSchema)
 
   const onChange = (event) => {
-    dispatch(setLoginField({ [event.target.name]: event.target.value }))
+    dispatch(setLoginField(event.target.name, event.target.value))
   }
 
   const onRecaptcha = (value) => {
-    dispatch(setLoginField({ captcha: value }))
+    dispatch(setLoginField('captcha', value ))
     //dispatch(errorFlag('captcha', value === null))
   }
 
-  const onSubmit = () => dispatch(login(formState.fields))
+  const onSubmit = () => dispatch(login(form))
 
   const childProps = {
     form: formName,
     errors: errors,
-    data: formState.fields,
+    data: form,
     onChange: onChange,
     ref: register
   }
 
   return <Aux>
     <h1>Login</h1>
-    <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={formState.locked}
+    <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={settings.isLocked}
                childProps={childProps}/>
     <br/><NavLink to={'/forgot-password'}>Request Password Reset</NavLink>
   </Aux>

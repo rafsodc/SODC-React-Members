@@ -19,6 +19,17 @@ export const ticketFormSchema = (paid = false) => {
   return yup.object().shape(obj)
 }
 
+export const ticketTypeFormSchema = () => yup.object().shape({
+  description: yup.string().required(),
+  dinner: yup.boolean(),
+  symposium: yup.boolean(),
+  serving: yup.boolean(),
+  retired: yup.boolean(),
+  student: yup.boolean(),
+  guest: yup.boolean(),
+  price: yup.number(),
+})
+
 export const contactFormSchema = () => yup.object().shape({
   name: yup.string().required(),
   email: yup.string().email().required(),
@@ -47,3 +58,14 @@ export const userFormSchema = (existing = true) => {
   }
   return yup.object().shape(obj)
 }
+
+export const eventFormSchema = () => yup.object().shape({
+    title: yup.string().required(),
+    date: yup.date().required(),
+    bookingOpen: yup.date().required(),
+    bookingClose: yup.date().required(),
+    venue: yup.string().required(),
+    description: yup.string(),
+    principalSpeaker: yup.string(),
+    sponsor: yup.string(),
+})

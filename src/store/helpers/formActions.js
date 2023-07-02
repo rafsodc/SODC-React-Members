@@ -5,55 +5,63 @@ import axios from '../../utils/axios/axios'
 import { setAlert } from '../actions/alert'
 import { ALERT_DANGER } from '../../components/AlertWindow/alertTypes'
 
-export const addForm = (formName, fields = null) => {
-  const id = v4()
-  const location = (fields !== null) ? fields['@id'] : null
-  const saved = (fields !== null) ? true : false
-  return {
+export const addForm = (formName, data = null, location = null) => ({
     type: actionTypes[formName].ADD,
-    id: id,
-    fields: fields,
+    data: data,
     location: location,
-    saved: saved
-  }
-}
+    saved: location !== null
+  })
+
 
 export const removeForm = (formName, id) => ({
   type: actionTypes[formName].REMOVE,
   id: id
 })
 
-export const setFormField = (formName, data, id = null) => ({
+/**
+ * 
+ * @param {*} formName 
+ * @param {*} property 
+ * @param {*} value 
+ * @param {*} id 
+ * @returns 
+ * 
+ * @todo remove field
+ */
+export const setFormField = (formName, property, value, id = null) => ({
   type: actionTypes[formName].SET_FIELD,
-  data: data,
+  property: property,
+  value: value,
   id: id
 })
 
 export const setFormLocked = (formName, locked, id = null) => ({
   type: actionTypes[formName].SET_LOCKED,
-  param: 'locked',
-  data: locked,
+  value: locked,
+  id: id
+})
+
+export const setFormSaved = (formName, saved, id = null) => ({
+  type: actionTypes[formName].SET_SAVED,
+  value: saved,
+  id: id
+})
+
+export const setFormSavedBanner = (formName, saved, id = null) => ({
+  type: actionTypes[formName].SET_SAVED_BANNER,
+  value: saved,
   id: id
 })
 
 export const setFormHidden = (formName, hidden, id = null) => ({
   type: actionTypes[formName].SET_HIDDEN,
-  param: 'hidden',
-  data: hidden,
-  id: id
-})
-
-const setFormSaved = (formName, saved, id = null) => ({
-  type: actionTypes[formName].SET_SAVED,
-  param: 'saved',
-  data: saved,
+  value: hidden,
   id: id
 })
 
 const setFormLocation = (formName, location, id = null) => ({
   type: actionTypes[formName].SET_LOCATION,
-  param: 'location',
-  data: location,
+  value: location,
   id: id
 })
 
@@ -75,10 +83,13 @@ export const submitForm = (formName, data, id = null, location = null) => dispat
   const apiMethod = (location === null) ? 'post' : 'patch'
 
   axios[apiMethod](apiPath, JSON.stringify(data))
-    .then((response) => dispatch([
-      setFormSaved(formName, true, id),
-      setFormLocation(formName, response.headers.location, id)
-    ]))
+    .then((response) => { 
+      if(response.headers.location) {
+        dispatch(setFormLocation(formName, response.headers.location, id))
+      }
+      dispatch(setFormSaved(formName, true, id))
+      dispatch(setFormSavedBanner(formName, true, id))
+    })
     .catch(() => {})
     .finally(() => dispatch(setFormLocked(formName, false, id)))
 

@@ -1,4 +1,4 @@
-import * as event from './event'
+import event from './event'
 import * as authentication from './authentication'
 import * as user from './user'
 import * as ticket from './ticket'

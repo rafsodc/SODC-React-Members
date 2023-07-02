@@ -1,16 +1,16 @@
 import actionTypes from '../../actionTypes'
 import { createReducer } from '../../helpers/utility'
-import { formReducerObject } from '../../helpers/formReducers'
+import { formReducerObject, formSettings } from '../../helpers/formReducers'
 
-const initialLoginFormState = {
-  fields: {
+const initialState = {
+  form: {
     email: '',
     captcha: null,
   },
-  locked: false,
-  hidden: true
+  settings: formSettings
 }
 
-const reducer = createReducer(initialLoginFormState, formReducerObject(actionTypes.passwordResetRequestForm))
+const reducer = createReducer(initialState, formReducerObject(actionTypes.passwordResetRequestForm))
+
 
 export default reducer

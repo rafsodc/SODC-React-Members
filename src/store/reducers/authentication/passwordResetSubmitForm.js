@@ -1,14 +1,13 @@
 import actionTypes from '../../actionTypes'
 import { createReducer } from '../../helpers/utility'
-import { formReducerObject } from '../../helpers/formReducers'
+import { formReducerObject, formSettings } from '../../helpers/formReducers'
 
 const initialState = {
-  fields: {
+  form: {
     password: '',
     passwordConfirm: '',
   },
-  locked: false,
-  hidden: false
+  settings: formSettings
 }
 
 const reducer = createReducer(initialState, formReducerObject(actionTypes.passwordResetSubmitForm))

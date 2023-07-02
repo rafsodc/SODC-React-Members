@@ -15,7 +15,7 @@ const Booking = (props) => {
 
   const dispatch = useDispatch()
   const bookingState = useSelector(state => state.bookingReducer)
-  const ticketState = useSelector(state => state.ticketReducer)
+  const tickets = useSelector(state => state.ticketReducer)
   const transactionState = useSelector(state => state.transactionReducer)
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Booking = (props) => {
 
   const handleAddTicket = () => {
     if (props.user !== null) {
-      const accordion = ticketState.length + 1
+      const accordion = tickets.form.length + 1
       dispatch([
         addTicket(),
         setAccordion('ticket', accordion)
@@ -55,10 +55,11 @@ const Booking = (props) => {
     const setKey = (key === bookingState.accordion[tab]) ? -1 : key
     dispatch(setAccordion(tab, setKey))
   }
-
-  const transformedTicketForms = ticketState.map((ticket, key) => {
+  
+  const transformedTicketForms = Object.entries(tickets.form).map((ticket, key) => {
     return <Ticket
-      ticket={ticket}
+      ticket={ticket[1]}
+      settings={tickets.settings[ticket[0]]}
       key={key}
       ticketKey={(key + 1)}
       handleHeaderClick={() => handleHeaderClick('ticket', key + 1)}
@@ -91,7 +92,7 @@ const Booking = (props) => {
   const order_disabled = !['order', 'payment'].includes(bookingState.tab)
 
   // Determine if any tickets are not saved
-  const isSaved = ticketState.filter(ticket => !ticket.saved).length === 0
+  const isSaved = Object.entries(tickets.form).filter(ticket => !ticket.saved).length === 0
   const notSavedNotice = isSaved ? '' : <Form.Text muted className={'form-warning-desc'}>Please ensure all tickets are
     saved to continue.</Form.Text>
 

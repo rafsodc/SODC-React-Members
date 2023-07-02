@@ -13,7 +13,7 @@ const PasswordResetSubmit = (props) => {
 
   const dispatch = useDispatch()
   const formName = 'passwordResetSubmit'
-  const formState = useSelector(state => state.passwordResetSubmitFormReducer)
+  const {form, settings} = useSelector(state => state.passwordResetSubmitFormReducer)
   const state = useSelector(state => state.passwordResetSubmitReducer)
 
   const { token } = useParams()
@@ -29,7 +29,7 @@ const PasswordResetSubmit = (props) => {
   } = useFormBuilder(passwordResetSubmitFormSchema)
 
   const onChange = (event) => {
-    dispatch(setPasswordResetSubmitField({ [event.target.name]: event.target.value }))
+    dispatch(setPasswordResetSubmitField([event.target.name], event.target.value))
   }
 
   const onSubmit = () => {
@@ -37,14 +37,14 @@ const PasswordResetSubmit = (props) => {
     // const data = {
     //   password: formState.fields.password
     // }
-    dispatch(submitPasswordReset(token, formState.fields))
+    dispatch(submitPasswordReset(token, form))
     //dispatch(onCaptchaSubmit(passwordResetRequest, formState.fields));
   }
 
   const childProps = {
     form: formName,
     errors: errors,
-    data: formState.fields,
+    data: form,
     onChange: onChange,
     ref: register
   }
@@ -52,8 +52,8 @@ const PasswordResetSubmit = (props) => {
   return <Load loading={!state.loaded} notFound={!state.valid}>
     <h1>Password Reset</h1>
 
-    {formState.hidden ? '' : <Aux><p>Please enter a new password.</p>
-      <PasswordResetSubmitForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={formState.locked}
+    {settings.isHidden ? '' : <Aux><p>Please enter a new password.</p>
+      <PasswordResetSubmitForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={settings.isLocked}
                                childProps={childProps}/></Aux>}
   </Load>
 }

@@ -11,7 +11,7 @@ const PasswordResetRequest = (props) => {
 
   const dispatch = useDispatch()
   const formName = 'passwordResetRequest'
-  const formState = useSelector(state => state.passwordResetRequestFormReducer)
+  const {form, settings} = useSelector(state => state.passwordResetRequestFormReducer)
   const captchaError = useSelector(state => state.errorReducer.captcha)
 
   const {
@@ -20,20 +20,20 @@ const PasswordResetRequest = (props) => {
     handleSubmit,
   } = useFormBuilder(passwordResetRequestFormSchema)
 
-  const onChange = (event) => dispatch(setPasswordResetRequestField({ [event.target.name]: event.target.value }))
+  const onChange = (event) => dispatch(setPasswordResetRequestField([event.target.name], event.target.value))
 
   const onRecaptcha = (value) => {
-    dispatch(setPasswordResetRequestField({ captcha: value }))
+    dispatch(setPasswordResetRequestField('captcha', value))
     dispatch(errorFlag('captcha', value === null))
   }
 
   //const onSubmit = () => dispatch(passwordResetRequest(formState.fields));
-  const onSubmit = () => dispatch(onCaptchaSubmit(passwordResetRequest, formState.fields))
+  const onSubmit = () => dispatch(onCaptchaSubmit(passwordResetRequest, form))
 
   const childProps = {
     form: formName,
     errors: errors,
-    data: formState.fields,
+    data: form,
     onChange: onChange,
     ref: register
   }
@@ -44,7 +44,7 @@ const PasswordResetRequest = (props) => {
       sent to that email address. Please be sure to check you junk mail folders. If you do not receive an email, please
       email <a href="mailto:admin@sodc.net">admin@sodc.net</a>.</p>
     <PasswordResetRequestForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha}
-                              locked={formState.locked}
+                              locked={settings.isLocked}
                               childProps={childProps} captchaError={captchaError}/>
   </Aux>
 

@@ -1,3 +1,7 @@
+import merge from 'merge'
+import actionTypes from '../actionTypes'
+
+
 export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,
@@ -70,8 +74,15 @@ export const setParam = (state, action) => {
   return updateItemOrArray(state, action, setSingle)
 }
 
-export const createReducer = (initialState, handlers) => (state = initialState, action) => {
+export const mergeObject = (state, action) => {
+  const setSingle = (obj = state) =>  {
+    const temp = merge.recursive(true, state, action.object)
+    return temp
+  };
+  return updateItemOrArray(state, action, setSingle);
+}
 
+export const createReducer = (initialState, handlers) => (state = initialState, action) => {
   if (handlers.hasOwnProperty(action.type)) {
     if (typeof (handlers[action.type]) === 'function') {
       return handlers[action.type](state, action)
@@ -81,6 +92,21 @@ export const createReducer = (initialState, handlers) => (state = initialState, 
   } else {
     return state
   }
+}
+
+export const dataHandler = (responseData) => {
+
+  const location = responseData['@id'];
+
+    let data = {};
+
+    Object.keys(responseData).filter(property => {
+      if (property.charAt(0) !== '@' ) {
+        data[property] = responseData[property]
+      }
+    });
+
+    return {location: location, data: data}
 }
 
 

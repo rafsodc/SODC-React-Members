@@ -1,41 +1,36 @@
 import actionTypes from '../actionTypes'
-import * as formReducers from '../helpers/formReducers'
-import { setParam } from '../helpers/utility'
+import { formSettings, removeForm, setValue, addForm, formReducerObject } from '../helpers/formReducers'
+import { createReducer, setParam } from '../helpers/utility'
+import { v4 } from 'uuid'
+import merge from 'merge'
 
-const initialTicket = {
-  fields: {
-    rank: '',
-    firstname: '',
-    lastname: '',
-    dietary: '',
-    ticketType: '',
-    seatingPreferences: []
-  },
-  locked: false,
-  id: null,
-  saved: false,
-  location: null,
+const initialItemState = {
+  rank: '',
+  firstname: '',
+  lastname: '',
+  dietary: '',
+  ticketType: '',
+  paid: false,
+  seatingPreferences: [],
+  uuid: v4()
 }
 
-const reducer = (state = [], action) => {
-  switch (action.type) {
-    case actionTypes.ticket.ADD:
-      return formReducers.addForm(state, action, initialTicket)
-    case actionTypes.ticket.REMOVE:
-      return formReducers.removeForm(state, action)
-    case actionTypes.ticket.SET_FIELD:
-      return formReducers.setField(state, action)
-    case actionTypes.ticket.SET_LOCKED:
-      return setParam(state, action)
-    case actionTypes.ticket.SET_SAVED:
-      return setParam(state, action)
-    case actionTypes.ticket.SET_LOCATION:
-      return setParam(state, action)
-    case actionTypes.ticket.RESET:
-      return []
-    default:
-      return state
-  }
+const initialState = {
+  form: [],
+  settings: [],
 }
+
+const clearAll = (state, action) => initialState
+
+const addTicket = (state, action) => addForm(state, action, initialItemState)
+
+const reducerObj = {
+  ...formReducerObject(actionTypes.ticket),
+  [actionTypes.ticket.ADD]: addTicket,
+  [actionTypes.ticket.REMOVE]: removeForm,
+  [actionTypes.ticket.RESET]: clearAll
+}
+
+const reducer = createReducer(initialState, reducerObj)
 
 export default reducer
