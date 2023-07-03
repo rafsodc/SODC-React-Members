@@ -17,7 +17,7 @@ const Contact = () => {
 
   const formName = 'contact'
   const dispatch = useDispatch()
-  const formState = useSelector(state => state.contactReducer)
+  const {form, settings} = useSelector(state => state.contactReducer)
   const captchaError = useSelector(state => state.errorReducer.captcha)
 
   const {
@@ -26,26 +26,28 @@ const Contact = () => {
     errors,
   } = useFormBuilder(contactFormSchema)
 
-  const onChange = (event) => dispatch(setContactField({ [event.target.name]: event.target.value }))
+  const onChange = (event) => dispatch(setContactField(event.target.name, event.target.value))
 
   const onRecaptcha = (value) => {
-    dispatch(setContactField({ captcha: value }))
+    dispatch(setContactField('captcha', value))
     dispatch(errorFlag('captcha', value === null))
   }
 
-  const onSubmit = () => dispatch(onCaptchaSubmit(submitContactForm, formState.fields))
+  const onSubmit = () => dispatch(onCaptchaSubmit(submitContactForm, form))
 
   const childProps = {
     form: formName,
     errors: errors,
-    data: formState.fields,
+    data: form,
     onChange: onChange,
     ref: register
   }
 
-  const content = formState.saved ?
-    <ContactSub data={formState.fields}/> :
-    <ContactForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={formState.locked}
+  console.log(settings)
+
+  const content = settings.isSaved ?
+    <ContactSub data={form}/> :
+    <ContactForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={settings.isLocked}
                  childProps={childProps} captchaError={captchaError}/>
 
   return <Aux>
