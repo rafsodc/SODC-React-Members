@@ -61,7 +61,7 @@ const FormElement = React.forwardRef((props, ref) => {
       case 'textarea':
         control =
           <Form.Control rows={5} disabled={props.disabled} onChange={props.onChange} name={props.name} ref={ref}
-                        type={props.type}
+                        type={props.type} as={'textarea'}
                         placeholder={props.placeholder}
                         className={props.errors[props.name] && 'form-warning-el'}
                         value={props.data[props.name]}/>

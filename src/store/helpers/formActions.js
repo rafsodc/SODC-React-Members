@@ -84,11 +84,11 @@ export const submitForm = (formName, data, id = null, location = null) => dispat
 
   axios[apiMethod](apiPath, JSON.stringify(data))
     .then((response) => { 
+      dispatch(setFormSaved(formName, true, id))
+      dispatch(setFormSavedBanner(formName, true, id))
       if(response.headers.location) {
         dispatch(setFormLocation(formName, response.headers.location, id))
       }
-      dispatch(setFormSaved(formName, true, id))
-      dispatch(setFormSavedBanner(formName, true, id))
     })
     .catch(() => {})
     .finally(() => dispatch(setFormLocked(formName, false, id)))

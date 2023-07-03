@@ -98,6 +98,8 @@ const setForm = (state, action) => merge.recursive(true, state, action)
 
 export const setValue = (state, action, section, property = null) => {
 
+  console.log(action)
+
   // Store value and id from action
   const {value, id} = action
 
