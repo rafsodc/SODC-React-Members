@@ -4,6 +4,11 @@ const event = {
   POST: '/events'
 }
 
+const ticketType = {
+  POST: '/ticket_types'
+}
+
 export default {
-  event: event
+  event: event,
+  ticketType: ticketType
 }

@@ -22,6 +22,7 @@ export const submitTicketTypeForm = (data, location = null, event) => {
   if (location === null) {
     data = {...data, event: event}
   }
+  data = {...data, price: parseFloat(data.price)}
   return submitForm(actionTypes.ticketType.NAME, data, data.uuid, location)
 }
 

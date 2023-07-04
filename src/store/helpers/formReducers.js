@@ -25,7 +25,6 @@ export const addForm = (state, action, initialItemState) => {
       [data.uuid]: settings
     }
   }
-  console.log(data)
   return merge.recursive(true, state, obj)
 }
 
@@ -60,7 +59,7 @@ export const setField = (state, action) => {
  * @returns {*}
  */
 export const clearForm = (state, action) => {
-  const setSingle = (obj = state) => updateObject(obj, { fields: blankObject(obj.fields) })
+  const setSingle = (obj = state) => updateObject(obj, { form: blankObject(obj.fields) })
 
   return updateItemOrArray(state, action, setSingle)
 }
@@ -119,7 +118,6 @@ export const setValue = (state, action, section, property = null) => {
     }
   }
 
-  //console.log(merge.recursive(true, state, data) )
   // Merge data object with state
   return merge.recursive(true, state, data) 
 }

@@ -59,9 +59,8 @@ const Event = (props) => {
                                 <br/>
                             </>
                         )}
-                        <strong>My Tickets</strong>
                     </Card.Text>
-                    {showTickets && <EventTickets eventId={`/events/${id}`}/>}
+                    {showTickets && <><strong>My Tickets</strong><EventTickets eventId={`/events/${id}`}/></>}
                 </Card.Body>
             </Accordion.Collapse>
         </Card>
