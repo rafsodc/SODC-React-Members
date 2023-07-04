@@ -7,17 +7,14 @@ import Table from 'react-bootstrap/Table'
 const EventTickets = (props) => {
 
   const dispatch = useDispatch()
-  const ticketsState = useSelector(state => state.ticketReducer)
+  const {form, settings} = useSelector(state => state.ticketReducer)
   const authenticationState = useSelector(state => state.authenticationReducer)
-
-  // Remove tickets that are not for Symposium or Dinner (ie 'membership' tickets)
-  const tickets = ticketsState.filter(ticket => ticket.fields.ticketType.symposium || ticket.fields.ticketType.dinner)
 
   useEffect(() => {
     dispatch(loadEventTickets(props.eventId, authenticationState.token_data.iri))
   }, [dispatch])
 
-  const rows = tickets.map(ticket => (
+  const rows = form.map(ticket => (
     <tr key={ticket.id}>
       <td>{ticket.fields.lastname}</td>
       <td>{ticket.fields.firstname}</td>

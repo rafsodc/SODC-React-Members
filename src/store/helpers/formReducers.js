@@ -60,7 +60,7 @@ export const setField = (state, action) => {
  * @returns {*}
  */
 export const clearForm = (state, action) => {
-  const setSingle = (obj = state) => updateObject(obj, { fields: blankObject(obj.fields) })
+  const setSingle = (obj = state) => updateObject(obj, { form: blankObject(obj.fields) })
 
   return updateItemOrArray(state, action, setSingle)
 }
