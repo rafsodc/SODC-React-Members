@@ -37,8 +37,6 @@ const Login = (props) => {
     ref: register
   }
 
-  console.log(settings)
-
   return <Aux>
     <h1>Login</h1>
     <LoginForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={settings.isLocked}

@@ -33,13 +33,12 @@ export const loadEventItem = (apiUrl) => dispatch => {
 }
 
 export const loadEventForm = (apiUrl) => dispatch => {
-  //console.log(apiUrl)
   axios.get(apiUrl).then((response) => {
     const {location, data} = dataHandler(response.data);
     const parsedData = strToISODate(data, ['date', 'bookingOpen', 'bookingClose'])
     dispatch(setEventForm(parsedData, location))
     dispatch(setTicketTypeForm(data.ticketTypes))
-  }).catch(error => {console.log(error)})
+  }).catch(error => {})
 }
 
 const setEventList = (events) => ({
