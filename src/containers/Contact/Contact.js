@@ -43,8 +43,6 @@ const Contact = () => {
     ref: register
   }
 
-  console.log(settings)
-
   const content = settings.isSaved ?
     <ContactSub data={form}/> :
     <ContactForm handleSubmit={handleSubmit} onSubmit={onSubmit} onRecaptcha={onRecaptcha} locked={settings.isLocked}
