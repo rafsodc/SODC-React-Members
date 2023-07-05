@@ -92,7 +92,7 @@ const Booking = (props) => {
   const order_disabled = !['order', 'payment'].includes(bookingState.tab)
 
   // Determine if any tickets are not saved
-  const isSaved = Object.entries(tickets.form).filter(ticket => !ticket.saved).length === 0
+  const isSaved = Object.entries(tickets.settings).filter(ticket => !ticket[1].isSaved).length === 0
   const notSavedNotice = isSaved ? '' : <Form.Text muted className={'form-warning-desc'}>Please ensure all tickets are
     saved to continue.</Form.Text>
 
