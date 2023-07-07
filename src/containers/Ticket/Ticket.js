@@ -59,7 +59,7 @@ const Ticket = (props) => {
   return <Card>
     <Card.Header onClick={props.handleHeaderClick}>
 
-      Ticket {subtitle} <SavedBadge saved={props.settings.isSaved}/> <PaidBadge paid={props.ticket.isPaid}/><ErrorBadge
+      Ticket {subtitle} <SavedBadge saved={props.settings.isSaved}/> <PaidBadge paid={props.ticket.paid}/><ErrorBadge
       errors={!isEmptyObject(errors)}/>
     </Card.Header>
     <Accordion.Collapse eventKey={props.ticketKey}>
