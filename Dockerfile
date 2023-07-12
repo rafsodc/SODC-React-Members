@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:18.7-alpine AS react_app_common
+FROM 20.4-alpine AS react_app_common
 
 # set working directory
 WORKDIR /app
