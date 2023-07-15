@@ -4,6 +4,18 @@ import merge from 'merge'
 import { v4 } from 'uuid'
 
 /**
+ * Default settings for forms
+ */
+export const formSettings = {
+  isLocked: false,
+  isHidden: false,
+  isSaved: false,
+  isLoaded: false,
+  location: null,
+  showSavedBanner: false
+}
+
+/**
  * Adds a form to an array of forms
  * @param state Current state
  * @param action Current action data
@@ -64,17 +76,7 @@ export const clearForm = (state, action) => {
   return updateItemOrArray(state, action, setSingle)
 }
 
-/**
- * Default settings for forms
- */
-export const formSettings = {
-  isLocked: false,
-  isHidden: false,
-  isSaved: false,
-  isLoaded: false,
-  location: null,
-  showSavedBanner: false
-}
+
 
 /**
  * Default reducer object for forms
@@ -120,9 +122,4 @@ export const setValue = (state, action, section, property = null) => {
   return merge.recursive(true, state, data) 
 }
 
-
-// const formReducers = {
-//   setFormField: setFormField
-// }
-
-// export default formReducers
+const clearAll = (state, action, initialItemState) => initialItemState
