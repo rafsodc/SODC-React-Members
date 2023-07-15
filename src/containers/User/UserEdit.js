@@ -12,7 +12,7 @@ import Load from '../../components/Loading/Load'
 const UserEdit = () => {
 
   const dispatch = useDispatch()
-  const formState = useSelector(state => state.userReducer)
+  const {form, settings} = useSelector(state => state.userReducer)
   const authState = useSelector(state => state.authenticationReducer)
 
   let { id } = useParams()
@@ -31,16 +31,16 @@ const UserEdit = () => {
   } = useFormBuilder(userFormSchema)
 
   const onChange = (event) => {
-    dispatch(setUserField({ [event.target.name]: event.target.value }))
+    dispatch(setUserField(event.target.name, event.target.value ))
   }
 
   const onSubmit = () => {
-    dispatch(submitUserForm(formState.fields, formState.fields['@id']))
+    dispatch(submitUserForm(form, settings.location))
   }
 
   const childProps = {
     errors: errors,
-    data: formState.fields,
+    data: form,
     onChange: onChange,
     ref: register
   }
@@ -48,9 +48,9 @@ const UserEdit = () => {
   return (
     <Aux>
       <h1>Account Details</h1>
-      <Load loading={!formState.isLoaded}>
-        <UserForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={formState.locked}
-                  childProps={childProps} saved={formState.saved}/>
+      <Load loading={!settings.isLoaded}>
+        <UserForm handleSubmit={handleSubmit} onSubmit={onSubmit} locked={settings.isLocked}
+                  childProps={childProps} saved={settings.isSaved}/>
       </Load>
     </Aux>
   )

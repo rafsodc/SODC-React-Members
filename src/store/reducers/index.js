@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   pageReducer: pageReducer,
   contactReducer: contactReducer,
   basketReducer: basketReducer,
-  userReducer: userReducer,
+  ...userReducer,
   layoutReducer: layoutReducer
 })
 

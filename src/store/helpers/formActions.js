@@ -59,15 +59,15 @@ export const setFormHidden = (formName, hidden, id = null) => ({
   id: id
 })
 
-const setFormLocation = (formName, location, id = null) => ({
+export const setFormLocation = (formName, location, id = null) => ({
   type: actionTypes[formName].SET_LOCATION,
   value: location,
   id: id
 })
 
 export const setFormIsLoaded = (formName, isLoaded, id = null) => ({
-  type: actionTypes[formName].SET_IS_LOADED,
-  data: isLoaded,
+  type: actionTypes[formName].SET_LOADED,
+  value: isLoaded,
   id: id
 })
 
