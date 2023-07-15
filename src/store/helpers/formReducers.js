@@ -37,6 +37,7 @@ export const addForm = (state, action, initialItemState) => {
       [data.uuid]: settings
     }
   }
+
   return merge.recursive(true, state, obj)
 }
 
@@ -122,4 +123,4 @@ export const setValue = (state, action, section, property = null) => {
   return merge.recursive(true, state, data) 
 }
 
-const clearAll = (state, action, initialItemState) => initialItemState
+export const clearAll = (state, action, initialState) => initialState

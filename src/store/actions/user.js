@@ -40,9 +40,4 @@ export const loadUser = (id) => dispatch => {
 
 export const clearUser = () => clearForm(actionTypes.user.NAME)
 
-/*export const setUser = (user) => ({
-  type: actionTypes.user.SET_FIELD,
-  data: user
-});*/
-
 export default { loadUser, setUserField, setUserLocked, setUserHidden }

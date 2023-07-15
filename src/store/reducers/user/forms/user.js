@@ -3,7 +3,7 @@ import { createReducer, setParam, updateObject } from '../../../helpers/utility'
 import { formSettings, formReducerObject } from '../../../helpers/formReducers'
 
 
-const initialItemState = {
+export const initialItemState = {
     firstName: '',
     lastName: '',
     rank: null,
