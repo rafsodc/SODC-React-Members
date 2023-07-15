@@ -1,7 +1,7 @@
-import userReducer from './user'
+import userFormReducer from './forms/user'
 
 const reducers = {
-    userReducer: userReducer
+    userFormReducer: userFormReducer
   }
   
   export default reducers

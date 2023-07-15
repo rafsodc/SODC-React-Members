@@ -12,7 +12,7 @@ import Load from '../../components/Loading/Load'
 const UserEdit = () => {
 
   const dispatch = useDispatch()
-  const {form, settings} = useSelector(state => state.userReducer)
+  const {form, settings} = useSelector(state => state.userFormReducer)
   const authState = useSelector(state => state.authenticationReducer)
 
   let { id } = useParams()
