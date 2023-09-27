@@ -44,8 +44,11 @@ export const removeElementByValue = (oldArray, value) => {
   return [...oldArray].filter(el => (el !== value))
 }
 
-export const removeElementById = (oldArray, id) => {
-  return [...oldArray].filter(el => (el.id !== id))
+export const removeElementById = (oldObject, id) => {
+  // By deconstructing the form and settings objects, the property to remove can be put into a seperate variable.
+  const {[id]: removedForm, ...restForm} = oldObject.form
+  const {[id]: removedSettings, ...restSettings} = oldObject.settings
+  return {form: restForm, settings: restSettings}
 }
 
 export const replaceElementByIndex = (oldArray, index, newElement) => {
