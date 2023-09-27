@@ -35,7 +35,7 @@ const Ticket = (props) => {
 
   const handleRemove = () => {
     dispatch([
-      deleteTicket(props.ticket.id, props.ticket.location),
+      deleteTicket(props.ticket.uuid, props.settings.location),
       setAccordion('ticket', 0)
     ])
   }
