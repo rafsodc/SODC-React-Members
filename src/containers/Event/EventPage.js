@@ -11,7 +11,7 @@ import BookingOwnerSelect from '../Booking/BookingOwnerSelect'
 const EventPage = () => {
 
     const dispatch = useDispatch()
-    const {item, ownerSelectDisabled} = useSelector(state => state.eventReducer)
+    const {item, itemSettings} = useSelector(state => state.eventReducer)
     const {id} = useParams()
 
     useEffect(() => {
@@ -21,9 +21,9 @@ const EventPage = () => {
         }
     }, [dispatch, id])
 
-    if (!item) {
+    if (!itemSettings.isLoaded) {
         return <Loading/>
-    }
+    }    
 
     return (
         <>
@@ -32,7 +32,7 @@ const EventPage = () => {
                 <Event {...item} showTickets={false} eventKey={'event'}/>
             </Accordion>
             <br/>
-            <BookingOwnerSelect disabled={ownerSelectDisabled}>
+            <BookingOwnerSelect>
                 <Booking ticketOptions={item.ticketTypes} event={`/events/${id}`}/>
             </BookingOwnerSelect>
         </>
