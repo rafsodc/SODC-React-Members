@@ -25,6 +25,7 @@ export const setUserLocation = (location) => setFormLocation(actionTypes.user.NA
 
 export const submitUserForm = (data, location = null) => {
   data.isShared = String(data.isShared) === 'true'
+  data.isSubscribed = String(data.isSubscribed) === 'true'
   return submitForm(actionTypes.user.NAME, data, null, location)
 }
 
