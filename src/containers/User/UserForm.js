@@ -9,6 +9,7 @@ const UserForm = (props) => {
   const optionsYesNo = [{ value: true, description: 'Yes' }, { value: false, description: 'No' }]
   const recaptcha = props.register ? <FormRecaptcha onRecaptcha={props.onRecaptcha} error={props.captchaError}/> : ''
   const passwordText = props.register ? "password" : "new password (leave blank to keep existing password)"
+  const communications = props.register ? '' : <FormElement type="select" label="Receive club-wide communications?" name="isSubscribed" options={optionsYesNo} {...props.childProps}/> 
 
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={'disabled'}>
     <fieldset disabled={props.locked && 'disabled'}>
@@ -31,8 +32,9 @@ const UserForm = (props) => {
                      name="modnetEmail" {...props.childProps}/>
         <FormElement type="textarea" placeholder="Enter service history" label="Service History"
                      name="workDetails" {...props.childProps}/>
-        <FormElement type="select" label="Share contact details with other members?" name="isShared"
+        <FormElement type="select" label="Allow members to see your contact details?" name="isShared"
                      options={optionsYesNo} {...props.childProps}/>
+        {communications}
         <FormElement type="password" placeholder={"Enter " + passwordText}
                      label="Password:" name="password" {...props.childProps} />
         <FormElement type="password" placeholder={"Confirm " + passwordText}
