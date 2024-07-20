@@ -1,7 +1,7 @@
 import actionTypes from '../../actionTypes'
 import { createReducer, setParam, updateObject } from '../../helpers/utility'
 import { formSettings, formReducerObject } from '../../helpers/formReducers'
-
+import { v4 } from 'uuid'
 
 const initialItemState = {
     firstName: '',
@@ -17,7 +17,8 @@ const initialItemState = {
     modnetEmail: '',
     password: '',
     passwordConfirm: '',
-    captcha: null
+    captcha: null,
+    uuid: v4()
 }
 
 const initialState = {
