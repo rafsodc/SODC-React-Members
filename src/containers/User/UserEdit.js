@@ -15,14 +15,14 @@ const UserEdit = () => {
   const {form, settings} = useSelector(state => state.userReducer)
   const authState = useSelector(state => state.authenticationReducer)
 
-  let { id } = useParams()
+  let { uuid } = useParams()
 
-  id = id === undefined ? authState.token_data.id : id
+  uuid = uuid === undefined ? authState.token_data.uuid : uuid
 
   useEffect(() => {
-    dispatch(loadUser(id))
+    dispatch(loadUser(uuid))
     return () => dispatch(clearUser())
-  }, [dispatch, id])
+  }, [dispatch, uuid])
 
   const {
     register,
