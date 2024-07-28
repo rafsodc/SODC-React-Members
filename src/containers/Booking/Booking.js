@@ -25,7 +25,7 @@ const Booking = (props) => {
     //dispatch(loadTransactions(props.event, bookingState.owner))
     
     // Determine status is set.  If so, display the confirmation tab.
-    if (status !== null) handleTabSelect('confirmation')
+    if (status !== undefined) handleTabSelect('confirmation')
 
   }, [dispatch, bookingState.owner, props.event, status])
 
