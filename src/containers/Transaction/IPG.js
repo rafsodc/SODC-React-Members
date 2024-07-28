@@ -29,7 +29,7 @@ const IPG = (props) => {
 
   return (
     <Aux>
-      <form method="post" target="ipgFrame" action={props.ipg.action}>
+      <form method="post" action={props.ipg.action}>
         {fields}
         <div class="form-group">
                 <label for="cardnumber" class="form-label">Card Number</label>
