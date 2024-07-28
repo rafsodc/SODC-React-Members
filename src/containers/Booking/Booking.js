@@ -10,6 +10,7 @@ import Basket from '../Transaction/Basket'
 import Payment from '../Transaction/Payment'
 import { setResponse } from '../../store/actions/basket'
 import IPGResponse from '../Transaction/IPGResponse'
+import {useParams} from 'react-router'
 
 const Booking = (props) => {
 
@@ -17,12 +18,16 @@ const Booking = (props) => {
   const bookingState = useSelector(state => state.bookingReducer)
   const tickets = useSelector(state => state.ticketReducer)
   const transactionState = useSelector(state => state.transactionReducer)
+  const {status} = useParams()
 
   useEffect(() => {
     dispatch(loadEventTickets(props.event, bookingState.owner))
     //dispatch(loadTransactions(props.event, bookingState.owner))
+    
+    // Determine status is set.  If so, display the confirmation tab.
+    if (status !== null) handleTabSelect('confirmation')
 
-  }, [dispatch, bookingState.owner, props.event])
+  }, [dispatch, bookingState.owner, props.event, status])
 
   const handleAddTicket = () => {
     if (props.user !== null) {
@@ -95,6 +100,8 @@ const Booking = (props) => {
   const isSaved = Object.entries(tickets.settings).filter(ticket => !ticket[1].isSaved).length === 0
   const notSavedNotice = isSaved ? '' : <Form.Text muted className={'form-warning-desc'}>Please ensure all tickets are
     saved to continue.</Form.Text>
+
+
 
   return (
     <Tabs activeKey={bookingState.tab} onSelect={(key) => handleTabSelect(key)}>

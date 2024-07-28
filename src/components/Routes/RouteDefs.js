@@ -40,6 +40,17 @@ const APP_EVENT_ADD =
         roles:['ROLE_ADMIN']
     }
 
+const IPG_RETURN =
+{
+    path: '/events/:id/:status',
+    key: 'IPG_RETURN',
+    title: 'Event',
+    component: EventPage,
+    auth: true,
+    roles: ['ROLE_USER'],
+    exact: true
+}
+
 const headerRoutes = [
     {
         path: '/',
@@ -163,6 +174,7 @@ const otherRoutes = [
         auth: true,
         roles: ['ROLE_ADMIN']
     },
+    IPG_RETURN,
     {
         path: '/logout',
         key: 'APP_LOGOUT',
