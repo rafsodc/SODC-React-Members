@@ -18,10 +18,9 @@ const UserTypeAhead = (props) => {
     setError(props.error)
     if (props.selected !== undefined) {
       setIsLoading(true)
-      const path = apiPaths.user.GET_COLLECTION + '?id=' + props.selected
+      const path = props.selected
       axios.get(path).then((response) => {
-        setOptions(response.data['hydra:member'])
-        setSelected(response.data['hydra:member'])
+        setSelected([response.data])
       })
         .finally(
           setIsLoading(false)
