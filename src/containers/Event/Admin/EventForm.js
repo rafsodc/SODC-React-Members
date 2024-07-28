@@ -19,7 +19,7 @@ const EventForm = (props) => {
                      name="bookingClose" {...props.childProps}/>
         <FormElement type="input" placeholder="Enter event venue" label="Venue"
                      name="venue" {...props.childProps}/>
-        <FormElement type="input" placeholder="Enter event description" label="Description"
+        <FormElement type="textarea" placeholder="Enter event description" label="Description"
                      name="description" {...props.childProps}/>
         <FormElement type="input" placeholder="Enter event principal speaker" label="Principal Speaker"
                      name="principalSpeaker" {...props.childProps}/>
