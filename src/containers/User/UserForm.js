@@ -9,7 +9,7 @@ const UserForm = (props) => {
   const optionsYesNo = [{ value: true, description: 'Yes' }, { value: false, description: 'No' }]
   const recaptcha = props.register ? <FormRecaptcha onRecaptcha={props.onRecaptcha} error={props.captchaError}/> : ''
   const passwordText = props.register ? "password" : "new password (leave blank to keep existing password)"
-  const communications = props.register ? '' : <FormElement type="select" label="Receive club-wide communications?" name="isSubscribed" options={optionsYesNo} {...props.childProps}/> 
+  const communications = props.register ? '' : <FormElement type="switch_array" label="Club communications" name="subscriptions" {...props.childProps}/> 
 
   return <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={'disabled'}>
     <fieldset disabled={props.locked && 'disabled'}>
