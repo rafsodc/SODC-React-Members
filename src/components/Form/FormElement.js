@@ -36,6 +36,38 @@ const FormElement = React.forwardRef((props, ref) => {
       props.onChange(object)
     }
 
+    /**
+     * Subscriptions
+     * We need to provide a single object to be returned to the form.  This needs to be in the structure off:
+     * [
+     *   {
+     *     "name": "name_value",
+     *     "isSubscribed": bool,
+     *     "uuid": "iri to entity"
+     *   }
+     * ]
+     */
+    const handleArray = (obj) => {
+      //console.log(value);
+      const parts = obj.target.id.split('_');
+      const index = parts[parts.length - 1];
+      //const value = obj.target.value === "" ? obj.target.defaultValue : ""
+
+      const oldState = props.data[props.name][index].isSubscribed
+      const newElement = {...props.data[props.name][index], isSubscribed: !oldState}
+
+      let data = replaceElementByIndex(props.data[props.name], index, newElement)
+
+      // Create an object to send to the onChange event.
+      const object = {
+        target: {
+          name: props.name,
+          value: data
+        }
+      }
+      props.onChange(object)
+    }
+
     switch (props.type) {
       case 'select':
         control =
@@ -74,6 +106,29 @@ const FormElement = React.forwardRef((props, ref) => {
                         className={props.errors[props.name] && 'form-warning-el'} 
                         checked={props.data[props.name]}
                         />
+        break
+      case 'switch_array':
+        const switchArray = props.data[props.name].map((selected, index) => {
+          return <Aux key={index}>
+            <Form.Check id={props.name + "_" + index} index={index} label={selected.name} checked={selected.isSubscribed} value={selected.uuid} onChange={handleArray}/>
+          </Aux>
+        })
+        control =
+          <Aux> {switchArray} </Aux>
+        // control = props.data[props.name].map(subscription => {
+        //   return (<Aux>
+        //   <Form.Label>{subscription.name}</Form.Label>
+        //   <Form.Check disabled={props.disabled} onChange={props.onChange} name={props.name}
+        //                 ref={ref} type={'checkbox'}
+        //                 placeholder={props.placeholder}
+        //                 className={props.errors[props.name] && 'form-warning-el'} 
+        //                 checked={props.data[props.name]}
+        //                 />
+        //   </Aux>);
+        //   console.log(subscription)
+        // })
+        // console.log(control)
+
         break
       default:
         control =
