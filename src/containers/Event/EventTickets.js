@@ -11,8 +11,10 @@ const EventTickets = (props) => {
   const authenticationState = useSelector(state => state.authenticationReducer)
 
   useEffect(() => {
-    dispatch(loadEventTickets(props.eventId, authenticationState.token_data.iri))
-  }, [dispatch])
+    if(authenticationState.token_data.iri) {
+      dispatch(loadEventTickets(props.eventId, authenticationState.token_data.iri))
+    }
+  }, [dispatch, authenticationState.token_data.iri])
 
   const rows = form.map(ticket => (
     <tr key={ticket.id}>

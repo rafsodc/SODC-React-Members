@@ -21,7 +21,9 @@ const Booking = (props) => {
   const {status} = useParams()
 
   useEffect(() => {
-    dispatch(loadEventTickets(props.event, bookingState.owner))
+    if(bookingState.owner) {
+      dispatch(loadEventTickets(props.event, bookingState.owner))
+    }
     //dispatch(loadTransactions(props.event, bookingState.owner))
     
     // Determine status is set.  If so, display the confirmation tab.
