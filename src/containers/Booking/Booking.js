@@ -20,17 +20,6 @@ const Booking = (props) => {
   const transactionState = useSelector(state => state.transactionReducer)
   const {status} = useParams()
 
-  useEffect(() => {
-    if(bookingState.owner) {
-      dispatch(loadEventTickets(props.event, bookingState.owner))
-    }
-    //dispatch(loadTransactions(props.event, bookingState.owner))
-    
-    // Determine status is set.  If so, display the confirmation tab.
-    if (status !== undefined) handleTabSelect('confirmation')
-
-  }, [dispatch, bookingState.owner, props.event, status])
-
   const handleAddTicket = () => {
     if (props.user !== null) {
       const accordion = tickets.form.length + 1
@@ -62,6 +51,17 @@ const Booking = (props) => {
     const setKey = (key === bookingState.accordion[tab]) ? -1 : key
     dispatch(setAccordion(tab, setKey))
   }
+
+  useEffect(() => {
+    if(bookingState.owner) {
+      dispatch(loadEventTickets(props.event, bookingState.owner))
+    }
+    //dispatch(loadTransactions(props.event, bookingState.owner))
+    
+    // Determine status is set.  If so, display the confirmation tab.
+    if (status !== undefined) handleTabSelect('confirmation')
+
+  }, [dispatch, bookingState.owner, props.event, status])
   
   const transformedTicketForms = Object.entries(tickets.form).map((ticket, key) => {
     return <Ticket

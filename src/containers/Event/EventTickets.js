@@ -3,31 +3,33 @@ import { useDispatch, useSelector } from 'react-redux'
 import { boolToStr, floatToCur } from '../../utils/funcs/funcs'
 import { loadEventTickets } from '../../store/actions/ticket'
 import Table from 'react-bootstrap/Table'
+import {useParams} from 'react-router'
 
 const EventTickets = (props) => {
 
   const dispatch = useDispatch()
-  const {form, settings} = useSelector(state => state.ticketReducer)
+  const {form, settings, loading} = useSelector(state => state.ticketReducer)
+  const {id} = useParams();
   const authenticationState = useSelector(state => state.authenticationReducer)
 
   useEffect(() => {
-    if(authenticationState.token_data.iri) {
-      dispatch(loadEventTickets(props.eventId, authenticationState.token_data.iri))
-    }
-  }, [dispatch, authenticationState.token_data.iri])
+    dispatch(loadEventTickets(`/events/${id}`))
+  }, [dispatch, id])
 
-  const rows = form.map(ticket => (
-    <tr key={ticket.id}>
-      <td>{ticket.fields.lastname}</td>
-      <td>{ticket.fields.firstname}</td>
-      <td>{ticket.fields.rank}</td>
-      <td>{boolToStr(ticket.fields.ticketType.symposium)}</td>
-      <td>{boolToStr(ticket.fields.ticketType.dinner)}</td>
-      <td>{floatToCur.format(ticket.fields.ticketType.price)}</td>
-      <td>{boolToStr(ticket.fields.paid)}</td>
-      <td>{ticket.fields.dietary}</td>
-    </tr>
-  ))
+  let rows = null;
+
+  if(!loading) {
+    rows = Object.entries(form).map(ticket => (
+      <tr key={ticket[1].id}>
+        <td>{ticket[1].lastname}</td>
+        <td>{ticket[1].firstname}</td>
+        <td>{ticket[1].rank}</td>
+        <td>{boolToStr(ticket[1].ticketType.symposium)}</td>
+        <td>{boolToStr(ticket[1].ticketType.dinner)}</td>
+        <td>{ticket[1].owner.fullName}</td>
+      </tr>
+    ))
+  }
 
   return <Table>
     <thead>
@@ -37,9 +39,7 @@ const EventTickets = (props) => {
       <th>{'Rank'}</th>
       <th>{'Symposium'}</th>
       <th>{'Dinner'}</th>
-      <th>{'Amount'}</th>
-      <th>{'Paid'}</th>
-      <th>{'Dietary Requirements'}</th>
+      <th>{'Booker'}</th>
     </tr>
     </thead>
     <tbody>{rows}</tbody>
@@ -47,3 +47,4 @@ const EventTickets = (props) => {
 }
 
 export default EventTickets
+

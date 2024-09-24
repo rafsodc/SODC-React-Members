@@ -25,6 +25,7 @@ export const addForm = (state, action, initialItemState) => {
       [data.uuid]: settings
     }
   }
+  
   return merge.recursive(true, state, obj)
 }
 

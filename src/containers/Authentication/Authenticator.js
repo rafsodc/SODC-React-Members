@@ -35,7 +35,7 @@ const Authenticator = (props) => {
       dispatch(refreshToken())
     }
 
-  }, [dispatch, auth.authenticated, auth.token])
+  }, [dispatch, auth.authenticated, auth.token, auth.token_data.iri])
 
   if (props.access) {
     return props.children
