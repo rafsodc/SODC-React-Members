@@ -4,7 +4,7 @@ import { Button, Form, Tab, Tabs } from 'react-bootstrap'
 import Ticket from '../Ticket/Ticket'
 import { addTicket, setAccordion, setTab } from '../../store/actions'
 import TicketList from '../Ticket/TicketList'
-import { loadEventTickets } from '../../store/actions/ticket'
+import { loadEventTickets, loadUserTickets } from '../../store/actions/ticket'
 import Transaction from '../Transaction/Transaction'
 import Basket from '../Transaction/Basket'
 import Payment from '../Transaction/Payment'
@@ -34,7 +34,7 @@ const Booking = (props) => {
 
   const handleReturnToTickets = () => {
     dispatch([
-      loadEventTickets(props.event, bookingState.owner),
+      loadUserTickets(bookingState.owner, props.event),
       setTab('tickets')
     ])
   }
@@ -54,7 +54,7 @@ const Booking = (props) => {
 
   useEffect(() => {
     if(bookingState.owner) {
-      dispatch(loadEventTickets(props.event, bookingState.owner))
+      dispatch(loadUserTickets(bookingState.owner, props.event))
     }
     //dispatch(loadTransactions(props.event, bookingState.owner))
     
