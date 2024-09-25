@@ -41,6 +41,17 @@ export const loadEventTickets = (event, owner = null) => dispatch => {
   })
 }
 
+export const loadUserTickets = (owner, event = null) => dispatch => {
+  const query = (event !== null) ? '?event=' + event : ''
+  axios.get(owner + '/tickets' + query).then((response) => {
+    const addTicketsReducer = response.data['hydra:member'].map(ticket => {
+      const handledTicket = dataHandler(ticket);
+      return addTicket(handledTicket.data, handledTicket.location)
+    })
+    return dispatch([resetTickets(), addTicketsReducer, setLoading(false)])
+  })
+}
+
 export const addTicket = (data = null, location = null) => ({
   type: actionTypes.ticket.ADD,
   data: data,

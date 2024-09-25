@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { boolToStr, floatToCur } from '../../utils/funcs/funcs'
-import { loadEventTickets } from '../../store/actions/ticket'
+import { loadEventTickets, resetTickets } from '../../store/actions/ticket'
 import Table from 'react-bootstrap/Table'
 import {useParams} from 'react-router'
 
@@ -14,13 +14,16 @@ const EventTickets = (props) => {
 
   useEffect(() => {
     dispatch(loadEventTickets(`/events/${id}`))
+    return () => {
+      dispatch(resetTickets())
+    }
   }, [dispatch, id])
 
   let rows = null;
 
   if(!loading) {
     rows = Object.entries(form).map(ticket => (
-      <tr key={ticket[1].id}>
+      <tr key={ticket[1].uuid}>
         <td>{ticket[1].lastname}</td>
         <td>{ticket[1].firstname}</td>
         <td>{ticket[1].rank}</td>
