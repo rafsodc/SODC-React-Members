@@ -13,6 +13,7 @@ import Agenda from '../../containers/Agenda/Agenda'
 import Admin from "../../containers/Admin/Admin";
 import UsersApprove from "../../containers/User/UsersApprove";
 import EventEdit from '../../containers/Event/Admin/EventEdit'
+import EventTickets from '../../containers/Event/EventTickets'
 
 /**
  *  Return constant objects for routing.  @Todo In time this will be replaced with api request, and have a const for reach route, and then refer to constant in each object
@@ -154,6 +155,15 @@ const otherRoutes = [
         key: 'APP_EVENT_ID',
         title: 'Event',
         component: EventPage,
+        auth: true,
+        roles: ['ROLE_USER'],
+        exact: true
+    },
+    {
+        path: '/events/:id/tickets',
+        key: 'APP_EVENT_ID_TICKETS',
+        title: 'Event Attendance',
+        component: EventTickets,
         auth: true,
         roles: ['ROLE_USER'],
         exact: true

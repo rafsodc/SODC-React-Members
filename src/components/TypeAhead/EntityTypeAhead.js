@@ -28,7 +28,7 @@ const EntityTypeAhead = (props) => {
         )
     }
 
-  }, [props.selected, props.error])
+  }, [props.selected, props.error, props.type])
 
   const handleSearch = (query) => {
     setIsLoading(true)

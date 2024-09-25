@@ -16,7 +16,7 @@ const Agenda = () => {
 
   useEffect(() => {
     dispatch(loadAgenda(id))
-  }, [dispatch])
+  }, [dispatch, id])
 
   const handleHeaderClick = (key) => {
     const setKey = (key === agendaState.accordion) ? null : key

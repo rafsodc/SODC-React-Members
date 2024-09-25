@@ -37,7 +37,7 @@ export const loadEventTickets = (event, owner = null) => dispatch => {
       const handledTicket = dataHandler(ticket);
       return addTicket(handledTicket.data, handledTicket.location)
     })
-    return dispatch([resetTickets(), addTicketsReducer])
+    return dispatch([resetTickets(), addTicketsReducer, setLoading(false)])
   })
 }
 
@@ -61,6 +61,11 @@ export const addTicket = (data = null, location = null) => ({
 export const resetTickets = () => ({
   type: actionTypes.ticket.RESET
 })
+
+export const setLoading = (isLoading) => ({
+  type: actionTypes.ticket.SET_LOADING,
+  payload: isLoading // Pass the boolean value as payload
+});
 
 export const deleteTicket = (id, location) => dispatch => {
   if (location !== null) {
