@@ -22,16 +22,20 @@ const EventTickets = (props) => {
   let rows = null;
 
   if(!loading) {
-    rows = Object.entries(form).map(ticket => (
-      <tr key={ticket[1].uuid}>
-        <td>{ticket[1].lastname}</td>
-        <td>{ticket[1].firstname}</td>
-        <td>{ticket[1].rank}</td>
-        <td>{boolToStr(ticket[1].ticketType.symposium)}</td>
-        <td>{boolToStr(ticket[1].ticketType.dinner)}</td>
-        <td>{ticket[1].owner.fullName}</td>
-      </tr>
-    ))
+    rows = Object.entries(form).map(ticket => {
+      if(ticket[1].ticketType.symposium || ticket[1].ticketType.dinner) {
+        return (
+        <tr key={ticket[1].uuid}>
+          <td>{ticket[1].lastname}</td>
+          <td>{ticket[1].firstname}</td>
+          <td>{ticket[1].rank}</td>
+          <td>{boolToStr(ticket[1].ticketType.symposium)}</td>
+          <td>{boolToStr(ticket[1].ticketType.dinner)}</td>
+          <td>{ticket[1].owner.fullName}</td>
+        </tr>
+      )
+      }
+    })
   }
 
   return <Table>
