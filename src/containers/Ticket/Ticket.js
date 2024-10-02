@@ -11,6 +11,7 @@ import { isEmptyObject } from '../../utils/funcs/funcs'
 import { deleteTicket, setTicketSaved, setTicketSavedBaner, setTicketSetting } from '../../store/actions/ticket'
 import Aux from '../../hoc/Aux'
 import PaidBadge from '../Booking/PaidBadge'
+import CancelledBadge from '../Booking/CancelledBadge'
 
 const Ticket = (props) => {
 
@@ -59,7 +60,7 @@ const Ticket = (props) => {
   return <Card>
     <Card.Header onClick={props.handleHeaderClick}>
 
-      Ticket {subtitle} <SavedBadge saved={props.settings.isSaved}/> <PaidBadge paid={props.ticket.paid}/><ErrorBadge
+      Ticket {subtitle} <SavedBadge saved={props.settings.isSaved}/> <PaidBadge paid={props.ticket.paid}/> <CancelledBadge cancelled={props.ticket.cancelled}/> <ErrorBadge
       errors={!isEmptyObject(errors)}/>
     </Card.Header>
     <Accordion.Collapse eventKey={props.ticketKey}>
