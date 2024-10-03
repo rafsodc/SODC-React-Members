@@ -37,8 +37,8 @@ const EventTickets = (props) => {
           {/* Conditionally add more fields if the user is an admin */}
           {admin && (
             <>
-              <td>{boolToStr(ticket[1].serving)}</td>
-              <td>{boolToStr(ticket[1].guest)}</td>
+              <td>{boolToStr(ticket[1].ticketType.serving)}</td>
+              <td>{boolToStr(ticket[1].ticketType.guest)}</td>
               <td>{boolToStr(ticket[1].paid)}</td>
               <td>{ticket[1].dietary || 'N/A'}</td>
               <td>
