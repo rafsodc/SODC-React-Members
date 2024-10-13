@@ -39,6 +39,8 @@ const AgendaItem = (props) => {
     .map(speaker => `${speaker.fullname} (${speaker.position})`)
     .join(', ');
 
+  const details = speakerNames || props.agenda.description;
+
   return (
     <Card>
       <Card.Header onClick={toggleAccordion} className={`clickable-header ${props.agenda.break ? 'break-header' : ''}`}>
@@ -51,19 +53,30 @@ const AgendaItem = (props) => {
             </>
           )}
         </div>
-        {speakerNames && (
+        {details && (
           <FontAwesomeIcon 
             icon={faChevronDown} 
             className={`header-icon ${isOpen ? 'rotate' : ''}`} 
           />
         )}
       </Card.Header>
-      <Accordion.Collapse eventKey={props.id}>
-        <Card.Body>
-          <h5>Speakers:</h5>
-          <ol className="speaker-list">{speakers}</ol>
-        </Card.Body>
-      </Accordion.Collapse>
+      
+      {details && (
+        <Accordion.Collapse eventKey={props.id}>
+          <Card.Body>
+          {props.agenda.description && (
+            <ReactMarkdown source={props.agenda.description} />
+          )}
+          {speakerNames && (
+            <>
+            <h5>Speakers:</h5>
+            <ol className="speaker-list">{speakers}</ol>
+            </>
+          )}
+          </Card.Body>
+        </Accordion.Collapse>
+      )}
+        
     </Card>
   );
 }
