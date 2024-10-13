@@ -1,55 +1,42 @@
-/* Container for the speaker item */
+/* Container for each speaker item */
 .speaker-item {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 
-/* Speaker text content (name, position, biography) */
-.speaker-content {
-  flex: 1;                       /* Takes up remaining space */
-  margin-right: 1rem;            /* Spacing between text and photo */
-}
-
-/* Speaker name and position styling */
+/* Speaker name and position */
 .speaker-info {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-/* Speaker photo styling */
+/* Container for speaker content (photo and bio) */
+.speaker-content {
+  overflow: hidden; /* Clear floats */
+}
+
+/* Speaker photo */
 .speaker-photo {
-  width: 100px;
+  width: 240px;
   height: auto;
   object-fit: cover;
   border-radius: 8px;
+  float: right; /* Float to the right */
+  margin-left: 1rem; /* Add spacing to the left of the photo */
+  display: inline; /* Ensures it behaves like text for wrapping */
 }
 
-/* Responsive adjustments for larger screens */
-@media (min-width: 768px) {
-  .speaker-photo {
-    width: 240px;
-  }
+/* Speaker biography */
+.speaker-bio {
+  display: inline; /* Ensures text wraps next to floated image */
+  overflow: hidden; /* Contains floated elements */
 }
 
-/* Mobile screens adjustments */
+/* Mobile adjustments */
 @media (max-width: 767px) {
-  .speaker-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .speaker-photo {
-    width: 100%;
-    margin: 1rem 0 0 0;          /* Adds space above the image */
-  }
-
-  /* Remove list padding on mobile */
-  .speaker-list {
-    padding-left: 0;       /* Removes indentation */
-    list-style-position: inside; /* Moves bullets or numbers inside the list */
+    width: 100%;   /* Full width on mobile */
+    float: none;   /* Remove float to stack on mobile */
+    margin: 1rem 0 0 0; /* Add spacing above on mobile */
   }
 }
 

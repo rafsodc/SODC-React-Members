@@ -16,22 +16,23 @@ const AgendaItem = (props) => {
 
   const speakers = props.agenda.speakers.map((speaker, key) => (
     <li key={key} className="speaker-item">
+      <div className="speaker-info">
+        <strong>{speaker.fullname}</strong> <em>({speaker.position})</em>
+      </div>
+  
+      {/* Speaker content: photo and biography */}
       <div className="speaker-content">
-        <div className="speaker-info">
-          {speaker.fullname} <em>({speaker.position})</em>
-        </div>
+        {speaker.photograph && speaker.photograph.contentUrl && (
+          <img 
+            src={speaker.photograph.contentUrl} 
+            alt={`${speaker.fullname}'s photograph`} 
+            className="speaker-photo"
+          />
+        )}
         <div className="speaker-bio">
           <ReactMarkdown source={speaker.biography} />
         </div>
       </div>
-
-      {speaker.photograph && speaker.photograph.contentUrl && (
-        <img 
-          src={speaker.photograph.contentUrl} 
-          alt={`${speaker.fullname}'s photograph`} 
-          className="speaker-photo"
-        />
-      )}
     </li>
   ));
 
