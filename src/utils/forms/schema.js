@@ -2,7 +2,7 @@ import * as yup from 'yup'
 import { updateObject } from '../../store/helpers/utility'
 
 export const loginFormSchema = () => yup.object().shape({
-  email: yup.string().email().required(),
+  username: yup.string().email().required(),
   password: yup.string().required(),
 })
 
@@ -38,7 +38,7 @@ export const contactFormSchema = () => yup.object().shape({
 })
 
 export const passwordResetRequestFormSchema = () => yup.object().shape({
-  email: yup.string().email().required()
+  username: yup.string().required()
 })
 
 export const passwordResetSubmitFormSchema = () => yup.object().shape({

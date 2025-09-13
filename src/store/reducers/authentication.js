@@ -30,7 +30,7 @@ const authReducer = createReducer(initialAuthState, {
 
 const initialLoginFormState = {
   fields: {
-    email: '',
+    username: '',
     password: '',
   },
   locked: false,
@@ -39,7 +39,7 @@ const initialLoginFormState = {
 
 const initialPasswordResetRequestFormState = {
   fields: {
-    email: '',
+    username: '',
   },
   locked: false,
   hidden: true

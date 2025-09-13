@@ -4,7 +4,7 @@ import { formReducerObject, formSettings } from '../../helpers/formReducers'
 
 const initialState = {
   form: {
-    email: '',
+    username: '',
     captcha: null,
   },
   settings: formSettings

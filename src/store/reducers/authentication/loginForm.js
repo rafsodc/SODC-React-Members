@@ -4,7 +4,7 @@ import { formReducerObject, formSettings, setValue } from '../../helpers/formRed
 
 const initialState = {
   form: {
-    email: '',
+    username: '',
     password: '',
   },
   settings: formSettings

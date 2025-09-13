@@ -18,7 +18,7 @@ const EntityTypeAhead = (props) => {
     setError(props.error)
     if (props.selected !== undefined && props.selected !== null) {
       setIsLoading(true)
-      const path = apiPaths[props.type].GET_COLLECTION + '?id=' + props.selected
+      const path = apiPaths[props.type].GET_COLLECTION + '?uuid=' + props.selected
       axios.get(path).then((response) => {
         setOptions(response.data['hydra:member'])
         setSelected(response.data['hydra:member'])

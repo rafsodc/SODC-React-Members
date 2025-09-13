@@ -11,7 +11,6 @@ export const setLoginHidden = (isHidden) => setFormHidden(actionTypes.loginForm.
 const clearLogin = () => clearForm(actionTypes.loginForm.NAME)
 
 export const login = (data) => dispatch => {
-
   dispatch([
     setLoginLock(true),
     clearUnstickyAlerts()
@@ -40,33 +39,31 @@ export const doLogin = (token) => ([
   checkTokenTimeout(3600)
 ])
 
-export const logout = () => dispatch => {
-  // Double request fixes a bug where the JWT is retained - A bit ugly, but works
-  axios.post(apiPaths.authentication.LOGOUT).then(
-    axios.post(apiPaths.authentication.LOGOUT)
-  ).then(dispatch(doLogout()))
-}
-
 const authenticate = (token) => {
   return {
     type: actionTypes.authentication.AUTHENTICATE,
-    token: token
+    token
   }
+}
+
+export const logout = () => dispatch => {
+  axios.post(apiPaths.authentication.LOGOUT)
+    .then(() => dispatch(doLogout()))
 }
 
 const checkTokenTimeout = (expirationTime) => {
   return dispatch => {
     setTimeout(() => {
       dispatch(refreshToken())
-      //dispatch(formShow());
     }, expirationTime * 1000)
   }
 }
 
 export const refreshToken = () => dispatch => {
-
-  //This should be post!
-  axios.get(apiPaths.authentication.REFRESH_TOKEN).then((response) => dispatch(doLogin(response.data.token)))
+  axios.post(apiPaths.authentication.REFRESH_TOKEN)
+    .then((response) => {
+      dispatch(doLogin(response.data.token))
+    })
     .catch((error) => {
       switch (error.response.status) {
         case 401:

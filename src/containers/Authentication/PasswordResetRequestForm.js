@@ -7,8 +7,8 @@ const PasswordResetRequestForm = (props) => (
 
   <Form onSubmit={props.handleSubmit(props.onSubmit)} disabled={'disabled'}>
     <fieldset disabled={props.locked && 'disabled'}>
-      <Form.Group controlId="formEmail">
-        <FormElement type="input" placeholder="Enter email address" label="Email" name="email" {...props.childProps}/>
+      <Form.Group controlId="formUsername">
+        <FormElement type="input" placeholder="Enter username" label="Username" name="username" {...props.childProps}/>
       </Form.Group>
       <FormRecaptcha onRecaptcha={props.onRecaptcha} error={props.captchaError}/>
 
